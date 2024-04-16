@@ -170,7 +170,6 @@
                 var status = $(this).data('status');
     
                 // Populate the modal fields with contact data
-                // 
                 $("#edit_id").val(id);
                 $("#edit_name").val(name);
                 $("#edit_email").val(email);

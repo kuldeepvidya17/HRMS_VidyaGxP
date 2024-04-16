@@ -202,6 +202,8 @@ Route::post('employeesalary/store', 'SalaryController@store')->name('salary.stor
 
 
     Route::get('tasks',[TaskController::class,'index'])->name('task');
+    Route::get('tasks-list',[TaskController::class,'list'])->name('tasks-list');
+
     Route::post('tasks/add',[TaskController::class,'store'])->name('task.add');
     Route::get('task-list',[TaskController::class,'lists'])->name('task-list');
     Route::delete('tasks',[TaskController::class,'destroy'])->name('task.destroy');
