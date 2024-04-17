@@ -175,7 +175,7 @@
 </div>
 <!-- /Edit Overtime Modal -->
 
-<x-modals.delete route="overtime" title="Tax" />
+<x-modals.delete route="overtime" title="Overtime" />
 
 @endsection
 
