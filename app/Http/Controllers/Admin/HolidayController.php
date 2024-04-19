@@ -6,7 +6,7 @@ use App\Models\Holiday;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HolidayRequest;
-
+use App\Helpers;
 class HolidayController extends Controller
 {
     /**
@@ -38,7 +38,8 @@ class HolidayController extends Controller
      */
     public function store(HolidayRequest $request)
     {
-        Holiday::create($request->all());
+        $holiday=Holiday::create($request->all());
+        storeActivityLog($userId=1, $action='store', $description=$holiday->name, $moduleName='holiday', $moduleId=$holiday->id,$status='Holiday Has Been Successfully added.');
         return back()->with('success',"Holiday Has Been Successfully added.");
     }
 
@@ -67,6 +68,7 @@ class HolidayController extends Controller
             'name'=>$request->name,
             'holiday_date'=>$request->holiday_date,
         ]);
+        storeActivityLog($userId=1, $action='Update', $description=$request->name, $moduleName='Holiday', $moduleId=$request->id,$status='Holiday has been updated successfully!!');
         return back()->with('success',"Holiday has been updated successfully!!");
     }
 
@@ -80,6 +82,7 @@ class HolidayController extends Controller
     {
         $holiday = Holiday::find($request->id);
         $holiday->delete();
+        storeActivityLog($userId=1, $action='Delete', $description=$request->name, $moduleName='Holiday', $moduleId=$request->id,$status='Holiday has been deleted successfully!!');
         return back()->with('success',"Holiday has been deleted successfully!!");
     }
 }
