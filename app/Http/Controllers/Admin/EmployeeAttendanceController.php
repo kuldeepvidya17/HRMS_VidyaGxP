@@ -48,13 +48,15 @@ class EmployeeAttendanceController extends Controller
             }
         }
             
-        EmployeeAttendance::create([
+       $empAttendance= EmployeeAttendance::create([
             'employee_id' => $request->employee,
             'checkin' => $request->checkin,
             'checkout' => $request->checkout,
             'status' => $status,
         ]);
         $notification = notify('employee attendance has been created');
+
+        storeActivityLog($userId=1, $action='store', $description='Add', $moduleName='attendance', $moduleId=$empAttendance->id,$status='attendance Has Been Successfully added.');
         return back()->with($notification);
     }
 
@@ -102,6 +104,8 @@ class EmployeeAttendanceController extends Controller
             'status' => $status,
         ]);
         $notification = notify('employee attendance has been updated');
+        storeActivityLog($userId=1, $action='update', $description='Update', $moduleName='attendance', $moduleId=$request->id,$status='attendance Has Been Successfully Uodate.');
+
         return back()->with($notification);
     }
 
@@ -115,6 +119,7 @@ class EmployeeAttendanceController extends Controller
     {
         EmployeeAttendance::findOrFail($request->id)->delete();
         $notification = notify('employee attendance has been deleted');
+        storeActivityLog($userId=1, $action='Delete', $description='attendance', $moduleName='Attendance', $moduleId=$request->id,$status='Attendance has been deleted successfully!!');
         return back()->with($notification);
     }
 }

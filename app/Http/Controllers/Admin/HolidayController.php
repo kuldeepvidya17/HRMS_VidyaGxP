@@ -82,7 +82,7 @@ class HolidayController extends Controller
     {
         $holiday = Holiday::find($request->id);
         $holiday->delete();
-        storeActivityLog($userId=1, $action='Delete', $description=$request->name, $moduleName='Holiday', $moduleId=$request->id,$status='Holiday has been deleted successfully!!');
+        storeActivityLog($userId=1, $action='Delete', $description=$holiday->name, $moduleName='Holiday', $moduleId=$request->id,$status='Holiday has been deleted successfully!!');
         return back()->with('success',"Holiday has been deleted successfully!!");
     }
 }

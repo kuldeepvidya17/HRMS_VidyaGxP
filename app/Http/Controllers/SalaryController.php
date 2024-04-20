@@ -23,11 +23,12 @@ class SalaryController extends Controller
             'amount' => 'required|numeric|min:0',
         ]);
 
-        EmpSalary::create([
+        $empSalary= EmpSalary::create([
             'employee_id' => $request->employee,
             'amount' => $request->amount,
         ]);
 
+        storeActivityLog($userId=1, $action='store', $description='Add', $moduleName='Salary', $moduleId=$empSalary->id,$status='Salary Has Been Successfully added.');
         return redirect()->back()->with('success', 'Salary details added successfully!');
     }
     public function update(Request $request)
@@ -42,6 +43,7 @@ class SalaryController extends Controller
             'amount' => $request->amount,
         ]);
         $notification = notify('salary has been updated');
+        storeActivityLog($userId=1, $action='update', $description='Update', $moduleName='salary', $moduleId=$salary->id,$status='Salary Has Been Successfully Uodate.');
         return back()->with($notification);
     }
 
@@ -55,6 +57,7 @@ class SalaryController extends Controller
     {
         EmpSalary::findOrfail($request->id)->delete();
         $notification = notify('salary has been added');
+        storeActivityLog($userId=1, $action='Delete', $description='Delete', $moduleName='Salary', $moduleId=$request->id,$status='Salary has been deleted successfully!!');
         return back()->with($notification);
     }
 }

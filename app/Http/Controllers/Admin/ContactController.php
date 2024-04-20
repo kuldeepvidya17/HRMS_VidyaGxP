@@ -54,12 +54,14 @@ class ContactController extends Controller
             'number'=>'required|max:20',
         ]);
 
-        Contact::create([
+        $contact= Contact::create([
             'name'=>$request->name,
             'email'=>$request->email,
             'number'=>$request->number,
             'status'=>$request->status,
         ]);
+
+        storeActivityLog($userId=1, $action='store', $description=$contact->name, $moduleName='Contact', $moduleId=$contact->id,$status='Contact Has Been Successfully added.');
         return back()->with('success',"Contact added successfully!!");
     }
 
@@ -95,6 +97,7 @@ class ContactController extends Controller
             'number'=>$request->number,
             'status'=>$request->status,
         ]);
+        storeActivityLog($userId=1, $action='Update', $description=$request->name, $moduleName='Contact', $moduleId=$request->id,$status='Contact has been updated successfully!!');
         return back()->with('success',"Contact updated successfully!!");
     }
 
@@ -108,6 +111,7 @@ class ContactController extends Controller
     {
         $contact = Contact::find($request->id);
         $contact->delete();
+        storeActivityLog($userId=1, $action='Delete', $description=$contact->name, $moduleName='Contact', $moduleId=$request->id,$status='Contact has been deleted successfully!!');
         return back()->with('success',"Contact has been deleted successfully!!");
     }
 }
