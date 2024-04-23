@@ -34,10 +34,10 @@
                     @if (!empty($AcitivityLog->count()))
                         @foreach ($AcitivityLog as $activity)
                             <tr >
-                                <td>{{$activity->module}}</td>
-                                <td>{{$activity->action}}</td>
+                                <td>{{ucfirst($activity->module)}}</td>
+                                <td>{{ucfirst($activity->action)}}</td>
                                 <td>{{date_format(date_create($activity->created_at),'d M Y')}}</td>
-                                <td>{{$activity->status}}</td>
+                                <td>{{ucfirst($activity->status)}}</td>
                                
                             </tr>
                         @endforeach
