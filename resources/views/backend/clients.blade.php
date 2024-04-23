@@ -73,7 +73,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="col-form-label">Last Name</label>
+										<label class="col-form-label">Last Name <span class="text-danger">*</span></label>
 										<input class="form-control edit_lastname" name="lastname" type="text">
 									</div>
 								</div>
@@ -93,13 +93,13 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="col-form-label">Phone </label>
+										<label class="col-form-label">Phone <span class="text-danger">*</span> </label>
 										<input class="form-control edit_phone" name="phone" type="text">
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="col-form-label">Company Name</label>
+										<label class="col-form-label">Company Name <span class="text-danger">*</span></label>
 										<input class="form-control edit_company" name="company" type="text">
 									</div>
 								</div>
@@ -140,7 +140,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="col-form-label">Last Name</label>
+								<label class="col-form-label">Last Name <span class="text-danger">*</span></label>
 								<input class="form-control" name="lastname" type="text">
 							</div>
 						</div>
@@ -160,13 +160,13 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="col-form-label">Phone </label>
+								<label class="col-form-label">Phone <span class="text-danger">*</span> </label>
 								<input class="form-control" name="phone" type="text">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="col-form-label">Company Name</label>
+								<label class="col-form-label">Company Name <span class="text-danger">*</span></label>
 								<input class="form-control" name="company" type="text">
 							</div>
 						</div>

@@ -77,7 +77,7 @@
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label class="col-form-label">Last Name</label>
+								<label class="col-form-label">Last Name <span class="text-danger">*</span></label>
 								<input class="form-control" name="lastname" type="text">
 							</div>
 						</div>
@@ -97,7 +97,7 @@
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label class="col-form-label">Company</label>
+								<label class="col-form-label">Company<span class="text-danger">*</span></label>
 								<input type="text" class="form-control" name="company">
 							</div>
 						</div>
@@ -165,7 +165,7 @@
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label class="col-form-label">Last Name</label>
+								<label class="col-form-label">Last Name <span class="text-danger">*</label>
 								<input class="form-control edit_lastname" name="lastname" type="text">
 							</div>
 						</div>
@@ -185,7 +185,7 @@
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label class="col-form-label">Company</label>
+								<label class="col-form-label">Company <span class="text-danger">*</span></label>
 								<input type="text" class="form-control edit_company" name="company">
 							</div>
 						</div>
