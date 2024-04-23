@@ -35,7 +35,7 @@ class JobController extends Controller
     {
         $this->validate($request,[
             'title'=>'required',
-            'department'=>'required',
+            'department_id'=>'required',
             'location'=>'required',
             'vacancies'=>'required',
             'experience'=>'required',
@@ -87,7 +87,7 @@ class JobController extends Controller
     {
         $request->validate([
             'title'=>'required',
-            'department'=>'required',
+            'department_id'=>'required',
             'location'=>'required',
             'vacancies'=>'required',
             'experience'=>'required',
@@ -103,7 +103,7 @@ class JobController extends Controller
         $job = Job::findOrFail($request->id);
         $job->update([
             'title' => $request->title ?? $job->title,
-            'department_id' => $request->department ?? $job->department_id,
+            'department_id' => $request->department_id ?? $job->department_id,
             'location' => $request->location ?? $job->location,
             'vacancies' => $request->vacancies ?? $job->vacancies,
             'experience' => $request->experience ?? $job->experience,

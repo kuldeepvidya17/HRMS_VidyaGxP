@@ -43,7 +43,7 @@
 					<tr>
 						<td><a target="_blank" href="{{route('job-view',$job)}}">{{$job->title}}</a></td>
 						<!-- <td>{{$job->department->name ?? ''}}</td> -->
-						<td>{{ $job->department ? $job->department->name : 'No Department' }}</td>
+						<td>{{ $job->department_id ? $job->department->name : 'No Department' }}</td>
 						<td>{{date_format(date_create($job->start_date),"d M, Y")}}</td>
 						<td>{{date_format(date_create($job->expire_date),"d M, Y")}}</td>
 						<td class="text-center">
@@ -58,7 +58,7 @@
 								<div class="dropdown-menu dropdown-menu-right">
 									<a  data-id="{{$job->id}}"
                                         data-title="{{$job->title}}"
-                                        data-department="{{$job->department->id}}"
+                                        data-department_id="{{$job->department->id}}"
                                         data-startdate="{{$job->start_date}}"
                                         data-expirydate="{{$job->expire_date}}"
                                         data-experience="{{$job->experience}}"
@@ -105,7 +105,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Department</label>
-								<select class="select" name="department">
+								<select class="select" name="department_id">
 									@if(!empty($departments))
 										@foreach ($departments as $department)
 											<option value="{{$department->id}}">{{$department->name}}</option>
@@ -240,7 +240,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Department</label>
-								<select class="select edit_department" name="department">
+								<select class="select edit_department" name="department_id">
 									<option>-</option>
 									@foreach ($departments as $department)
 										<option value="{{$department->id}}">{{$department->name}}</option>
@@ -370,7 +370,7 @@
 				$('#edit_job').modal('show');
 				var id = $(this).data('id');
 				var title = $(this).data('title');
-				var department = $(this).data('department');
+				var department_id = $(this).data('department_id');
 				var startDate = $(this).data('startdate');
 				var expiryDate = $(this).data('expirydate');
 				var experience = $(this).data('experience');
@@ -384,7 +384,7 @@
 				var description = $(this).data('description');
 				$('#edit_id').val(id);
 				$('#edit_job .edit_title').val(title);
-				$('#edit_job .edit_department').val(department).trigger('change');
+				$('#edit_job .edit_department').val(department_id).trigger('change');
                 $('#edit_job .edit_start_date').data("DateTimePicker").date(startDate);
 				$('#edit_job .edit_expire_date').data("DateTimePicker").date(expiryDate);
                 $('#edit_job .edit_experience').val(experience);
