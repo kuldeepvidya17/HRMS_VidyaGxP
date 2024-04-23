@@ -43,7 +43,7 @@ class ClientController extends Controller
             'firstname'=>'required',
             'lastname'=>'required',
             'email'=>'required|email',
-            'phone'=>'nullable|max:15',
+            'phone'=>'required|max:15',
             'avatar'=>'file|image|mimes:jpg,jpeg,png,gif',
         ]);
         $imageName = null;
@@ -86,7 +86,7 @@ class ClientController extends Controller
             'firstname'=>'required',
             'lastname'=>'required',
             'email'=>'required|email',
-            'phone'=>'nullable|max:15',
+            'phone'=>'required|max:15',
             'avatar'=>'file|image|mimes:jpg,jpeg,png,gif',
         ]);
         $imageName = null;
