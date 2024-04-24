@@ -45,7 +45,7 @@
             <div class="card-body">
                 <span class="dash-widget-icon"><i class="fa fa-diamond"></i></span>
                 <div class="dash-widget-info">
-                    <h3>0</h3>
+                    <h3>{{$task_count}}</h3>
                     <span>Tasks</span>
                 </div>
             </div>
