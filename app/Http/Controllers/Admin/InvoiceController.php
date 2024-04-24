@@ -56,6 +56,8 @@ class InvoiceController extends Controller
             'due_date' => 'required',
             'items' => 'required',
             'note' => 'nullable',
+            'discount'=>'required|numeric|integer'
+
         ]);
         $settings = new InvoiceSettings();
         $prefix = $settings->prefix;
