@@ -1136,7 +1136,7 @@ table.dataTable thead > tr > td.sorting {
 	z-index: 1002;
 }
 .header .header-left {
-	float: left;
+	/* float: left; */
 	height: 60px;
 	padding: 0 20px;
 	position: relative;

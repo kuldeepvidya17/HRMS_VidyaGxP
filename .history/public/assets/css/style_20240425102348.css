@@ -1630,7 +1630,6 @@ table.dataTable thead > tr > td.sorting {
 }
 .form-focus .cal-icon:after {
 	top: 15px;
-	
 }
 
 /*-----------------
@@ -1640,18 +1639,12 @@ table.dataTable thead > tr > td.sorting {
 .account-page {
 	align-items: center ;
 	display: flex;
-	background-image: url('https://img.freepik.com/free-vector/simple-blue-gradient-background-business_53876-113753.jpg?w=1480&t=st=1714044237~exp=1714044837~hmac=115e3b5529fd95dc948eee9ca4715f1533260cbdff01d00cbc02b412554e141f');
-	background-size:cover;
-	
-
-	
 }
 .account-page .main-wrapper {
 	display: flex;
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-	
 }
 .account-content {
 	padding: 20px 0;
@@ -1676,9 +1669,6 @@ table.dataTable thead > tr > td.sorting {
     margin: 0 auto;
     overflow: hidden;
     width: 480px;
-	background-image: url('https://img.freepik.com/free-vector/simple-blue-gradient-background-business_53876-113753.jpg?w=1480&t=st=1714044237~exp=1714044837~hmac=115e3b5529fd95dc948eee9ca4715f1533260cbdff01d00cbc02b412554e141f');
-	background-size:cover;
-	
 }
 .account-wrapper {
 	padding: 30px;
@@ -1721,7 +1711,7 @@ table.dataTable thead > tr > td.sorting {
     margin-bottom: 5px;
 }
 .account-logo img {
-	width: 210px;
+	width: 200px;
 }
 .account-footer {
     text-align: center;
