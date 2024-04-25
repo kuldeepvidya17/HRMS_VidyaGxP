@@ -2,13 +2,14 @@
 <div class="header">
 			
     <!-- Logo -->
-    <div class="header-left">
+    <div class="header-left" id="logoContainer" >
         <a href="{{route('dashboard')}}" class="logo">
             <img style="height: 59px;
     width: 115px;" src="{{!empty(app(App\Settings\ThemeSettings::class)->logo) ? asset('storage/settings/'.app(App\Settings\ThemeSettings::class)->logo):asset('assets/img/logovidyagxp.png')}}" alt="logo" width="100" height="40">
         </a>
     </div>
     <!-- /Logo -->
+
     
     <a id="toggle_btn" href="javascript:void(0);">
         <span class="bar-icon">
@@ -30,7 +31,7 @@
     <ul class="nav user-menu">
     
         <!-- Notifications -->
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                 <i class="fa fa-bell-o"></i> <span class="badge badge-pill">{{auth()->user()->notifications->count()}}</span>
             </a>
@@ -63,7 +64,7 @@
                     <a href="{{route('activity')}}">View all Notifications</a>
                 </div>
             </div>
-        </li>
+        </li> --}}
         <!-- /Notifications -->
         
         

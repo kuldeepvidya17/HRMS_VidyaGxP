@@ -73,8 +73,22 @@
                         <h3 class="card-title">Total Revenue</h3>
                         <div id="bar-charts"></div>
                     </div>
+                    
                 </div>
+
+                
+                {{-- new added Total Revenue --}}
+                    <div class="col-md-6 text-center">
+                    <div class="card"><div class="card-body">
+                    <h3 class="card-title">Total Revenue</h3>
+                    <div id="bar-charts"></div>
+                </div>
+                </div>
+                </div>
+                {{-- end total revenue  --}}
             </div>
+
+
             <div class="col-md-6 text-center">
                 <div class="card">
                     <div class="card-body">
@@ -82,7 +96,17 @@
                         <div id="line-charts"></div>
                     </div>
                 </div>
+                                {{-- new added Sales Overview --}}
+                                <div class="col-md-6 text-center">
+                                    <div class="card"><div class="card-body">
+                                    <h3 class="card-title">Sales Overview</h3>
+                                    <div id="bar-charts"></div>
+                                </div>
+                                </div>
+                            </div>
+                                {{-- end  Sales Overview --}}
             </div>
+            
         </div>
     </div>
 </div>
@@ -100,12 +124,12 @@
                             <span class="text-success">+0%</span>
                         </div>
                     </div>
-                    <h3 class="mb-3">0</h3>
+                    <h3 class="mb-3">{{$employee_count}}</h3>
                     <div class="progress mb-2" style="height: 5px;">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 20%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: %;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <p class="mb-0">Overall Employees 0</p>
-                    <p class="mb-0">Overall Employees 0</p>
+                    <p class="mb-0">Overall Employees : {{$employee_count}}</p>
+                    <p class="mb-0">Overall Employees : {{$employee_count}}</p>
 
                 </div>
             </div>

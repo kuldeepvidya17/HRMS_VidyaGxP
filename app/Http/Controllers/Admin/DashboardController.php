@@ -12,6 +12,7 @@ use App\Models\Task;
 class DashboardController extends Controller
 {
     public function index(){
+        
         $title = 'Dashboard';
         $clients_count = Client::count();
         $task_count = Task::count();
