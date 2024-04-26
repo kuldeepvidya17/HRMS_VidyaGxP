@@ -1659,8 +1659,7 @@ table.dataTable thead > tr > td.sorting {
 .account-title {
     font-size: 30px;
     font-weight: 900;
-    margin-bottom: 8px;
-	margin-top:10px;
+    margin-bottom: 5px;
     text-align: center;
 	background: linear-gradient(to right, #ed7002, #fd455d);
 	-webkit-background-clip: text;
@@ -1676,11 +1675,11 @@ table.dataTable thead > tr > td.sorting {
 	background-color: #fff;
     border: 1px solid #ededed;
     border-radius: 4px;
-    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
     margin: 0 auto;
     overflow: hidden;
     width: 500px;
-	height:415px;
+	height:400px;
 	background-image: url('https://img.freepik.com/free-vector/simple-blue-gradient-background-business_53876-113753.jpg?w=1480&t=st=1714044237~exp=1714044837~hmac=115e3b5529fd95dc948eee9ca4715f1533260cbdff01d00cbc02b412554e141f');
 	background-size:cover;
 	
@@ -1726,12 +1725,12 @@ table.dataTable thead > tr > td.sorting {
 
 .account-box label {
 	color: #1f1f1f;
-	font-size: 18px;
-	font-weight: 700;
+	font-size: 16px;
+	font-weight: normal;
     margin-bottom: 5px;
 }
 .account-logo img {
-	width: 230px;
+	width: 210px;
 }
 .account-footer {
     text-align: center;
