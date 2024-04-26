@@ -96,19 +96,22 @@
                         <div>
                             <span class="d-block">New Employees</span>
                         </div>
-                        <div>
-                            <span class="text-success">+0%</span>
+                        <div id="newEmployeePercentage">
+                            <span class="text-success"></span>
                         </div>
                     </div>
-                    <h3 class="mb-3">0</h3>
+                    <h3 class="mb-3">{{ $employee_count }}</h3>
+                    @php
+                        $totalEmployees = 100;
+                        $newEmployeePercentage = ($employee_count / $totalEmployees) * 100;
+                    @endphp
                     <div class="progress mb-2" style="height: 5px;">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 20%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ $newEmployeePercentage }}%;" aria-valuenow="{{ $newEmployeePercentage }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <p class="mb-0">Overall Employees 0</p>
-                    <p class="mb-0">Overall Employees 0</p>
-
+                    <p class="mb-0">Overall Employees <span id="overallEmployeesPlaceholder">Loading...</span></p>
                 </div>
             </div>
+        
         
             <div class="card">
                 <div class="card-body">
@@ -254,8 +257,8 @@
     <div class="col-md-12 col-lg-6 col-xl-4 d-flex">
         <div class="card flex-fill">
             <div class="card-body">
-                <h4 class="card-title">Today Absent <span class="badge bg-inverse-danger ml-2">0</span></h4>
-                <!-- <div class="leave-info-box">
+                <h4 class="card-title">Today Absent <span class="badge bg-inverse-danger ml-2">{{ $absent_employee }}</span></h4>
+                <!--<div class="leave-info-box">
                     <div class="media align-items-center">
                         <a href="profile.html" class="avatar"><img alt="" src="assets/img/user.jpg"></a>
                         <div class="media-body">
@@ -298,6 +301,24 @@
 </div>
 <!-- /Statistics Widget -->
 
+<script>
+    // Update the percentage dynamically
+    var newEmployeePercentage = {{ $newEmployeePercentage }};
+    document.getElementById('newEmployeePercentage').innerHTML = '<span class="text-success">+' + newEmployeePercentage.toFixed(2) + '%</span>';
+</script>
+
+{{-- <script>
+    
+    fetch('/getTotalEmployees') 
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('overallEmployeesPlaceholder').innerText = data.totalEmployees;
+        })
+        .catch(error => {
+            console.error('Error fetching total employees:', error);
+            document.getElementById('overallEmployeesPlaceholder').innerText = 'Error';
+        });
+</script> --}}
 
 @endsection
 @section('scripts')
