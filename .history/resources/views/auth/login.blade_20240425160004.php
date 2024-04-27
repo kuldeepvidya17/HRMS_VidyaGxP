@@ -8,7 +8,7 @@
 @endif
 <form action="{{route('login')}}" method="post">
     @csrf
-    <div class="form-group pt-4">
+    <div class="form-group pt-3">
         <label>Email</label>
         <input name="email" type="text" class="form-control @error('email') border-danger @enderror">
         <!-- <input name="email" type="text" value="{{old('email') ?? 'admin@admin.com'}}" class="form-control @error('email') border-danger @enderror"> -->

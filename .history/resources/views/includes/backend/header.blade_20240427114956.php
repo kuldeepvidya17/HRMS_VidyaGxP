@@ -1,36 +1,36 @@
 <!-- Header -->
-<div class="header">
+{{-- <div class="header"> --}}
 			
     <!-- Logo -->
-    <div class="header-left">
+    {{-- <div class="header-left">
         <a href="{{route('dashboard')}}" class="logo">
             <img style="height: 59px;
     width: 115px;" src="{{!empty(app(App\Settings\ThemeSettings::class)->logo) ? asset('storage/settings/'.app(App\Settings\ThemeSettings::class)->logo):asset('assets/img/logovidyagxp.png')}}" alt="logo" width="50" height="40">
         </a>
-    </div>
+    </div> --}}
     <!-- /Logo -->
     
-    <a id="toggle_btn" href="javascript:void(0);">
+    {{-- <a id="toggle_btn" href="javascript:void(0);">
         <span class="bar-icon">
             <span></span>
             <span></span>
             <span></span>
         </span>
-    </a>
+    </a> --}}
     
     <!-- Header Title -->
-    <div class="page-title-box">
+    {{-- <div class="page-title-box">
         <h3>{{ucwords(app(App\Settings\CompanySettings::class)->company_name ?? 'Smart HR')}}</h3>
-    </div>
+    </div> --}}
     <!-- /Header Title -->
     
-    <a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a>
+    {{-- <a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a> --}}
     
     <!-- Header Menu -->
-    <ul class="nav user-menu">
+    {{-- <ul class="nav user-menu"> --}}
     
         <!-- Notifications -->
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                 <i class="fa fa-bell-o"></i> <span class="badge badge-pill">{{auth()->user()->notifications->count()}}</span>
             </a>
@@ -63,12 +63,12 @@
                     <a href="{{route('activity')}}">View all Notifications</a>
                 </div>
             </div>
-        </li>
+        </li> --}}
         <!-- /Notifications -->
         
         
 
-        <li class="nav-item dropdown has-arrow main-drop ">
+        {{-- <li class="nav-item dropdown has-arrow main-drop ">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                 <span class="user-img"><img src="{{!empty(auth()->user()->avatar) ? asset('storage/users/'.auth()->user()->avatar) : asset('assets/img/user.jpg')}}" alt="user">
                 <span class="status online"></span></span>
@@ -83,11 +83,11 @@
                 </form>
             </div>
         </li>
-    </ul>
+    </ul> --}}
     <!-- /Header Menu -->
     
     <!-- Mobile Menu -->
-    <div class="dropdown mobile-user-menu">
+    {{-- <div class="dropdown mobile-user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
         <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="{{route('profile')}}">My Profile</a>
@@ -97,8 +97,8 @@
                 <button type="submit" class="dropdown-item">Logout</button>
             </form>
         </div>
-    </div>
+    </div> --}}
     <!-- /Mobile Menu -->
     
-</div>
+{{-- </div> --}}
 <!-- /Header -->
