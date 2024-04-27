@@ -46,7 +46,7 @@
                         <td>{{$count}}</td>
                         <td>
                             <h2 class="table-avatar blue-link">
-                                <a href="javascript:void(0)" class="avatar"><img alt="avatar"  src="{{ !empty($salary->employee->avatar) ? asset('storage/employees/'.$salary->employee->avatar): asset('assets/img/user.jpg') }}"></a>
+                                <a href="javascript:void(0)" class="avatar1"><img alt="avatar"  src="{{ !empty($salary->employee->avatar) ? asset('storage/employees/'.$salary->employee->avatar): asset('assets/img/user.jpg') }}"></a>
                                 <a href="javascript:void(0)">{{ !empty($salary->employee) ? $salary->employee->firstname.' '.$salary->employee->lastname: ' '}}</a>
                             </h2>
                         </td>

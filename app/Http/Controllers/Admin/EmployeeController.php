@@ -22,6 +22,7 @@ class EmployeeController extends Controller
         $designations = Designation::get();
         $departments = Department::get();
         $employees = Employee::with('department','designation')->get();
+        // dd($employees);
         return view('backend.employees',
         compact('title','designations','departments','employees'));
     }
@@ -48,39 +49,46 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $this->validate($request,[
-            'firstname'=>'required',
-            'lastname'=>'required',
-            'email'=>'required|email',
-            'phone'=>'nullable|max:15',
-            'company'=>'required|max:200',
-            'avatar'=>'file|image|mimes:jpg,jpeg,png,gif',
-            'department'=>'required',
-            'designation'=>'required',
-        ]);
-        $imageName = Null;
-        if ($request->hasFile('avatar')){
-            $imageName = time().'.'.$request->avatar->extension();
-            $request->avatar->move(public_path('storage/employees'), $imageName);
-        }
-        $uuid = IdGenerator::generate(['table' => 'employees','field'=>'uuid', 'length' => 7, 'prefix' =>'EMP-']);
-        Employee::create([
-            'uuid' =>$uuid,
-            'firstname'=>$request->firstname,
-            'lastname'=>$request->lastname,
-            'email'=>$request->email,
-            'phone'=>$request->phone,
-            'company'=>$request->company,
-            'department_id'=>$request->department,
-            'designation_id'=>$request->designation,
-            'avatar'=>$imageName,
-        ]);
-        $id=Employee::latest('id')->first('id');
-        storeActivityLog($userId=1, $action='store', $description=$request->firstname.''.$request->lastname, $moduleName='Employee', $moduleId=$id->id ,$status='Employee has been added');
+{
+    $this->validate($request,[
+        'firstname' => 'required',
+        'lastname' => 'required',
+        'email' => 'required|email',
+        'phone' => 'nullable|max:15',
+        'company' => 'required|max:200',
+        'avatar' => 'file|image|mimes:jpg,jpeg,png,gif',
+        'department' => 'required|integer', 
+        'designation' => 'required|integer', 
+    ]);
 
-        return back()->with('success',"Employee has been added");
+    $imageName = null;
+    if ($request->hasFile('avatar')) {
+        $imageName = time().'.'.$request->avatar->extension();
+        $request->avatar->move(public_path('storage/employees'), $imageName);
     }
+
+    $uuid = IdGenerator::generate(['table' => 'employees','field'=>'uuid', 'length' => 7, 'prefix' =>'EMP-']);
+
+    $employee = Employee::create([
+        'uuid' => $uuid,
+        'firstname' => $request->firstname,
+        'lastname' => $request->lastname,
+        'email' => $request->email,
+        'phone' => $request->phone,
+        'company' => $request->company,
+        'department_id' => $request->department,
+        'designation_id' => $request->designation,
+        'avatar' => $imageName,
+    ]);
+
+    if ($employee) {
+        storeActivityLog($userId=1, $action='store', $description=$request->firstname.' '.$request->lastname, $moduleName='Employee', $moduleId=$employee->id ,$status='Employee has been added');
+        return back()->with('success', "Employee has been added");
+    } else {
+        return back()->with('error', "Failed to add employee");
+    }
+}
+
 
     /**
      * Display the specified resource.
