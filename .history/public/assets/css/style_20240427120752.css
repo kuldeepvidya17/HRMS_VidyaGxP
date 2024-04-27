@@ -1340,14 +1340,10 @@ table.dataTable thead > tr > td.sorting {
 .menu-title {
     color: #ebecf1;
     display: flex;
-    font-size: 18px;
+    font-size: 14px;
     opacity: 1;
     padding: 5px 15px;
     white-space: nowrap;
-}
-.menu-title:hover {
-    color: rgb(255, 77, 0);
-  
 }
 .menu-title > i {
 	float: right;
