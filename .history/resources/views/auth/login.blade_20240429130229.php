@@ -1,11 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-@if(session('login_error'))
-<div class="fs-4 p-1 text-center mb-1 text-sm text-danger fw-bold ">
-    {{session('login_error')}}
-</div>
-@endif
+
 <form action="{{route('login')}}" method="post">
     @csrf
     <div class="form-group pt-4">
@@ -37,6 +33,12 @@
         {{$message}}
     </div>
     @enderror
+
+    @if(session('login_error'))
+<div class="fs-4 p-1 text-center  text-sm text-danger fw-bold ">
+    {{session('login_error')}}
+</div>
+@endif
     <div class="form-group text-center">
         <button class="btn btn-primary account-btn" type="submit">Login</button>
     </div>
