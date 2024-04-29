@@ -1650,7 +1650,7 @@ table.dataTable thead > tr > td.sorting {
 .account-page {
 	align-items: center ;
 	display: flex;
-	background-image: url('../img/loginpage.jpg');
+	background-image: url('https://static.vecteezy.com/system/resources/previews/024/140/712/non_2x/abstract-background-illustration-orange-background-illustration-abstract-yellow-background-for-wallpaper-display-landing-page-banner-or-layout-simple-design-graphic-for-display-free-vector.jpg');
 	background-size:cover;
 	
 
@@ -1672,7 +1672,7 @@ table.dataTable thead > tr > td.sorting {
     margin-bottom: 8px;
 	margin-top:10px;
     text-align: center;
-	background: linear-gradient(to right, #211101, #fd455d);
+	background: linear-gradient(to right, #eec8a7, #fd455d);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
@@ -1691,7 +1691,7 @@ table.dataTable thead > tr > td.sorting {
     overflow: hidden;
     width: 500px;
 	height:415px;
-	background-image: url('../img/loginpage.jpg');
+	background-image: url('https://static.vecteezy.com/system/resources/previews/024/140/712/non_2x/abstract-background-illustration-orange-background-illustration-abstract-yellow-background-for-wallpaper-display-landing-page-banner-or-layout-simple-design-graphic-for-display-free-vector.jpg');
 	background-size:cover;
 	
 }

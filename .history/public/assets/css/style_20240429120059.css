@@ -1650,7 +1650,7 @@ table.dataTable thead > tr > td.sorting {
 .account-page {
 	align-items: center ;
 	display: flex;
-	background-image: url('../img/loginpage.jpg');
+	background-image: url('https://cdn.wallpapersafari.com/99/34/MWl2h4.jpg');
 	background-size:cover;
 	
 
@@ -1672,7 +1672,7 @@ table.dataTable thead > tr > td.sorting {
     margin-bottom: 8px;
 	margin-top:10px;
     text-align: center;
-	background: linear-gradient(to right, #211101, #fd455d);
+	background: linear-gradient(to right, #ed7002, #fd455d);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
@@ -1691,7 +1691,7 @@ table.dataTable thead > tr > td.sorting {
     overflow: hidden;
     width: 500px;
 	height:415px;
-	background-image: url('../img/loginpage.jpg');
+	/* background-image: url('https://cdn.wallpapersafari.com/99/34/MWl2h4.jpg'); */
 	background-size:cover;
 	
 }
