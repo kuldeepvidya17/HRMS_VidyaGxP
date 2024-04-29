@@ -77,15 +77,6 @@
                 </div>
 
                 
-                {{-- new added Total Revenue --}}
-                    <div class="col-md-6 text-center">
-                    <div class="card"><div class="card-body">
-                    <h3 class="card-title">Total Revenue</h3>
-                    <div id="bar-charts"></div>
-                </div>
-                </div>
-                </div>
-                {{-- end total revenue  --}}
             </div>
 
 
@@ -96,15 +87,7 @@
                         <div id="line-charts"></div>
                     </div>
                 </div>
-                                {{-- new added Sales Overview --}}
-                                <div class="col-md-6 text-center">
-                                    <div class="card"><div class="card-body">
-                                    <h3 class="card-title">Sales Overview</h3>
-                                    <div id="bar-charts"></div>
-                                </div>
-                                </div>
-                            </div>
-                                {{-- end  Sales Overview --}}
+                               
             </div>
             
         </div>
@@ -115,13 +98,13 @@
     <div class="col-md-12">
         <div class="card-group m-b-30">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body progress-main">
                     <div class="d-flex justify-content-between mb-3">
                         <div>
                             <span class="d-block">New Employees</span>
                         </div>
                         <div>
-                            <span class="text-success">+0%</span>
+                            <span class="text-success" id="percent">+0%</span>
                         </div>
                     </div>
                     <h3 class="mb-3">{{$employee_count}}</h3>

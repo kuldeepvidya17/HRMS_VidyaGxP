@@ -41,10 +41,15 @@ class DesignationController extends Controller
             'designation' => [
                 'required',
                 'max:200',
-                Designation  ::unique('designations')->where(function ($query) use ($request) {
-                    return $query->where('name', $request->designation)
-                                 ->where('department_id', $request->department);
-                }),
+                $request->validate([
+                    'designation' => 'required|unique:designations,name,NULL,id,department_id,' . $request->department,
+                    // Other validation rules...
+                ])
+                
+                // Designation  ::unique('designations')->where(function ($query) use ($request) {
+                //     return $query->where('name', $request->designation)
+                //                  ->where('department_id', $request->department);
+                // }),
             ],
             'department' => 'required',
         ]);
