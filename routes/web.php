@@ -257,6 +257,14 @@ Route::group(['middleware'=>['auth']], function (){
     Route::get('clear-activity',[ActivityController::class,'markAsRead'])->name('clear-all');
 
     Route::get('backups',[BackupsController::class,'index'])->name('backups');
+    //Route::get('backups/page',[BackupsController::class,'backup'])->name('backup_pages');
+    // Route::get('backups/backupfile',[BackupsController::class,'backupmain'])->name('backup_file');
+    Route::post('backups', [BackupsController::class, 'backupmain'])->name('backup_file');
+
+
+    
+    
+
 
 
 });

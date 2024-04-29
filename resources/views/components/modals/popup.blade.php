@@ -16,7 +16,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Project Name</label>
-                                    <input class="form-control" type="text" name="name">
+                                    <input class="form-control" type="text" name="name" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -24,7 +24,7 @@
                                     <label>Client</label>
                                     <select class="select2" name="client">
                                         @foreach (\App\Models\Client::get() as $client)
-                                        <option value="{{$client->id}}">{{$client->firstname.' '.$client->lastname}}</option>
+                                        <option value="{{$client->id}}" required>{{$client->firstname.' '.$client->lastname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <label>Start Date</label>
                                     <div class="cal-icon">
-                                        <input class="form-control datetimepicker" type="text" name="start_date">
+                                        <input class="form-control datetimepicker" type="text" name="start_date" required>
                                     </div>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                     <label>End Date</label>
                                     <div class="cal-icon">
-                                        <input class="form-control datetimepicker" name="end_date" type="text">
+                                        <input class="form-control datetimepicker" name="end_date" type="text" required>
                                     </div>
                                 </div>
                             </div>
@@ -52,13 +52,13 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label>Rate</label>
-                                    <input placeholder="Rate in currency: 50" name="rate" class="form-control" type="text">
+                                    <input placeholder="Rate in currency: 50" name="rate" class="form-control" type="text" required>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label>&nbsp;</label>
-                                    <select class="select" name="rate_type">
+                                    <select class="select" name="rate_type" required>
                                         <option>Hourly</option>
                                         <option>Fixed</option>
                                     </select>
@@ -67,7 +67,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Priority</label>
-                                    <select class="select" name="priority">
+                                    <select class="select" name="priority" required>
                                         <option>High</option>
                                         <option>Medium</option>
                                         <option>Low</option>
@@ -79,7 +79,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Project Leader</label>
-                                    <select class="select2" name="leader">
+                                    <select class="select2" name="leader" required>
                                         <option>Select Project Leader</option>
                                         @foreach (\App\Models\Employee::get() as $employee)
                                             <option value="{{$employee->id}}">{{$employee->firstname.' '.$employee->lastname}} </option>
@@ -92,7 +92,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Add Team</label>
-                                    <select class="select select2" multiple name="team[]">
+                                    <select class="select select2" multiple name="team[]" required>
                                         <option>High</option>
                                         @foreach (\App\Models\Employee::get() as $employee)
                                             <option value="{{$employee->id}}">{{$employee->firstname.' '.$employee->lastname}} </option>
@@ -104,11 +104,11 @@
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea name="description" rows="4" class="form-control summernote" placeholder="Enter your message here"></textarea>
+                            <textarea name="description" rows="4" class="form-control summernote" placeholder="Enter your message here" required></textarea>
                         </div>
                         <div class="form-group">
                             <label>Upload Files</label>
-                            <input class="form-control" name="project_files[]" multiple type="file">
+                            <input class="form-control" name="project_files[]" multiple type="file" required>
                         </div>
                         <div class="submit-section">
                             <button type="submit" class="btn btn-primary submit-btn">Submit</button>
