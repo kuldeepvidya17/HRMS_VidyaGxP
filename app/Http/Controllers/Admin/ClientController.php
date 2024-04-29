@@ -42,8 +42,9 @@ class ClientController extends Controller
         $this->validate($request,[
             'firstname'=>'required',
             'lastname'=>'required',
+            'company'=>'required',
             'email'=>'required|email',
-            'phone'=>'nullable|max:15',
+            'phone'=>'required|max:15',
             'avatar'=>'file|image|mimes:jpg,jpeg,png,gif',
         ]);
         $imageName = null;
@@ -85,8 +86,9 @@ class ClientController extends Controller
         $this->validate($request,[
             'firstname'=>'required',
             'lastname'=>'required',
+            'company'=>'required',
             'email'=>'required|email',
-            'phone'=>'nullable|max:15',
+            'phone'=>'required|max:15',
             'avatar'=>'file|image|mimes:jpg,jpeg,png,gif',
         ]);
         $imageName = null;

@@ -1,44 +1,20 @@
 <div class="container mb-5">
     <div class="d-flex align-items-end pt-4">
-        <style>
-            .backup-panel-heading {
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Choose your desired font family */
-                font-size: 22px;
-                font-weight: bold;
-                color: #2c3e50; /* Choose your desired text color */
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add a shadow effect */
-                padding: 15px 20px; /* Add padding for spacing */
-                /* background-color: #f5f5f5; Set a background color */
-                border-radius: 20px; /* Add rounded corners */
-                /* box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); Add a subtle box shadow */
-                transition: all 0.3s ease; /* Add a smooth transition effect */
-                display: inline-block; /* Ensure it respects padding and border-radius */
-            }
-        
-            .backup-panel-heading:hover {
-                transform: scale(1.05); /* Scale up on hover for a subtle zoom effect */
-                color: #e74c3c; /* Change text color on hover */
-                text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Change shadow on hover */
-            }
-        </style>
-        
-        <div class="backup-panel-heading">
-            HRMS Backup Panel
-        </div>
-        
-                {{--  create backup --}}
-
-            <form action="{{ route('backup_file') }}" method="POST">
-            
-                @csrf <!-- Add this line to include CSRF token -->
-
-             <button type="submit" class="btn btn-primary" style="display: flex; justify-content: flex-end;">Create Backup</button>
-            
-            </form>
-
-
-                 {{--create backup  --}}
-
+        <h5 class="mb-0">
+            Laravel Backup Panel
+        </h5>
+{{--  create backup --}}
+    <form action="" method="POST" enctype="multipart/form-data">
+            @csrf <!-- Add this line to include the CSRF token -->
+            @method('Post')
+           
+           
+            <a href="{{ route('backup_file') }}" class="btn btn-primary">
+            <button id="create-backup" class="btn btn-primary btn-sm ml-auto px-3" >
+                Create Backup
+            </button></a>
+        </form>
+        {{--create backup  --}}
         <div class="dropdown ml-3">
             <button class="btn btn-primary btn-sm dropdown-toggle px-3" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -76,15 +52,12 @@
                 <table class="table table-hover mb-0">
                     <thead>
                     <tr>
-                        <th scope="col">Download</th>
                         <th scope="col">Disk</th>
                         <th scope="col">Healthy</th>
                         <th scope="col">Amount of backups</th>
                         <th scope="col">Newest backup</th>
-                        <th scope="col">Used storage </th>
+                        <th scope="col">Used storage</th>
                     </tr>
-
-
                     </thead>
                     <tbody>
                     {{-- @foreach($backupStatuses as $backupStatus)
@@ -106,16 +79,6 @@
                             <td>{{ $backupStatus['usedStorage'] }}</td>
                         </tr>
                     @endforeach --}}
-
-                                       {{-- new added line 'download' --}}
-                                       <td>
-                                        <form action="" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="backup_id" value"">
-                                            <button type= type="submit" class="btn btn-primary" style="display: flex; justify-content: flex-end;">Download</button>
-                                        </form>
-                                    </td>
-                                   {{-- new added line 'download' --}}
                     </tbody>
                 </table>
             </div>
@@ -133,7 +96,7 @@
                                 </label>
                             @endforeach
                         </div>
-                    @endif 
+                    @endif
 
                     <button class="btn btn-primary btn-sm btn-refresh ml-auto"
                             wire:loading.class="loading"
@@ -213,9 +176,9 @@
         </div>
     </div>
 
-    <script>
+    {{-- <script>
         document.addEventListener('livewire:load', function () {
-            @this.updateBackupStatuses()
+          @this.updateBackupStatuses()
 
             @this.on('backupStatusesUpdated', function () {
                 @this.getFiles()
@@ -267,5 +230,5 @@
                 @this.deletingFile = null
             })
         })
-    </script>
+    </script> --}}
 </div>

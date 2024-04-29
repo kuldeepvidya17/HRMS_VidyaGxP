@@ -49,7 +49,7 @@
 							<td>{{date_format(date_create($asset->purchase_date),'D M,Y')}}</td>
 							<td>{{$asset->warranty}} Months</td>
 							<td>{{$asset->supplier}}</td>
-							<td>{{AppSettings::get('currency','$')}} {{$asset->value}}</td>
+							<td> {{$asset->value}}</td>
 							<td class="text-center">
 								<i class="fa fa-dot-circle-o @if($asset->status == 'Approved')text-success @elseif($asset->status == 'Pending') text-danger @elseif($asset->status == 'Returned') text-info @endif"></i> {{$asset->status}}
 							</td>

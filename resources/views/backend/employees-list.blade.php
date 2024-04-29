@@ -215,12 +215,12 @@
 							<div class="form-group">
 								<label>Department <span class="text-danger">*</span></label>
 								<select name="department" class="select edit_department">
-									@foreach ($departments as $department)
-										<option value="{{$department->id}}">{{$department->name}}</option>
+									@foreach ($departments as $dept)
+										<option value="{{$dept->id}}">{{$dept->name}}</option>
 									@endforeach
 								</select>
 							</div>
-						</div>
+						</div>						
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Designation <span class="text-danger">*</span></label>
@@ -275,10 +275,11 @@
 			$('.edit_email').val(email);
 			$('.edit_phone').val(phone);
 			$('.edit_company').val(company);
-			$('.edit_designation').val(designation);
-			$('.edit_department').val(department);
+			$('.edit_designation').val(designation.id);
+			$('.edit_department').val(department.id);
 			$('.edit_avatar').val(avatar);
 		})
 	})
 </script>
+
 @endsection

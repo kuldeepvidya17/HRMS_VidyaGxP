@@ -19,7 +19,7 @@ class CreateJobsTable extends Migration
             $table->foreignId('department_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('location');
             $table->integer('vacancies');
-            $table->integer('experience');
+            $table->string('experience');
             $table->integer('age')->nullable();
             $table->string('salary_from')->nullable();
             $table->string('salary_to')->nullable();

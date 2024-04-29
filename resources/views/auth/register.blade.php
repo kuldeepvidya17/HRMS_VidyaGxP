@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+{{-- @extends('layouts.auth')
 
 @section('content')
 <form action="{{route('register')}}" method="post">
@@ -52,4 +52,4 @@
         <p>Already have an account? <a href="{{route('login')}}">Login</a></p>
     </div>
 </form>
-@endsection
+@endsection --}}
