@@ -1650,7 +1650,7 @@ table.dataTable thead > tr > td.sorting {
 .account-page {
 	align-items: center ;
 	display: flex;
-	background-image: url('../img/loginpage.jpg');
+	background-image: url('https://img.freepik.com/free-vector/simple-blue-gradient-background-vector-business_53876-171631.jpg?size=626&ext=jpg&ga=GA1.1.34264412.1714262400&semt=ais');
 	background-size:cover;
 	
 
@@ -1672,7 +1672,7 @@ table.dataTable thead > tr > td.sorting {
     margin-bottom: 8px;
 	margin-top:10px;
     text-align: center;
-	background: linear-gradient(to right, #211101, #fd455d);
+	background: linear-gradient(to right, #ed7002, #fd455d);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
@@ -1690,8 +1690,8 @@ table.dataTable thead > tr > td.sorting {
     margin: 0 auto;
     overflow: hidden;
     width: 500px;
-	height:435px;
-	background-image: url('../img/loginpage.jpg');
+	height:415px;
+	background-image: url('https://img.freepik.com/free-vector/simple-blue-gradient-background-vector-business_53876-171631.jpg?size=626&ext=jpg&ga=GA1.1.34264412.1714262400&semt=ais');
 	background-size:cover;
 	
 }

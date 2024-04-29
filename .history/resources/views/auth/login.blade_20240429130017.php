@@ -2,7 +2,7 @@
 
 @section('content')
 @if(session('login_error'))
-<div class="fs-4 p-1 text-center mb-1 text-sm text-danger fw-bold ">
+<div class=" p-1 text-center mb-1 text-sm text-danger fw-bold ">
     {{session('login_error')}}
 </div>
 @endif
