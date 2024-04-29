@@ -1340,14 +1340,10 @@ table.dataTable thead > tr > td.sorting {
 .menu-title {
     color: #ebecf1;
     display: flex;
-    font-size: 18px;
+    font-size: 14px;
     opacity: 1;
     padding: 5px 15px;
     white-space: nowrap;
-}
-.menu-title:hover {
-    color: rgb(255, 77, 0);
-  
 }
 .menu-title > i {
 	float: right;
@@ -1577,7 +1573,7 @@ table.dataTable thead > tr > td.sorting {
 }
 .card {
 	border: 1px solid #ededed;
-	box-shadow: rgba(252, 90, 10, 0.25) 0px 50px 100px -20px, rgba(231, 87, 3, 0.3) 0px 30px 60px -30px, rgba(241, 93, 1, 0.35) 0px -2px 6px 0px inset;
+	box-shadow: rgba(248, 106, 36, 0.25) 0px 50px 100px -20px, rgba(241, 94, 9, 0.3) 0px 30px 60px -30px, rgba(253, 155, 8, 0.35) 0px -2px 6px 0px inset;
 	margin-bottom: 30px;
 }
 .card-title {

@@ -1346,7 +1346,7 @@ table.dataTable thead > tr > td.sorting {
     white-space: nowrap;
 }
 .menu-title:hover {
-    color: rgb(255, 77, 0);
+    color:orenge;
   
 }
 .menu-title > i {

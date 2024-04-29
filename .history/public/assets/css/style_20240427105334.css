@@ -1121,11 +1121,11 @@ table.dataTable thead > tr > td.sorting {
 -----------------------*/
 
 .header {
-	 /* background: #bbbbba; */
-	background: -moz-linear-gradient(left, #f6c893 0%, #F46913 100%);
-	background: -webkit-linear-gradient(left, #FFD9AD 0%, #F46913 100%);
-	background: -ms-linear-gradient(left, #FFD9AD 0%, #F46913 100%);
-	background: linear-gradient(to right, #FFD9AD 0%, #F46913 100%);
+	 background: #bbbbba;
+	/*background: -moz-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
+	background: -webkit-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
+	background: -ms-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
+	background: linear-gradient(to right, #ff9b44 0%, #fc6075 100%); */
 	border-bottom: 1px solid transparent;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
 	height: 60px;
@@ -1223,7 +1223,6 @@ table.dataTable thead > tr > td.sorting {
     margin: 0;
     position: relative;
     z-index: 99;
-	padding-right:24px;
 }
 .user-menu.nav > li > a {
 	color: #161616;
@@ -1340,14 +1339,10 @@ table.dataTable thead > tr > td.sorting {
 .menu-title {
     color: #ebecf1;
     display: flex;
-    font-size: 18px;
+    font-size: 14px;
     opacity: 1;
     padding: 5px 15px;
     white-space: nowrap;
-}
-.menu-title:hover {
-    color: rgb(255, 77, 0);
-  
 }
 .menu-title > i {
 	float: right;
@@ -1577,7 +1572,7 @@ table.dataTable thead > tr > td.sorting {
 }
 .card {
 	border: 1px solid #ededed;
-	box-shadow: rgba(252, 90, 10, 0.25) 0px 50px 100px -20px, rgba(231, 87, 3, 0.3) 0px 30px 60px -30px, rgba(241, 93, 1, 0.35) 0px -2px 6px 0px inset;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
 	margin-bottom: 30px;
 }
 .card-title {
@@ -1759,9 +1754,6 @@ table.dataTable thead > tr > td.sorting {
 /*-----------------
 	12. Dashboard
 -----------------------*/
-    .card-group{
-		gap:15px;
-	}
 
 .card-table .card-header {
 	background-color: #fff;

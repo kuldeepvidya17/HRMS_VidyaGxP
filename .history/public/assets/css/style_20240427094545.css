@@ -1121,11 +1121,11 @@ table.dataTable thead > tr > td.sorting {
 -----------------------*/
 
 .header {
-	 /* background: #bbbbba; */
-	background: -moz-linear-gradient(left, #f6c893 0%, #F46913 100%);
-	background: -webkit-linear-gradient(left, #FFD9AD 0%, #F46913 100%);
-	background: -ms-linear-gradient(left, #FFD9AD 0%, #F46913 100%);
-	background: linear-gradient(to right, #FFD9AD 0%, #F46913 100%);
+	 background: #bbbbba;
+	/*background: -moz-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
+	background: -webkit-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
+	background: -ms-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
+	background: linear-gradient(to right, #ff9b44 0%, #fc6075 100%); */
 	border-bottom: 1px solid transparent;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
 	height: 60px;
@@ -1223,7 +1223,6 @@ table.dataTable thead > tr > td.sorting {
     margin: 0;
     position: relative;
     z-index: 99;
-	padding-right:24px;
 }
 .user-menu.nav > li > a {
 	color: #161616;
@@ -1340,14 +1339,10 @@ table.dataTable thead > tr > td.sorting {
 .menu-title {
     color: #ebecf1;
     display: flex;
-    font-size: 18px;
+    font-size: 14px;
     opacity: 1;
     padding: 5px 15px;
     white-space: nowrap;
-}
-.menu-title:hover {
-    color: rgb(255, 77, 0);
-  
 }
 .menu-title > i {
 	float: right;
@@ -1460,7 +1455,6 @@ table.dataTable thead > tr > td.sorting {
 	transform: translate(0, 0);
 	line-height: 18px;
 	top: 11px;
-	padding-right:10px;
 }
 .sidebar-menu .menu-arrow:before {
 	content: "\f105";
@@ -1577,7 +1571,7 @@ table.dataTable thead > tr > td.sorting {
 }
 .card {
 	border: 1px solid #ededed;
-	box-shadow: rgba(252, 90, 10, 0.25) 0px 50px 100px -20px, rgba(231, 87, 3, 0.3) 0px 30px 60px -30px, rgba(241, 93, 1, 0.35) 0px -2px 6px 0px inset;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
 	margin-bottom: 30px;
 }
 .card-title {
@@ -1759,9 +1753,6 @@ table.dataTable thead > tr > td.sorting {
 /*-----------------
 	12. Dashboard
 -----------------------*/
-    .card-group{
-		gap:15px;
-	}
 
 .card-table .card-header {
 	background-color: #fff;
@@ -7606,7 +7597,7 @@ ul.comment-list li ul.children {
 		float: left;
 		font-size: 26px;
 		line-height: 60px;
-		padding: 0 20px;
+		padding: 0 10px;
 	}
 	.mini-sidebar .header-left .logo img {
 		height: auto;
@@ -7618,7 +7609,7 @@ ul.comment-list li ul.children {
 		width: 60px;
 	}
 	.mini-sidebar .sidebar {
-		width: 80px;
+		width: 60px;
 	}
 	.mini-sidebar.expand-menu .sidebar {
 		width: 230px;
@@ -7850,7 +7841,7 @@ ul.comment-list li ul.children {
 	}
 	.sidebar {
 		margin-left: -225px;
-		width: 235px;
+		width: 225px;
 		-webkit-transition: all 0.4s ease;
 		-moz-transition: all 0.4s ease;
 		transition: all 0.4s ease;
@@ -7874,9 +7865,7 @@ ul.comment-list li ul.children {
 		z-index: 10;
 	}
 	#toggle_btn {
-		display: none;
-		
-		
+		/* display: none; */
 	}
 	.page-wrapper {
 		-webkit-transition: all 0.4s ease;
@@ -8038,7 +8027,6 @@ ul.comment-list li ul.children {
 	}
 	.nav-tabs.nav-tabs-solid {
 		padding: 5px;
-		
 	}
 	.nav-tabs.nav-tabs-solid.nav-tabs-rounded {
 		border-radius: 5px;

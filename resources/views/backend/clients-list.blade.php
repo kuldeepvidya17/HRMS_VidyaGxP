@@ -45,8 +45,8 @@
 						<tr>
 							<td>
 								<h2 class="table-avatar">
-									<a href="client-profile.html" class="avatar"><img src="assets/img/profiles/avatar-19.jpg" alt=""></a>
-									<a href="client-profile.html">Global Technologies</a>
+									<a href="client-profile.html" class="avatar1"><img alt="" src="@if(!empty($client->avatar)) {{asset('storage/clients/'.$client->avatar)}} @else assets/img/profiles/default.jpg @endif"></a>
+									<a href="client-profile.html">{{ $client->company }}</a>
 								</h2>
 							</td>
 							<td>CLT-{{$client->id}}</td>

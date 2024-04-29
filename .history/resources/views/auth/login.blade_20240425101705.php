@@ -8,7 +8,7 @@
 @endif
 <form action="{{route('login')}}" method="post">
     @csrf
-    <div class="form-group pt-4">
+    <div class="form-group">
         <label>Email</label>
         <input name="email" type="text" class="form-control @error('email') border-danger @enderror">
         <!-- <input name="email" type="text" value="{{old('email') ?? 'admin@admin.com'}}" class="form-control @error('email') border-danger @enderror"> -->
@@ -24,7 +24,7 @@
                 <label>Password</label>
             </div>
             <div class="col-auto">
-                <a class=" text-primary " href="{{route('forgot-password')}}">
+                <a class="text-muted" href="{{route('forgot-password')}}">
                     Forgot password?
                 </a>
             </div>
@@ -40,8 +40,8 @@
     <div class="form-group text-center">
         <button class="btn btn-primary account-btn" type="submit">Login</button>
     </div>
-    {{-- <div class="account-footer">
+    <div class="account-footer">
         <p> <a href="{{route('register')}}">Register</a></p>
-    </div> --}}
+    </div>
 </form>
 @endsection
