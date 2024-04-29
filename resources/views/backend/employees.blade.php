@@ -1,3 +1,4 @@
+
 @extends('layouts.backend')
 
 @section('styles')
@@ -30,24 +31,26 @@
 <div class="row staff-grid-row">
 	@if (!empty($employees->count()))
 		@foreach ($employees as $employee)
-			<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
-				<div class="profile-widget">
-					<div class="profile-img">
-						<a href="javascript:void(0)" class="avatar"><img alt="avatar" src="@if(!empty($employee->avatar)) {{asset('storage/employees/'.$employee->avatar)}} @else assets/img/profiles/default.jpg @endif"></a>
-					</div>
-					<div class="dropdown profile-action">
-						<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-					<div class="dropdown-menu dropdown-menu-right">
-						<a data-id="{{$employee->id}}" data-firstname="{{$employee->firstname}}" data-lastname="{{$employee->lastname}}" data-email="{{$employee->email}}" data-phone="{{$employee->phone}}" data-avatar="{{$employee->avatar}}" data-company="{{$employee->company}}" data-designation="{{$employee->designation->id}}" data-department="{{$employee->department->id}}" class="dropdown-item editbtn" href="javascript:void(0)" data-toggle="modal"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-						<a data-id="{{$employee->id}}" class="dropdown-item deletebtn" href="javascript:void(0)" data-toggle="modal" ><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-					</div>
-					</div>
-					<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="javascript:void(0)">{{$employee->firstname}} {{$employee->lastname}}</a></h4>
-					<h5 class="user-name m-t-10 mb-0 text-ellipsis"><a href="javascript:void(0)">{{$employee->designation->name}}</a></h5>
+    <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
+        <div class="profile-widget">
+            <div class="profile-img">
+                <a href="javascript:void(0)" class="avatar">
+                    <img alt="avatar" src="@if(!empty($employee->avatar)) {{asset('storage/employees/'.$employee->avatar)}} @else assets/img/profiles/default.jpg @endif">
+                </a>
+            </div>
+            <div class="dropdown profile-action">
+                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a data-id="{{$employee->id}}" data-firstname="{{$employee->firstname}}" data-lastname="{{$employee->lastname}}" data-email="{{$employee->email}}" data-phone="{{$employee->phone}}" data-avatar="{{$employee->avatar}}" data-company="{{$employee->company}}" data-designation="{{$employee->designation ? $employee->designation->id : ''}}" data-department="{{$employee->department ? $employee->department->id : ''}}" class="dropdown-item editbtn" href="javascript:void(0)" data-toggle="modal"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                    <a data-id="{{$employee->id}}" class="dropdown-item deletebtn" href="javascript:void(0)" data-toggle="modal" ><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                </div>
+            </div>
+            <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="javascript:void(0)">{{$employee->firstname}} {{$employee->lastname}}</a></h4>
+            <h5 class="user-name m-t-10 mb-0 text-ellipsis"><a href="javascript:void(0)">{{$employee->designation ? $employee->designation->name : 'No Designation'}}</a></h5>
+        </div>
+    </div>
+@endforeach
 
-				</div>
-			</div>
-		@endforeach
 		<x-modals.delete :route="'employee.destroy'" :title="'Employee'" />
 
 
@@ -77,7 +80,7 @@
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label class="col-form-label">Last Name</label>
+								<label class="col-form-label">Last Name <span class="text-danger">*</span></label>
 								<input class="form-control" name="lastname" type="text">
 							</div>
 						</div>
@@ -97,7 +100,7 @@
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label class="col-form-label">Company</label>
+								<label class="col-form-label">Company<span class="text-danger">*</span></label>
 								<input type="text" class="form-control" name="company">
 							</div>
 						</div>
@@ -165,7 +168,7 @@
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label class="col-form-label">Last Name</label>
+								<label class="col-form-label">Last Name <span class="text-danger">*</label>
 								<input class="form-control edit_lastname" name="lastname" type="text">
 							</div>
 						</div>
@@ -185,7 +188,7 @@
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label class="col-form-label">Company</label>
+								<label class="col-form-label">Company <span class="text-danger">*</span></label>
 								<input type="text" class="form-control edit_company" name="company">
 							</div>
 						</div>
@@ -195,7 +198,7 @@
 								<select name="department" selected="selected" id="edit_department" class="select">
 									<option>Select Department</option>
 									@foreach ($departments as $department)
-										<option>{{$department->name}}</option>
+										<option  value="{{$department->id}}">{{$department->name}}</option>
 									@endforeach
 								</select>
 							</div>
@@ -203,10 +206,10 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Designation <span class="text-danger">*</span></label>
-								<select name="designation" selected="selected" class="select edit_designation">
+								<select name="designation" selected="selected" id="edit_designation" class="select edit_designation">
 									<option>Select Designation</option>
 									@foreach ($designations as $designation)
-										<option>{{$designation->name}}</option>
+										<option value="{{$designation->id}}">{{$designation->name}}</option>
 									@endforeach
 								</select>
 							</div>
@@ -245,6 +248,7 @@
 			var company = $(this).data('company');
 			var designation = $(this).data('designation');
 			var department = $(this).data('department');
+			console.log(department,department.id,'department')
 			$('#edit_id').val(id);
 			$('.edit_firstname').val(firstname);
 			$('.edit_lastname').val(lastname);

@@ -1,11 +1,12 @@
 <div class="container mb-5">
     <div class="d-flex align-items-end pt-4">
         <h5 class="mb-0">
-            Laravel Backup Panel
+            Laravel Backup Panel 
+    
         </h5>
 
         <button id="create-backup" class="btn btn-primary btn-sm ml-auto px-3">
-            Create Backup
+            Create Backup 
         </button>
         <div class="dropdown ml-3">
             <button class="btn btn-primary btn-sm dropdown-toggle px-3" id="dropdownMenuButton"
@@ -48,7 +49,7 @@
                         <th scope="col">Healthy</th>
                         <th scope="col">Amount of backups</th>
                         <th scope="col">Newest backup</th>
-                        <th scope="col">Used storage</th>
+                        <th scope="col">Used storage </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -77,7 +78,7 @@
 
             <div class="card shadow-sm">
                 <div class="card-header d-flex align-items-end">
-                    @if(count($disks))
+                     @if(count($disks))
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                             @foreach($disks as $disk)
                                 <label class="btn btn-outline-secondary {{ $activeDisk === $disk ? 'active' : '' }}"
@@ -88,7 +89,7 @@
                                 </label>
                             @endforeach
                         </div>
-                    @endif
+                    @endif 
 
                     <button class="btn btn-primary btn-sm btn-refresh ml-auto"
                             wire:loading.class="loading"

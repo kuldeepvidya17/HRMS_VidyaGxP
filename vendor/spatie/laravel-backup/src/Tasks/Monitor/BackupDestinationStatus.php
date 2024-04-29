@@ -57,6 +57,9 @@ class BackupDestinationStatus
             }
         }
 
-        return true;
+
+
+
+        return  true;
     }
 }
