@@ -19,7 +19,7 @@ class CreateClientsTable extends Migration
             $table->string('lastname');
             $table->string('email');
             $table->string('phone');
-            $table->string('company');
+            $table->string('company')->nullable();
             $table->string('avatar')->nullable();
             $table->softDeletes();
             $table->timestamps();

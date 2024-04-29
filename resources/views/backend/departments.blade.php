@@ -33,9 +33,12 @@
                 </thead>
                 <tbody>
                     @if(!empty($departments->count()))
+                    @php
+                        $count = 1; 
+                    @endphp
                         @foreach ($departments as $department)
                             <tr>
-                                <td>{{$department->id}}</td>
+                                <td>{{$count}}</td>
                                 <td>{{$department->name}}</td>
                                 <td class="text-right">
                                 <div class="dropdown dropdown-action">
@@ -47,6 +50,9 @@
                                     </div>
                                 </td>
                             </tr>
+                            @php
+                                $count++;
+                            @endphp
                         @endforeach
                         <x-modals.delete :route="'department.destroy'" :title="'department'" />
                         <!-- Edit Department Modal -->

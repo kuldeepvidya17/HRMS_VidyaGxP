@@ -1,12 +1,44 @@
 <div class="container mb-5">
     <div class="d-flex align-items-end pt-4">
-        <h5 class="mb-0">
-            Laravel Backup Panel
-        </h5>
+        <style>
+            .backup-panel-heading {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Choose your desired font family */
+                font-size: 22px;
+                font-weight: bold;
+                color: #2c3e50; /* Choose your desired text color */
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add a shadow effect */
+                padding: 15px 20px; /* Add padding for spacing */
+                /* background-color: #f5f5f5; Set a background color */
+                border-radius: 20px; /* Add rounded corners */
+                /* box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); Add a subtle box shadow */
+                transition: all 0.3s ease; /* Add a smooth transition effect */
+                display: inline-block; /* Ensure it respects padding and border-radius */
+            }
+        
+            .backup-panel-heading:hover {
+                transform: scale(1.05); /* Scale up on hover for a subtle zoom effect */
+                color: #e74c3c; /* Change text color on hover */
+                text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Change shadow on hover */
+            }
+        </style>
+        
+        <div class="backup-panel-heading">
+            HRMS Backup Panel
+        </div>
+        
+                {{--  create backup --}}
 
-        <button id="create-backup" class="btn btn-primary btn-sm ml-auto px-3">
-            Create Backup
-        </button>
+            <form action="{{ route('backup_file') }}" method="POST">
+            
+                @csrf <!-- Add this line to include CSRF token -->
+
+             <button type="submit" class="btn btn-primary" style="display: flex; justify-content: flex-end;">Create Backup</button>
+            
+            </form>
+
+
+                 {{--create backup  --}}
+
         <div class="dropdown ml-3">
             <button class="btn btn-primary btn-sm dropdown-toggle px-3" id="dropdownMenuButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,15 +76,18 @@
                 <table class="table table-hover mb-0">
                     <thead>
                     <tr>
+                        <th scope="col">Download</th>
                         <th scope="col">Disk</th>
                         <th scope="col">Healthy</th>
                         <th scope="col">Amount of backups</th>
                         <th scope="col">Newest backup</th>
                         <th scope="col">Used storage</th>
                     </tr>
+
+
                     </thead>
                     <tbody>
-                    @foreach($backupStatuses as $backupStatus)
+                    {{-- @foreach($backupStatuses as $backupStatus)
                         <tr>
                             <td>{{ $backupStatus['disk'] }}</td>
                             <td>
@@ -70,13 +105,23 @@
                             <td>{{ $backupStatus['newest'] }}</td>
                             <td>{{ $backupStatus['usedStorage'] }}</td>
                         </tr>
-                    @endforeach
+                    @endforeach --}}
+
+                                       {{-- new added line 'download' --}}
+                                       <td>
+                                        <form action="" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="backup_id" value"">
+                                            <button type= type="submit" class="btn btn-primary" style="display: flex; justify-content: flex-end;">Download</button>
+                                        </form>
+                                    </td>
+                                   {{-- new added line 'download' --}}
                     </tbody>
                 </table>
             </div>
 
-            <div class="card shadow-sm">
-                <div class="card-header d-flex align-items-end">
+            {{-- <div class="card shadow-sm">
+                <div class="card-header d-flex align-items-end ">
                     @if(count($disks))
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                             @foreach($disks as $disk)
@@ -164,7 +209,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 

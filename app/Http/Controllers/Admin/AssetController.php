@@ -60,6 +60,8 @@ class AssetController extends Controller
             'description' => $request->description,
             'status' => $request->status,
         ]);
+        storeActivityLog($userId=1, $action='Store', $description=$request->name, $moduleName='Asset', $moduleId=1,$status='Asset Has Been Successfully added.');
+
         return back()->with('success',"Asset has been added!!");
     }
 
@@ -122,7 +124,7 @@ class AssetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $requst)
+    public function destroy(Request $request)
     {
         $asset = Asset::findOrFail($request->id);
         $asset->delete();

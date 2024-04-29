@@ -52,13 +52,13 @@
 				
 				<div class="col-sm-6 col-md-3">
 					<div class="form-group">
-						<label>Email</label>
+						<label>Email <span class="text-danger">*</span></label>
 						<input class="form-control" type="email" name="email">
 					</div>
 				</div>
 				<div class="col-sm-6 col-md-3">
 					<div class="form-group">
-						<label>Tax</label>
+						<label>Tax <span class="text-danger">*</span></label>
 						<select name="tax" class="select2" title="select tax" id="inv_tax">
 							<option value="null">Select Tax</option>
 							@foreach (\app\Models\Tax::get() as $tax)
@@ -69,13 +69,13 @@
 				</div>
 				<div class="col-sm-6 col-md-3">
 					<div class="form-group">
-						<label>Client Address</label>
+						<label>Client Address <span class="text-danger">*</span></label>
 						<textarea class="form-control" rows="3" name="client_address"></textarea>
 					</div>
 				</div>
 				<div class="col-sm-6 col-md-3">
 					<div class="form-group">
-						<label>Billing Address</label>
+						<label>Billing Address <span class="text-danger">*</span></label>
 						<textarea class="form-control" rows="3" name="billing_address"></textarea>
 					</div>
 				</div>
@@ -105,8 +105,8 @@
 									<th>#</th>
 									<th class="col-sm-2">Item</th>
 									<th class="col-md-6">Description</th>
-									<th style="width:100px;">Unit Cost</th>
-									<th style="width:80px;">Qty</th>
+									<th style="width:100px;">Unit Cost<span class="text-danger">* in number</span></th>
+									<th style="width:80px;">Qty<span class="text-danger">* in number</span></th>
 									<th>Amount</th>
 									<th><button type="button" class="btn btn-sm btn-success font-18 mr-1" title="Add" data-repeater-create>
 										<i class="fa fa-plus"></i>
@@ -146,10 +146,11 @@
 				</div>
 			</div>
 
+
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label>Discount </label>
+						<label>Discount <span class="text-danger">* must be a number</span></label>
 						<input class="form-control text-right" type="text" name="discount" value="0">
 					</div>
 				</div>
