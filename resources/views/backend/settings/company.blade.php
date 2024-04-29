@@ -25,81 +25,81 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label>Company Name <span class="text-danger">*</span></label>
-                        <input class="form-control" name="company_name" type="text" value="{{$settings->company_name}}">
+                        <input class="form-control" name="company_name" type="text" value="{{$settings->company_name}}" required>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label>Contact Person</label>
-                        <input class="form-control" name="contact_person" value="{{$settings->contact_person}}" type="text">
+                        <label>Contact Person<span class="text-danger">*</span></label>
+                        <input class="form-control" name="contact_person" value="{{$settings->contact_person}}" type="text" required>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label>Address</label>
-                        <input class="form-control" name="address" value="{{$settings->address}}" type="text">
+                        <label>Address<span class="text-danger">*</span></label>
+                        <input class="form-control" name="address" value="{{$settings->address}}" type="text" required>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-3">
                     <div class="form-group">
-                        <label>Country</label>
-                        <input type="text" name="country" value="{{$settings->country}}" class="form-control">
+                        <label>Country<span class="text-danger">*</span></label>
+                        <input type="text" name="country" value="{{$settings->country}}" class="form-control" required>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-3">
                     <div class="form-group">
-                        <label>City</label>
-                        <input class="form-control" name="city" value="{{$settings->city}}" type="text">
+                        <label>City<span class="text-danger">*</span></label>
+                        <input class="form-control" name="city" value="{{$settings->city}}" type="text" required>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-3">
                     <div class="form-group">
-                        <label>State/Province</label>
-                        <input type="text" name="province" value="{{$settings->province}}" class="form-control">
+                        <label>State/Province<span class="text-danger">*</span></label>
+                        <input type="text" name="province" value="{{$settings->province}}" class="form-control" required>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-3">
                     <div class="form-group">
-                        <label>Postal Code</label>
-                        <input class="form-control" name="postal_code" value="{{$settings->postal_code}}" type="text">
+                        <label>Postal Code<span class="text-danger">*</span></label>
+                        <input class="form-control" name="postal_code" value="{{$settings->postal_code}}" type="text" required>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label>Email</label>
-                        <input class="form-control" name="email" value="{{$settings->email}}" type="email">
+                        <label>Email<span class="text-danger">*</span></label>
+                        <input class="form-control" name="email" value="{{$settings->email}}" type="email" required>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label>Phone Number</label>
-                        <input class="form-control" name="phone" value="{{$settings->phone}}" type="text">
+                        <label>Phone Number<span class="text-danger">*</span></label>
+                        <input class="form-control" name="phone" value="{{$settings->phone}}" type="text" required>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label>Mobile Number</label>
-                        <input class="form-control" name="mobile" value="{{$settings->mobile}}" type="text">
+                        <label>Mobile Number<span class="text-danger">*</span></label>
+                        <input class="form-control" name="mobile" value="{{$settings->mobile}}" type="text" required>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label>Fax</label>
-                        <input class="form-control" name="fax" value="{{$settings->fax}}" type="text">
+                        <label>Fax<span class="text-danger">*</span></label>
+                        <input class="form-control" name="fax" value="{{$settings->fax}}" type="text" required>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label>Website Url</label>
-                        <input class="form-control" name="website_url" value="{{$settings->website_url}}" type="text">
+                        <label>Website Url<span class="text-danger">*</span></label>
+                        <input class="form-control" name="website_url" value="{{$settings->website_url}}" type="text" required>
                     </div>
                 </div>
             </div>

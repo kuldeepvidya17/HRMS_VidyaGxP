@@ -19,15 +19,15 @@
         <form action="{{route('settings.invoice')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group row">
-                <label class="col-lg-3 col-form-label">Invoice prefix</label>
+                <label class="col-lg-3 col-form-label">Invoice prefix<span class="text-danger">*</span></label>
                 <div class="col-lg-9">
-                    <input type="text" value="{{$settings->prefix}}"name="prefix" class="form-control">
+                    <input type="text" value="{{$settings->prefix}}"name="prefix" class="form-control" required>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-lg-3 col-form-label">Invoice Logo</label>
+                <label class="col-lg-3 col-form-label">Invoice Logo<span class="text-danger">*</span></label>
                 <div class="col-lg-7">
-                    <input type="file" value="{{$settings->logo}}" class="form-control" name="logo">
+                    <input type="file" value="{{$settings->logo}}" class="form-control" name="logo" required>
                     <span class="form-text text-muted">Recommended image size is 200px x 40px</span>
                 </div>
                 <div class="col-lg-2">
