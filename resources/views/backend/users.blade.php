@@ -84,37 +84,37 @@
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label>Full Name <span class="text-danger">*</span></label>
-								<input class="form-control" name="name" type="text">
+								<input class="form-control" name="name" type="text" required>
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label>Avatar</label>
-								<input class="form-control" name="avatar" type="file">
+								<label>Avatar<span class="text-danger">*</span></label>
+								<input class="form-control" name="avatar" type="file" required>
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label>Username <span class="text-danger">*</span></label>
-								<input class="form-control" name="username" type="text">
+								<input class="form-control" name="username" type="text" required>
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label>Email <span class="text-danger">*</span></label>
-								<input class="form-control" name="email" type="email">
+								<input class="form-control" name="email" type="email" required>
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label>Password</label>
-								<input class="form-control" name="password" type="password">
+								<label>Password<span class="text-danger">*</span></label>
+								<input class="form-control" name="password" type="password" required>
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label>Confirm Password</label>
-								<input class="form-control" name="password_confirmation" type="password">
+								<label>Confirm Password<span class="text-danger">*</span></label>
+								<input class="form-control" name="password_confirmation" type="password" required>
 							</div>
 						</div>					
 					</div>

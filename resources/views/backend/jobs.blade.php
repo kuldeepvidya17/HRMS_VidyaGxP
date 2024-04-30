@@ -98,14 +98,14 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Job Title</label>
-								<input class="form-control" name="title" type="text">
+								<label>Job Title<span class="text-danger">*</span></label>
+								<input class="form-control" name="title" type="text" required>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Department</label>
-								<select class="select" name="department_id">
+								<label>Department<span class="text-danger">*</span></label>
+								<select class="select" name="department_id" required>
 									@if(!empty($departments))
 										@foreach ($departments as $department)
 											<option value="{{$department->id}}">{{$department->name}}</option>
@@ -118,50 +118,50 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Job Location</label>
-								<input class="form-control" name="location" type="text">
+								<label>Job Location<span class="text-danger">*</span></label>
+								<input class="form-control" name="location" type="text" required>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>No of Vacancies</label>
-								<input class="form-control" name="vacancies" type="text">
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Experience</label>
-								<input class="form-control" name="experience" type="text">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Age</label>
-								<input class="form-control" name="age" type="text">
+								<label>No of Vacancies<span class="text-danger">*</span></label>
+								<input class="form-control" name="vacancies" type="text" required>
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Salary From</label>
-								<input type="text" name="salary_from" class="form-control">
+								<label>Experience<span class="text-danger">*</span></label>
+								<input class="form-control" name="experience" type="text" required>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Salary To</label>
-								<input type="text" name="salary_to" class="form-control">
+								<label>Age<span class="text-danger">*</span></label>
+								<input class="form-control" name="age" type="text" required>
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Job Type</label>
-								<select name="type" class="select">
+								<label>Salary From<span class="text-danger">*</span></label>
+								<input type="text" name="salary_from" class="form-control" required>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Salary To<span class="text-danger">*</span></label>
+								<input type="text" name="salary_to" class="form-control" required>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Job Type<span class="text-danger">*</span></label>
+								<select name="type" class="select" required>
 									<option>Full Time</option>
 									<option>Part Time</option>
 									<option>Internship</option>
@@ -173,8 +173,8 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Status</label>
-								<select name="status" class="select">
+								<label>Status<span class="text-danger">*</span></label>
+								<select name="status" class="select" required>
 									<option>Open</option>
 									<option>Closed</option>
 									<option>Cancelled</option>
@@ -185,21 +185,21 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Start Date</label>
-								<input type="text" name="start_date" class="form-control datetimepicker">
+								<label>Start Date<span class="text-danger">*</span></label>
+								<input type="text" name="start_date" class="form-control datetimepicker" required>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Expired Date</label>
-								<input type="text" name="expire_date" class="form-control datetimepicker">
+								<label>Expired Date<span class="text-danger">*</span></label>
+								<input type="text" name="expire_date" class="form-control datetimepicker" required>
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label>Description</label>
+								<label>Description<span class="text-danger">*</span></label>
 								<textarea id="description" name="description" class="form-control">{!! old('description', '') !!}</textarea>
 							</div>
 						</div>

@@ -30,32 +30,26 @@
 <div class="row staff-grid-row">
 	@if (!empty($employees->count()))
 		@foreach ($employees as $employee)
-			<div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
-				<div class="profile-widget">
-					<div class="profile-img">
-						<a href="javascript:void(0)" class="avatar"><img alt="avatar" src="@if(!empty($employee->avatar)) {{asset('storage/employees/'.$employee->avatar)}} @else assets/img/profiles/default.jpg @endif"></a>
-					</div>
-					<div class="dropdown profile-action">
-						<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-					<div class="dropdown-menu dropdown-menu-right">
-						<a data-id="{{$employee->id}}" data-firstname="{{$employee->firstname}}" data-lastname="{{$employee->lastname}}" data-email="{{$employee->email}}" data-phone="{{$employee->phone}}" data-avatar="{{$employee->avatar}}" data-company="{{$employee->company}}" data-designation="{{ $employee->designation ? $employee->designation->id : '' }}" data-department="{{ $employee->department ? $employee->department->id : '' }}" class="dropdown-item editbtn" href="javascript:void(0)" data-toggle="modal">
-							<i class="fa fa-pencil m-r-5"></i> Edit
-						</a>
-						
-						<a data-id="{{$employee->id}}" class="dropdown-item deletebtn" href="javascript:void(0)" data-toggle="modal" ><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-					</div>
-					</div>
-					<h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="javascript:void(0)">{{$employee->firstname}} {{$employee->lastname}}</a></h4>
-					
-					@if($employee->designation)
-						<h5 class="user-name m-t-10 mb-0 text-ellipsis"><a href="javascript:void(0)">{{$employee->designation->name}}</a></h5>
-					@else
-						<h5 class="user-name m-t-10 mb-0 text-ellipsis"><a href="javascript:void(0)">No Designation</a></h5>
-					@endif
+    <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
+        <div class="profile-widget">
+            <div class="profile-img">
+                <a href="javascript:void(0)" class="avatar">
+                    <img alt="avatar" src="@if(!empty($employee->avatar)) {{asset('storage/employees/'.$employee->avatar)}} @else assets/img/profiles/default.jpg @endif">
+                </a>
+            </div>
+            <div class="dropdown profile-action">
+                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a data-id="{{$employee->id}}" data-firstname="{{$employee->firstname}}" data-lastname="{{$employee->lastname}}" data-email="{{$employee->email}}" data-phone="{{$employee->phone}}" data-avatar="{{$employee->avatar}}" data-company="{{$employee->company}}" data-designation="{{$employee->designation ? $employee->designation->id : ''}}" data-department="{{$employee->department ? $employee->department->id : ''}}" class="dropdown-item editbtn" href="javascript:void(0)" data-toggle="modal"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                    <a data-id="{{$employee->id}}" class="dropdown-item deletebtn" href="javascript:void(0)" data-toggle="modal" ><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                </div>
+            </div>
+            <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="javascript:void(0)">{{$employee->firstname}} {{$employee->lastname}}</a></h4>
+            <h5 class="user-name m-t-10 mb-0 text-ellipsis"><a href="javascript:void(0)">{{$employee->designation ? $employee->designation->name : 'No Designation'}}</a></h5>
+        </div>
+    </div>
+@endforeach
 
-				</div>
-			</div>
-		@endforeach
 		<x-modals.delete :route="'employee.destroy'" :title="'Employee'" />
 
 

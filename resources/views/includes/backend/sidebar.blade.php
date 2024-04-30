@@ -104,7 +104,7 @@
                     <a class="{{ route_is('settings.theme') ? 'active' : '' }}" href="{{route('settings.theme')}}"><i class="la la-cog"></i> <span>Settings</span></a>
                 </li>
                 <li class="{{ Request::is('backups') ? 'active' : '' }}">
-                    <a href="{{ route('backups') }}"
+                    <a href="backups"
                         ><i class="la la-cloud-upload"></i> <span>Backups </span>
                     </a>
                 </li>
