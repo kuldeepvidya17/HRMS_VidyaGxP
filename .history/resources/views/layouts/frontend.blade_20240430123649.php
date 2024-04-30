@@ -33,7 +33,6 @@
 		{{-- slimscroll --}}
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.8.2/slimselect.css"  />
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.8.2/slimselect.min.js" ></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
 
         @yield('styles')
 		

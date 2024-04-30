@@ -73,10 +73,7 @@ Version      : 3.4
 64. Responsive
 
 ========================================*/
-/* 
 
-
-*/
 @font-face {
 	font-family: 'Material Icons';
 	font-style: normal;
@@ -1293,7 +1290,15 @@ table.dataTable thead > tr > td.sorting {
 
 
 
-
+/* scrollbar */
+.sidebar-inner {
+	/* Add your sidebar styles here */
+	width: 250px;
+	height: 100%; /* Adjust height as needed */
+	background-color: #f0f0f0;
+	overflow-y: auto; /* Enable vertical scrollbar */
+	scrollbar-width: thin; /* Adjust the width of the scrollbar */
+  }
   
  
 

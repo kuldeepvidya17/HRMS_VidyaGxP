@@ -124,7 +124,7 @@ $(document).ready(function() {
 			color: '#ccc',
 			wheelStep: 10,
 			
-			touchScrollStep: 200
+			touchScrollStep: 100
 		});
 		var wHeight = $(window).height() - 60;
 		$slimScrolls.height(wHeight);

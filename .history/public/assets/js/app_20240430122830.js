@@ -120,11 +120,10 @@ $(document).ready(function() {
 			height: 'auto',
 			width: '100%',
 			position: 'right',
-			size: '8px',
+			size: '7px',
 			color: '#ccc',
 			wheelStep: 10,
-			
-			touchScrollStep: 200
+			touchScrollStep: 100
 		});
 		var wHeight = $(window).height() - 60;
 		$slimScrolls.height(wHeight);

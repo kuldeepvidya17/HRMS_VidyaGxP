@@ -73,10 +73,7 @@ Version      : 3.4
 64. Responsive
 
 ========================================*/
-/* 
 
-
-*/
 @font-face {
 	font-family: 'Material Icons';
 	font-style: normal;
@@ -1290,12 +1287,6 @@ table.dataTable thead > tr > td.sorting {
 	min-width: 130px;
 	padding: 0;
 }
-
-
-
-
-  
- 
 
 /*-----------------
 	9. Sidebar
