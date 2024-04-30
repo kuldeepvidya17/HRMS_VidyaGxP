@@ -73,10 +73,9 @@ Version      : 3.4
 64. Responsive
 
 ========================================*/
-/* 
-
-
-*/
+/* #sidebar > div > div.slimScrollBar{
+	height:600px !important;
+} */
 @font-face {
 	font-family: 'Material Icons';
 	font-style: normal;

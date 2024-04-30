@@ -122,7 +122,7 @@ $(document).ready(function() {
 			position: 'right',
 			size: '8px',
 			color: '#ccc',
-			wheelStep: 10,
+			// wheelStep: 10,
 			
 			touchScrollStep: 200
 		});

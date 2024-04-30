@@ -73,10 +73,7 @@ Version      : 3.4
 64. Responsive
 
 ========================================*/
-/* 
 
-
-*/
 @font-face {
 	font-family: 'Material Icons';
 	font-style: normal;
@@ -1291,12 +1288,6 @@ table.dataTable thead > tr > td.sorting {
 	padding: 0;
 }
 
-
-
-
-  
- 
-
 /*-----------------
 	9. Sidebar
 -----------------------*/
@@ -1681,7 +1672,7 @@ table.dataTable thead > tr > td.sorting {
     margin-bottom: 8px;
 	margin-top:10px;
     text-align: center;
-	background: linear-gradient(to right, #211101, #fe6201);
+	background: linear-gradient(to right, #211101, #fd455d);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
@@ -1716,10 +1707,10 @@ table.dataTable thead > tr > td.sorting {
 }
 .account-box .account-btn {
 	background: #ff9b44;
-	background: -moz-linear-gradient(left, #ff9b44 0%, #fb5c00 100%);
+	background: -moz-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
 	background: -webkit-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
 	background: -ms-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
-	background: linear-gradient(to right, #ff9b44 0%, #ff5b02 100%);
+	background: linear-gradient(to right, #ff9b44 0%, #fc6075 100%);
 	border: 0;
     border-radius: 4px;
     display: block;
@@ -3670,7 +3661,7 @@ table.dataTable thead > tr > td.sorting {
 	display: block;
 }
 .slide-nav .sidebar {
-	margin-left: 2px;
+	margin-left: 0;
 }
 
 /*-----------------
