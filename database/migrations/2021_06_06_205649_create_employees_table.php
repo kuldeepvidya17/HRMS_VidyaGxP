@@ -23,6 +23,7 @@ class CreateEmployeesTable extends Migration
             $table->foreignId('designation_id')->nullable()->constrained();
             $table->string('company')->nullable();
             $table->string('avatar')->nullable();
+            $table->string('');
             $table->softDeletes();
             $table->timestamps();
         });

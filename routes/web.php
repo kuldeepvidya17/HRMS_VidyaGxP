@@ -163,10 +163,11 @@ Route::group(['middleware'=>['auth']], function (){
 
 
     //Task controller
-    Route::post('tasks',[TaskController::class,'index'])->name('tasks');
+    // Route::post('tasks',[TaskController::class,'index'])->name('tasks');
+    Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
+
      Route::post('tasks',[TaskController::class,'store'])->name('tasks.add');
-    Route::put('tasks',[TaskController::class,'update'])->name('tasks.update');
-    // Route::delete('clients',[ClientController::class,'destroy'])->name('client.destroy');
+    Route::put('tasks/{id}',[TaskController::class,'update'])->name('tasks.update');
      Route::get('tasks-list',[TaskController::class,'show'])->name('tasks-show');
 
     Route::get('employees',[EmployeeController::class,'index'])->name('employees');
@@ -203,6 +204,8 @@ Route::get('employeessalary', [SalaryController::class, 'index'])->name('employe
 
 
     Route::get('tasks',[TaskController::class,'index'])->name('task');
+    Route::get('tasks/show/{name}',[TaskController::class,'show'])->name('task.show');
+
     Route::post('tasks/add',[TaskController::class,'store'])->name('task.add');
     Route::get('task-list',[TaskController::class,'lists'])->name('task-list');
     Route::delete('tasks',[TaskController::class,'destroy'])->name('task.destroy');

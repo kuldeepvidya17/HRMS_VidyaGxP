@@ -1,0 +1,30 @@
+{
+    "sourceFile": "database/migrations/2021_06_06_205649_create_employees_table.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1714380230018,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1714380255595,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,10 @@\n             $table->string('company')->nullable();\r\n             $table->string('avatar')->nullable();\r\n             $table->softDeletes();\r\n             $table->timestamps();\r\n+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('set null');\r\n+\r\n         });\r\n     }\r\n \r\n     /**\r\n"
+                },
+                {
+                    "date": 1714380586192,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,40 @@\n+<?php\r\n+\r\n+use Illuminate\\Database\\Migrations\\Migration;\r\n+use Illuminate\\Database\\Schema\\Blueprint;\r\n+use Illuminate\\Support\\Facades\\Schema;\r\n+\r\n+class CreateEmployeesTable extends Migration\r\n+{\r\n+    /**\r\n+     * Run the migrations.\r\n+     *\r\n+     * @return void\r\n+     */\r\n+    public function up()\r\n+    {\r\n+        Schema::create('employees', function (Blueprint $table) {\r\n+            $table->id();\r\n+            $table->string('firstname');\r\n+            $table->string('lastname');\r\n+            $table->string('email');\r\n+            $table->string('phone')->nullable();\r\n+            $table->foreignId('department_id')->nullable()->constrained();\r\n+            $table->foreignId('designation_id')->nullable()->constrained();\r\n+            $table->string('company')->nullable();\r\n+            $table->string('avatar')->nullable();\r\n+            $table->softDeletes();\r\n+            $table->timestamps();\r\n+        });\r\n+    }\r\n+\r\n+    /**\r\n+     * Reverse the migrations.\r\n+     *\r\n+     * @return void\r\n+     */\r\n+    public function down()\r\n+    {\r\n+        Schema::dropIfExists('employees');\r\n+    }\r\n+}\r\n"
+                },
+                {
+                    "date": 1714384177104,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,41 @@\n+<?php\r\n+\r\n+use Illuminate\\Database\\Migrations\\Migration;\r\n+use Illuminate\\Database\\Schema\\Blueprint;\r\n+use Illuminate\\Support\\Facades\\Schema;\r\n+\r\n+class CreateEmployeesTable extends Migration\r\n+{\r\n+    /**\r\n+     * Run the migrations.\r\n+     *\r\n+     * @return void\r\n+     */\r\n+    public function up()\r\n+    {\r\n+        Schema::create('employees', function (Blueprint $table) {\r\n+            $table->id();\r\n+            $table->string('firstname');\r\n+            $table->string('lastname');\r\n+            $table->string('email');\r\n+            $table->string('phone')->nullable();\r\n+            $table->foreignId('department_id')->nullable()->constrained();\r\n+            $table->foreignId('designation_id')->nullable()->constrained();\r\n+            $table->string('company')->nullable();\r\n+            $table->string('avatar')->nullable();\r\n+            $table->string('');\r\n+            $table->softDeletes();\r\n+            $table->timestamps();\r\n+        });\r\n+    }\r\n+\r\n+    /**\r\n+     * Reverse the migrations.\r\n+     *\r\n+     * @return void\r\n+     */\r\n+    public function down()\r\n+    {\r\n+        Schema::dropIfExists('employees');\r\n+    }\r\n+}\r\n"
+                }
+            ],
+            "date": 1714380230018,
+            "name": "Commit-0",
+            "content": "<?php\r\n\r\nuse Illuminate\\Database\\Migrations\\Migration;\r\nuse Illuminate\\Database\\Schema\\Blueprint;\r\nuse Illuminate\\Support\\Facades\\Schema;\r\n\r\nclass CreateEmployeesTable extends Migration\r\n{\r\n    /**\r\n     * Run the migrations.\r\n     *\r\n     * @return void\r\n     */\r\n    public function up()\r\n    {\r\n        Schema::create('employees', function (Blueprint $table) {\r\n            $table->id();\r\n            $table->string('firstname');\r\n            $table->string('lastname');\r\n            $table->string('email');\r\n            $table->string('phone')->nullable();\r\n            // $table->foreignId('department_id')->nullable()->constrained();\r\n            $table->unsignedBigInteger('department_id')->nullable(); // Change to unsignedBigInteger\r\n\r\n            $table->foreignId('designation_id')->nullable()->constrained();\r\n            $table->string('company')->nullable();\r\n            $table->string('avatar')->nullable();\r\n            $table->softDeletes();\r\n            $table->timestamps();\r\n        });\r\n    }\r\n\r\n    /**\r\n     * Reverse the migrations.\r\n     *\r\n     * @return void\r\n     */\r\n    public function down()\r\n    {\r\n        Schema::dropIfExists('employees');\r\n    }\r\n}\r\n"
+        }
+    ]
+}
