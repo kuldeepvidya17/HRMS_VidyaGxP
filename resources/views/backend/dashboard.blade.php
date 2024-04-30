@@ -73,8 +73,22 @@
                         <h3 class="card-title">Total Revenue</h3>
                         <div id="bar-charts"></div>
                     </div>
+                    
                 </div>
+
+                
+                {{-- new added Total Revenue --}}
+                    <div class="col-md-6 text-center">
+                    <div class="card"><div class="card-body">
+                    <h3 class="card-title">Total Revenue</h3>
+                    <div id="bar-charts"></div>
+                </div>
+                </div>
+                </div>
+                {{-- end total revenue  --}}
             </div>
+
+
             <div class="col-md-6 text-center">
                 <div class="card">
                     <div class="card-body">
@@ -82,7 +96,17 @@
                         <div id="line-charts"></div>
                     </div>
                 </div>
+                                {{-- new added Sales Overview --}}
+                                <div class="col-md-6 text-center">
+                                    <div class="card"><div class="card-body">
+                                    <h3 class="card-title">Sales Overview</h3>
+                                    <div id="bar-charts"></div>
+                                </div>
+                                </div>
+                            </div>
+                                {{-- end  Sales Overview --}}
             </div>
+            
         </div>
     </div>
 </div>

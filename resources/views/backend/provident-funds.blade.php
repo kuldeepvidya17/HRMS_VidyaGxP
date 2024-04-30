@@ -86,8 +86,8 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Employee Name</label>
-                                <select class="form-control select" name="employee">
+                                <label>Employee Name<span class="text-danger">*</span></label>
+                                <select class="form-control select" name="employee" required>
                                     @foreach (\App\Models\Employee::get() as $employee)
                                         <option value="{{$employee->id}}">{{$employee->firstname.' '.$employee->lastname}}</option>
                                     @endforeach
@@ -96,8 +96,8 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Provident Fund Type</label>
-                                    <select class="form-control select" name="type">
+                                <label>Provident Fund Type<span class="text-danger">*</span></label>
+                                    <select class="form-control select" name="type" required>
                                     <option value="Fixed">Fixed Amount</option>
                                     <option value="Percentage">Percentage of Basic Salary</option>
                                 </select>
@@ -108,14 +108,14 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Employee Share (Amount)</label>
-                                            <input class="form-control" name="emp_amount" type="text">
+                                            <label>Employee Share (Amount)<span class="text-danger">*</span></label>
+                                            <input class="form-control" name="emp_amount" type="text" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Organization Share (Amount)</label>
-                                            <input class="form-control" name="org_amount" type="text">
+                                            <label>Organization Share (Amount)<span class="text-danger">*</span></label>
+                                            <input class="form-control" name="org_amount" type="text" required>
                                         </div>
                                     </div>
                                 </div>
@@ -126,14 +126,14 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Employee Share (%)</label>
-                                            <input class="form-control" name="emp_percent" type="text">
+                                            <label>Employee Share (%)<span class="text-danger">*</span></label>
+                                            <input class="form-control" name="emp_percent" type="text" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>Organization Share (%)</label>
-                                            <input class="form-control" name="org_percent" type="text">
+                                            <label>Organization Share (%)<span class="text-danger">*</span></label>
+                                            <input class="form-control" name="org_percent" type="text" required>
                                         </div>
                                     </div>
                                 </div>
@@ -141,8 +141,8 @@
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label>Description</label>
-                                <textarea class="form-control" name="description" rows="4"></textarea>
+                                <label>Description<span class="text-danger">*</span></label>
+                                <textarea class="form-control" name="description" rows="4" required></textarea>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-@extends('layouts.backend')
+ @extends('layouts.backend')
 
 
 @section('styles')
@@ -10,14 +10,16 @@
 
 @endsection
 
+
 @section('content')
 
 <livewire:laravel_backup_panel::app />
 
 @endsection
+ 
 
 
 @section('scripts')
 <script src="{{asset('assets/plugins/toastify/src/toastify.js')}}"></script>
 @livewireScripts	
-@endsection
+@endsection 

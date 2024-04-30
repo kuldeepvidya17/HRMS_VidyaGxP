@@ -95,28 +95,28 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Item Name</label>
-                                <input class="form-control" name="name" type="text">
+                                <label>Item Name<span class="text-danger">*</span></label>
+                                <input class="form-control" name="name" type="text" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Purchase From</label>
-                                <input class="form-control" name="seller" type="text">
+                                <label>Purchase From<span class="text-danger">*</span></label>
+                                <input class="form-control" name="seller" type="text" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Purchase Date</label>
-                                <div class="cal-icon"><input name="date" class="form-control datetimepicker" type="text"></div>
+                                <label>Purchase Date<span class="text-danger">*</span></label>
+                                <div class="cal-icon"><input name="date" class="form-control datetimepicker" type="text" required></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Purchased By </label>
-                                <select class="select" name="user">
+                                <label>Purchased By <span class="text-danger">*</span></label>
+                                <select class="select" name="user" required>
                                     @foreach (\App\Models\User::get() as $user)
                                         <option value="{{$user->id}}">{{$user->name}}</option>
                                     @endforeach
@@ -127,14 +127,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Amount</label>
-                                <input placeholder="50" name="amount" class="form-control" type="text">
+                                <label>Amount<span class="text-danger">*</span></label>
+                                <input placeholder="50" name="amount" class="form-control" type="text" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Paid By</label>
-                                <select class="select" name="payment_method">
+                                <label>Paid By<span class="text-danger">*</span></label>
+                                <select class="select" name="payment_method" required>
                                     <option>Cash</option>
                                     <option>Cheque</option>
                                 </select>
@@ -144,8 +144,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Status</label>
-                                <select class="select" name="status">
+                                <label>Status<span class="text-danger">*</span></label>
+                                <select class="select" name="status" required>
                                     <option>Pending</option>
                                     <option>Approved</option>
                                 </select>
@@ -153,8 +153,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Attachments</label>
-                                <input class="form-control" name="file" type="file">
+                                <label>Attachments<span class="text-danger">*</span></label>
+                                <input class="form-control" name="file" type="file" required>
                             </div>
                         </div>
                     </div>

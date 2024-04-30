@@ -122,8 +122,8 @@
                             <input name="name" class="form-control" type="text">
                         </div>
                         <div class="form-group">
-                            <label>Email Address</label>
-                            <input name="email" class="form-control" type="email">
+                            <label>Email Address<span class="text-danger">*</span></label>
+                            <input name="email" class="form-control" type="email" required>
                         </div>
                         <div class="form-group">
                             <label>Contact Number <span class="text-danger">*</span></label>
