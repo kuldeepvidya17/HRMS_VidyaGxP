@@ -116,6 +116,7 @@
 					<div class="form-group">
 						<label>Employee</label>
 						<select name="employee" class="select">
+							<option value="select_emplyess">select employee</option>
 							@foreach ($employees as $employee)
 								<option value="{{$employee->id}}">{{$employee->firstname}} {{$employee->lastname}}</option>
 							@endforeach
@@ -124,7 +125,9 @@
 
 					<div class="form-group">
 						<label>Leave Type <span class="text-danger">*</span></label>
-						<select name="leave_type" class="select">
+						<select name="leave_type" class="select" required>
+							<option value="select_leavetype">select leave type</option>
+
 							@foreach ($leave_types as $leave_type)
 								<option value="{{$leave_type->id}}">{{$leave_type->type}}</option>
 							@endforeach
@@ -133,24 +136,24 @@
 					<div class="form-group">
 						<label>From <span class="text-danger">*</span></label>
 						<div class="cal-icon">
-							<input name="from" class="form-control datetimepicker" type="text">
+							<input name="from" class="form-control datetimepicker" type="text" required>
 						</div>
 					</div>
 					<div class="form-group">
 						<label>To <span class="text-danger">*</span></label>
 						<div class="cal-icon">
-							<input name="to" class="form-control datetimepicker" type="text">
+							<input name="to" class="form-control datetimepicker" type="text" required>
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<label>Leave Reason <span class="text-danger">*</span></label>
-						<textarea name="reason" rows="4" class="form-control"></textarea>
+						<textarea name="reason" rows="4" class="form-control" required></textarea>
 					</div>
 
 					<div class="form-group">
                         <label>Status </label>
-                        <select name="status" class="select">
+                        <select name="status" class="select" required>
                             <option value="null" disabled selected>Select Status</option>
                             <option>Approved</option>
                             <option>Pending</option>
@@ -284,5 +287,25 @@
 			});
 		});
 	});
+</script>
+{{-- ---------Date format edit------------------------------------------- --}}
+
+
+
+
+<script>
+	 $(document).ready(function(){
+		$("input.DateFrom").datepicker({
+    changeMonth: true, 
+    changeYear: true, 
+    dateFormat: 'yy-mm-dd',
+    minDate: 0, // 0 days offset = today
+    maxDate: 'today',
+    onSelect: function(dateText) {
+        $sD = new Date(dateText);
+        $("input#DateTo").datepicker('option', 'minDate', min);
+    }
+});
+    });
 </script>
 @endsection

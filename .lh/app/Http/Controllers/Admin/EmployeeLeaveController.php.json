@@ -1,0 +1,46 @@
+{
+    "sourceFile": "app/Http/Controllers/Admin/EmployeeLeaveController.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1714477796308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1714477843688,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,10 +37,9 @@\n         $this->validate($request,[\r\n             'employee'=>'required',\r\n             'leave_type'=>'required',\r\n             'from'=>'required',\r\n-            // 'to'=>'required',\r\n-            'to' => 'required|after_or_equal:from', // Validation for 'to' date\r\n+            'to'=>'required',\r\n             'reason'=>'required'\r\n         ]);\r\n         Leave::create([\r\n             'employee_id'=>$request->employee,\r\n"
+                },
+                {
+                    "date": 1714477967622,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,10 +36,10 @@\n     {\r\n         $this->validate($request,[\r\n             'employee'=>'required',\r\n             'leave_type'=>'required',\r\n-            'from'=>'required',\r\n-            'to'=>'required',\r\n+            from' => 'required|date',\r\n+        'to' => 'required|date|after_or_equal:from',\r\n             'reason'=>'required'\r\n         ]);\r\n         Leave::create([\r\n             'employee_id'=>$request->employee,\r\n"
+                },
+                {
+                    "date": 1714477980835,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,10 +36,10 @@\n     {\r\n         $this->validate($request,[\r\n             'employee'=>'required',\r\n             'leave_type'=>'required',\r\n-            from' => 'required|date',\r\n-        'to' => 'required|date|after_or_equal:from',\r\n+            'from'=>'required',\r\n+            'to'=>'required',\r\n             'reason'=>'required'\r\n         ]);\r\n         Leave::create([\r\n             'employee_id'=>$request->employee,\r\n"
+                },
+                {
+                    "date": 1714477997947,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,11 +36,11 @@\n     {\r\n         $this->validate($request,[\r\n             'employee'=>'required',\r\n             'leave_type'=>'required',\r\n-            'from'=>'required',\r\n-            'to'=>'required',\r\n-            'reason'=>'required'\r\n+            from' => 'required|date',\r\n+            'to' => 'required|date|after_or_equal:from',\r\n+           \r\n         ]);\r\n         Leave::create([\r\n             'employee_id'=>$request->employee,\r\n             'leave_type_id'=>$request->leave_type,\r\n"
+                },
+                {
+                    "date": 1714478028277,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,11 +36,17 @@\n     {\r\n         $this->validate($request,[\r\n             'employee'=>'required',\r\n             'leave_type'=>'required',\r\n-            from' => 'required|date',\r\n+\r\n+\r\n+\r\n+            'from' => 'required|date',\r\n             'to' => 'required|date|after_or_equal:from',\r\n+\r\n+            \r\n            \r\n+            'reason'=>'required'\r\n         ]);\r\n         Leave::create([\r\n             'employee_id'=>$request->employee,\r\n             'leave_type_id'=>$request->leave_type,\r\n"
+                },
+                {
+                    "date": 1714478150213,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,11 +40,12 @@\n \r\n \r\n \r\n             'from' => 'required|date',\r\n-            'to' => 'required|date|after_or_equal:from',\r\n+            // 'to' => 'required|date|after_or_equal:from',\r\n \r\n-            \r\n+            'to' => 'required|date|after_or_equal:from|after_or_equal:'.Carbon::now()->toDateString(),\r\n+\r\n            \r\n             'reason'=>'required'\r\n         ]);\r\n         Leave::create([\r\n"
+                },
+                {
+                    "date": 1714478162277,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n use App\\Models\\Employee;\r\n use App\\Models\\LeaveType;\r\n use Illuminate\\Http\\Request;\r\n use App\\Http\\Controllers\\Controller;\r\n+use Carbon\\Carbon;\r\n \r\n class EmployeeLeaveController extends Controller\r\n {\r\n     /**\r\n"
+                }
+            ],
+            "date": 1714477796308,
+            "name": "Commit-0",
+            "content": "<?php\r\n\r\nnamespace App\\Http\\Controllers\\Admin;\r\n\r\nuse App\\Models\\Leave;\r\nuse App\\Models\\Employee;\r\nuse App\\Models\\LeaveType;\r\nuse Illuminate\\Http\\Request;\r\nuse App\\Http\\Controllers\\Controller;\r\n\r\nclass EmployeeLeaveController extends Controller\r\n{\r\n    /**\r\n     * Display a listing of the resource.\r\n     *\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function index()\r\n    {\r\n        $title = \"employee leave\";\r\n        $leaves = Leave::with('leaveType','employee')->get();\r\n        $leave_types = LeaveType::get();\r\n        $employees = Employee::get();\r\n        return view('backend.employee-leaves',compact(\r\n            'title','leaves','leave_types','employees'\r\n        ));\r\n    }\r\n\r\n    /**\r\n     * Store a newly created resource in storage.\r\n     *\r\n     * @param  \\Illuminate\\Http\\Request  $request\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function store(Request $request)\r\n    {\r\n        $this->validate($request,[\r\n            'employee'=>'required',\r\n            'leave_type'=>'required',\r\n            'from'=>'required',\r\n            // 'to'=>'required',\r\n            'to' => 'required|after_or_equal:from', // Validation for 'to' date\r\n            'reason'=>'required'\r\n        ]);\r\n        Leave::create([\r\n            'employee_id'=>$request->employee,\r\n            'leave_type_id'=>$request->leave_type,\r\n            'from'=>$request->from,\r\n            'to'=>$request->to,\r\n            'reason'=>$request->reason,\r\n            'status' =>$request->status,\r\n        ]);\r\n        $notification = notify(\"Employee leave has been added\");\r\n        return back()->with($notification);\r\n    }\r\n\r\n    \r\n    /**\r\n     * Update the specified resource in storage.\r\n     *\r\n     * @param  \\Illuminate\\Http\\Request  $request\r\n     * \r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function update(Request $request)\r\n    {\r\n        $leave = Leave::find($request->id);\r\n        $leave->update([\r\n            'employee_id'=>$request->employee,\r\n            'leave_type_id'=>$request->leave_type,\r\n            'from'=>$request->from,\r\n            'to'=>$request->to,\r\n            'reason'=>$request->reason,\r\n            'status' => $request->status,\r\n        ]);\r\n        $notification = notify(\"Employee leave has been updated\");;\r\n        return back()->with($notification);\r\n    }\r\n\r\n    /**\r\n     * Remove the specified resource from storage.\r\n     *\r\n     * @param  \\Illuminate\\Http\\Request $request\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function destroy(Request $request)\r\n    {\r\n        $leave = Leave::find($request->id);\r\n        $leave->delete();\r\n        $notification = notify('Employee leave has been deleted');\r\n        return back()->with($notification);\r\n    }\r\n}\r\n"
+        }
+    ]
+}

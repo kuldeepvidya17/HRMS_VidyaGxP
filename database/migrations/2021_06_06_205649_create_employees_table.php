@@ -11,23 +11,39 @@ class CreateEmployeesTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('employees', function (Blueprint $table) {
-            $table->id();
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('email');
-            $table->string('phone')->nullable();
-            $table->foreignId('department_id')->nullable()->constrained();
-            $table->foreignId('designation_id')->nullable()->constrained();
-            $table->string('company')->nullable();
-            $table->string('avatar')->nullable();
-            $table->string('');
-            $table->softDeletes();
-            $table->timestamps();
-        });
-    }
+//    public function up()
+// {
+//     Schema::create('employees', function (Blueprint $table) {
+//         $table->id();
+//         $table->string('firstname', 255)->notNull();
+//         $table->string('lastname', 255)->notNull();
+//         $table->string('email', 255)->notNull();
+//         $table->string('phone', 255)->nullable();
+//         $table->bigInteger('department_id')->unsigned()->nullable();
+//         $table->bigInteger('designation_id')->unsigned()->nullable();
+//         $table->string('company', 255)->nullable();
+//         $table->string('avatar', 255)->nullable();
+//         $table->timestamps();
+//         $table->softDeletes();
+//     });
+// }
+
+public function up()
+{
+    Schema::create('employees', function (Blueprint $table) {
+        $table->id();
+        $table->string('firstname', 255)->notNull();
+        $table->string('lastname', 255)->notNull();
+        $table->string('email', 255)->notNull();
+        $table->string('phone', 255)->nullable();
+        $table->bigInteger('department_id')->unsigned()->nullable();
+        $table->bigInteger('designation_id')->unsigned()->nullable();
+        $table->string('company', 255)->nullable();
+        $table->string('avatar', 255)->nullable();
+        $table->timestamps();
+        $table->softDeletes();
+    });
+}
 
     /**
      * Reverse the migrations.

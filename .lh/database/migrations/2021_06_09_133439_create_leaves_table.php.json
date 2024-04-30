@@ -1,0 +1,26 @@
+{
+    "sourceFile": "database/migrations/2021_06_09_133439_create_leaves_table.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1714469067771,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1714469127697,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     public function up()\r\n     {\r\n         Schema::create('leaves', function (Blueprint $table) {\r\n             $table->id();\r\n-            $table->foreignId('employee_id')->nullable()->constrained()->onDelete('cascade');\r\n+            $table->foreignId('employee_id')->nullable()->constrained();\r\n             $table->foreignId('leave_type_id')->nullable()->constrained()->onDelete('cascade');\r\n             $table->date('from');\r\n             $table->date('to');\r\n             $table->text('reason');\r\n"
+                },
+                {
+                    "date": 1714469444160,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     {\r\n         Schema::create('leaves', function (Blueprint $table) {\r\n             $table->id();\r\n             $table->foreignId('employee_id')->nullable()->constrained();\r\n-            $table->foreignId('leave_type_id')->nullable()->constrained()->onDelete('cascade');\r\n+            $table->foreignId('leave_type_id')->nullable()->constrained()->onDelete('restrict');\r\n             $table->date('from');\r\n             $table->date('to');\r\n             $table->text('reason');\r\n             $table->string('status')->default('Approved');\r\n"
+                }
+            ],
+            "date": 1714469067771,
+            "name": "Commit-0",
+            "content": "<?php\r\n\r\nuse Illuminate\\Database\\Migrations\\Migration;\r\nuse Illuminate\\Database\\Schema\\Blueprint;\r\nuse Illuminate\\Support\\Facades\\Schema;\r\n\r\nclass CreateLeavesTable extends Migration\r\n{\r\n    /**\r\n     * Run the migrations.\r\n     *\r\n     * @return void\r\n     */\r\n    public function up()\r\n    {\r\n        Schema::create('leaves', function (Blueprint $table) {\r\n            $table->id();\r\n            $table->foreignId('employee_id')->nullable()->constrained()->onDelete('cascade');\r\n            $table->foreignId('leave_type_id')->nullable()->constrained()->onDelete('cascade');\r\n            $table->date('from');\r\n            $table->date('to');\r\n            $table->text('reason');\r\n            $table->string('status')->default('Approved');\r\n            $table->softDeletes();\r\n            $table->timestamps();\r\n        });\r\n    }\r\n\r\n    /**\r\n     * Reverse the migrations.\r\n     *\r\n     * @return void\r\n     */\r\n    public function down()\r\n    {\r\n        Schema::dropIfExists('leaves');\r\n    }\r\n}\r\n"
+        }
+    ]
+}

@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\LeaveType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class EmployeeLeaveController extends Controller
 {
@@ -37,8 +38,15 @@ class EmployeeLeaveController extends Controller
         $this->validate($request,[
             'employee'=>'required',
             'leave_type'=>'required',
-            'from'=>'required',
-            'to'=>'required',
+
+
+
+            'from' => 'required|date',
+            // 'to' => 'required|date|after_or_equal:from',
+
+            'to' => 'required|date|after_or_equal:from|after_or_equal:'.Carbon::now()->toDateString(),
+
+           
             'reason'=>'required'
         ]);
         Leave::create([
