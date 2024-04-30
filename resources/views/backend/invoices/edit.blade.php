@@ -189,7 +189,8 @@
 								<tr>
 									<td colspan="5" style="text-align: right">Tax</td>
 									<td style="text-align: right;width: 230px">
-										<input class="form-control text-right" value="{{(($invoice->tax->percentage/100) * $invoice->total)}}" readonly type="text">
+										<input class="form-control text-right" value="{{ ($invoice->tax ? (($invoice->tax->percentage/100) * $invoice->total) : 0) }}" readonly type="text">
+
 									</td>
 								</tr>
 								
