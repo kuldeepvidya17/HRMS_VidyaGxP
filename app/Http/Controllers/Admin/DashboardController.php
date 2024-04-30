@@ -17,9 +17,7 @@ class DashboardController extends Controller
         $clients_count = Client::count();
         $task_count = Task::count();
         $employee_count = Employee::count();
-        // dd($employee_count);
         $absent_employee = EmployeeAttendance::where('status','false')->count();
-        // dd($absent_employee);
 //$task_count = Task::count();
         $new_employee_count = Employee::where('created_at','DESC')->count();
         

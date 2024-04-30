@@ -108,7 +108,7 @@
                     <div class="progress mb-2" style="height: 5px;">
                         <div class="progress-bar bg-primary" role="progressbar" style="width: {{ $newEmployeePercentage }}%;" aria-valuenow="{{ $newEmployeePercentage }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <p class="mb-0">Overall Employees <span id="overallEmployeesPlaceholder">Loading...</span></p>
+                    <p class="mb-0">Overall Employees<span id="overallEmployeesPlaceholder">Loading...</span></p>
                 </div>
             </div>
         
