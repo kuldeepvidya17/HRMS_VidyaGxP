@@ -70,7 +70,7 @@
 								</td>
 								<td>
 									<h2 class="table-avatar">
-										<a href="javascript:void(0)" class="avatar avatar-xs">
+										<a href="javascript:void(0)" class="avatar1 avatar-xs">
 											<img alt="avatar" src="{{!empty($leave->employee->avatar)? asset('storage/employees/'.$leave->employee->avatar): asset('assets/img/user.jpg')}}">
 										</a>
 										<a href="#">{{$leave->employee->firstname}} {{$leave->employee->lastname}}</a>

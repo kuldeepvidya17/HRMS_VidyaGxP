@@ -75,36 +75,16 @@
                     </div>
                     
                 </div>
-
-                
-                {{-- new added Total Revenue --}}
-                    <div class="col-md-6 text-center">
-                    <div class="card"><div class="card-body">
-                    <h3 class="card-title">Total Revenue</h3>
-                    <div id="bar-charts"></div>
-                </div>
-                </div>
-                </div>
-                {{-- end total revenue  --}}
             </div>
 
 
-            <div class="col-md-6 text-center">
+            <div class="col-lg-6 text-center">
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title">Sales Overview</h3>
                         <div id="line-charts"></div>
                     </div>
                 </div>
-                                {{-- new added Sales Overview --}}
-                                <div class="col-md-6 text-center">
-                                    <div class="card"><div class="card-body">
-                                    <h3 class="card-title">Sales Overview</h3>
-                                    <div id="bar-charts"></div>
-                                </div>
-                                </div>
-                            </div>
-                                {{-- end  Sales Overview --}}
             </div>
             
         </div>
@@ -206,15 +186,22 @@
                 <h5 class="card-title">Statistics</h5>
                 <div class="stats-list">
                     <div class="stats-info">
-                        <p>Today Leave <strong>0 <small>/ 0</small></strong></p>
+                        <p>Today Leave <strong>{{ $absent_employee }}<small>/ {{ $employee_count }}</small></strong></p>
                         <div class="progress">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="31" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div id="progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
-                    <div class="stats-info">
-                        <p>Pending Invoice <strong>0 <small>/ 0</small></strong></p>
+                    
+                    {{-- <div class="stats-info">
+                        <p>Pending Invoice <strong>{{ $invoices }}<small>/ {{ $invoices_count }}</small></strong></p>
                         <div class="progress">
                             <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="31" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div> --}}
+                    <div class="stats-info">
+                        <p>Pending Invoice <strong>{{ $invoices }}<small>/ {{ $invoices_count }}</small></strong></p>
+                        <div class="progress">
+                            <div id="invoice-progress-bar" class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                     <div class="stats-info">
@@ -331,6 +318,27 @@
     document.getElementById('newEmployeePercentage').innerHTML = '<span class="text-success">+' + newEmployeePercentage.toFixed(2) + '%</span>';
 </script>
 
+    <script>
+        // Calculate the percentage of absent employees
+        var absentEmployees = {{ $absent_employee }};
+        var totalEmployees = {{ $employee_count }};
+        var percentage = (absentEmployees / totalEmployees) * 100;
+
+        // Update the width of the progress bar
+        document.getElementById("progress-bar").style.width = percentage + "%";
+        document.getElementById("progress-bar").setAttribute("aria-valuenow", percentage);
+    </script>
+
+    <script>
+        // Calculate the percentage of pending invoices
+        var pendingInvoices = {{ $invoices }};
+        var totalInvoices = {{ $invoices_count }};
+        var percentage = (pendingInvoices / totalInvoices) * 100;
+
+        // Update the width of the progress bar
+        document.getElementById("invoice-progress-bar").style.width = percentage + "%";
+        document.getElementById("invoice-progress-bar").setAttribute("aria-valuenow", percentage);
+    </script>
 {{-- <script>
     
     fetch('/getTotalEmployees') 
