@@ -30,14 +30,31 @@ class DesignationController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'designation'=>'required|max:200',
-            'department'=>'required',
+
+        $this->validate($request, [
+            'designation' => 'required|max:200',
+            'department' => 'required',
         ]);
+        
+        // Custom validation rule to check if the combination of designation and department already exists
+        $this->validate($request, [
+            'designation' => [
+                'required',
+                'max:200',
+                Designation  ::unique('designations')->where(function ($query) use ($request) {
+                    return $query->where('name', $request->designation)
+                                 ->where('department_id', $request->department);
+                }),
+            ],
+            'department' => 'required',
+        ]);
+        
+        // If validation passes, create the record
         Designation::create([
-            'name'=>$request->designation,
-            'department_id'=>$request->department,
+            'name' => $request->designation,
+            'department_id' => $request->department,
         ]);
+        
         return back()->with('success','Designation added successfully!!!');
     }
 

@@ -193,9 +193,10 @@ Route::group(['middleware'=>['auth']], function (){
     Route::delete('overtime',[OvertimeController::class,'destroy']);
 
     //Employee Salary 
-     //Route::get('employeesalry',[SalaryController::class,'create']->name('salary.create'));
-    //  Route::get('employeesalary', 'SalaryController@create')->name('salary.create');
-// Route::post('employeesalary/store', 'SalaryController@store')->name('salary.store');
+    Route::get('salary',[SalaryController::class,'index'])->name('salary');
+    Route::post('salary',[SalaryController::class,'store']);
+    Route::put('salary',[SalaryController::class,'update']);
+    Route::delete('salary',[SalaryController::class,'destroy']);
 
 Route::get('employeessalary', [SalaryController::class, 'index'])->name('employeessalary');
 
@@ -204,7 +205,7 @@ Route::get('employeessalary', [SalaryController::class, 'index'])->name('employe
 
 
     Route::get('tasks',[TaskController::class,'index'])->name('task');
-    Route::get('tasks/show/{name}',[TaskController::class,'show'])->name('task.show');
+    Route::get('tasks-list',[TaskController::class,'list'])->name('tasks-list');
 
     Route::post('tasks/add',[TaskController::class,'store'])->name('task.add');
     Route::get('task-list',[TaskController::class,'lists'])->name('task-list');

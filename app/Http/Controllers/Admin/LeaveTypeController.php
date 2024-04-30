@@ -30,9 +30,11 @@ class LeaveTypeController extends Controller
     {
         $this->validate($request,[
             'type'=>'required|max:255',
-            'days'=>'required'
+            'days'=>'required|numeric|integer|min:1'
         ]);
         LeaveType::create($request->all());
+        storeActivityLog($userId=1, $action='store', $description=$request->type, $moduleName='Leave', $moduleId=$request->id,$status='Leave Has Been Successfully added.');
+
         return back()->with('success',"Leave type has been added");
     }
 
@@ -56,8 +58,14 @@ class LeaveTypeController extends Controller
      */
     public function update(Request $request)
     {
+        $this->validate($request,[
+            'type'=>'required|max:255',
+            'days'=>'required|numeric|integer|min:1'
+        ]);
         $leave_type = LeaveType::find($request->id);
         $leave_type->update($request->all());
+        storeActivityLog($userId=1, $action='Update', $description=$request->type, $moduleName='Leave', $moduleId=$request->id,$status='Leave Has Been Successfully updated.');
+
         return back()->with('success',"Leave type has been updated");
     }
 
@@ -71,6 +79,7 @@ class LeaveTypeController extends Controller
     {
         $leave_type = LeaveType::find($request->id);
         $leave_type->delete();
+        storeActivityLog($userId=1, $action='Delete', $description=$request->type, $moduleName='Leave', $moduleId=$request->id,$status='Leave Has Been Successfully deleted.');
         return back()->with('success',"Leave Type has been deleted successfully!!");
     }
 }

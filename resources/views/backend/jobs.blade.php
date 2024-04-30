@@ -43,7 +43,7 @@
 					<tr>
 						<td><a target="_blank" href="{{route('job-view',$job)}}">{{$job->title}}</a></td>
 						<!-- <td>{{$job->department->name ?? ''}}</td> -->
-						<td>{{ $job->department ? $job->department->name : 'No Department' }}</td>
+						<td>{{ $job->department_id ? $job->department->name : 'No Department' }}</td>
 						<td>{{date_format(date_create($job->start_date),"d M, Y")}}</td>
 						<td>{{date_format(date_create($job->expire_date),"d M, Y")}}</td>
 						<td class="text-center">
@@ -58,7 +58,7 @@
 								<div class="dropdown-menu dropdown-menu-right">
 									<a  data-id="{{$job->id}}"
                                         data-title="{{$job->title}}"
-                                        data-department="{{$job->department->id}}"
+                                        data-department_id="{{$job->department->id}}"
                                         data-startdate="{{$job->start_date}}"
                                         data-expirydate="{{$job->expire_date}}"
                                         data-experience="{{$job->experience}}"
@@ -98,14 +98,14 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Job Title</label>
-								<input class="form-control" name="title" type="text">
+								<label>Job Title<span class="text-danger">*</span></label>
+								<input class="form-control" name="title" type="text" required>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Department</label>
-								<select class="select" name="department">
+								<label>Department<span class="text-danger">*</span></label>
+								<select class="select" name="department_id" required>
 									@if(!empty($departments))
 										@foreach ($departments as $department)
 											<option value="{{$department->id}}">{{$department->name}}</option>
@@ -118,50 +118,50 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Job Location</label>
-								<input class="form-control" name="location" type="text">
+								<label>Job Location<span class="text-danger">*</span></label>
+								<input class="form-control" name="location" type="text" required>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>No of Vacancies</label>
-								<input class="form-control" name="vacancies" type="text">
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Experience</label>
-								<input class="form-control" name="experience" type="text">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Age</label>
-								<input class="form-control" name="age" type="text">
+								<label>No of Vacancies<span class="text-danger">*</span></label>
+								<input class="form-control" name="vacancies" type="text" required>
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Salary From</label>
-								<input type="text" name="salary_from" class="form-control">
+								<label>Experience<span class="text-danger">*</span></label>
+								<input class="form-control" name="experience" type="text" required>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Salary To</label>
-								<input type="text" name="salary_to" class="form-control">
+								<label>Age<span class="text-danger">*</span></label>
+								<input class="form-control" name="age" type="text" required>
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Job Type</label>
-								<select name="type" class="select">
+								<label>Salary From<span class="text-danger">*</span></label>
+								<input type="text" name="salary_from" class="form-control" required>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Salary To<span class="text-danger">*</span></label>
+								<input type="text" name="salary_to" class="form-control" required>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Job Type<span class="text-danger">*</span></label>
+								<select name="type" class="select" required>
 									<option>Full Time</option>
 									<option>Part Time</option>
 									<option>Internship</option>
@@ -173,8 +173,8 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Status</label>
-								<select name="status" class="select">
+								<label>Status<span class="text-danger">*</span></label>
+								<select name="status" class="select" required>
 									<option>Open</option>
 									<option>Closed</option>
 									<option>Cancelled</option>
@@ -185,21 +185,21 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Start Date</label>
-								<input type="text" name="start_date" class="form-control datetimepicker">
+								<label>Start Date<span class="text-danger">*</span></label>
+								<input type="text" name="start_date" class="form-control datetimepicker" required>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Expired Date</label>
-								<input type="text" name="expire_date" class="form-control datetimepicker">
+								<label>Expired Date<span class="text-danger">*</span></label>
+								<input type="text" name="expire_date" class="form-control datetimepicker" required>
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label>Description</label>
+								<label>Description<span class="text-danger">*</span></label>
 								<textarea id="description" name="description" class="form-control">{!! old('description', '') !!}</textarea>
 							</div>
 						</div>
@@ -240,7 +240,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Department</label>
-								<select class="select edit_department" name="department">
+								<select class="select edit_department" name="department_id">
 									<option>-</option>
 									@foreach ($departments as $department)
 										<option value="{{$department->id}}">{{$department->name}}</option>
@@ -370,7 +370,7 @@
 				$('#edit_job').modal('show');
 				var id = $(this).data('id');
 				var title = $(this).data('title');
-				var department = $(this).data('department');
+				var department_id = $(this).data('department_id');
 				var startDate = $(this).data('startdate');
 				var expiryDate = $(this).data('expirydate');
 				var experience = $(this).data('experience');
@@ -384,7 +384,7 @@
 				var description = $(this).data('description');
 				$('#edit_id').val(id);
 				$('#edit_job .edit_title').val(title);
-				$('#edit_job .edit_department').val(department).trigger('change');
+				$('#edit_job .edit_department').val(department_id).trigger('change');
                 $('#edit_job .edit_start_date').data("DateTimePicker").date(startDate);
 				$('#edit_job .edit_expire_date').data("DateTimePicker").date(expiryDate);
                 $('#edit_job .edit_experience').val(experience);

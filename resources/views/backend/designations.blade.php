@@ -37,9 +37,12 @@
                 </thead>
                 <tbody>
                    @if (!empty($designations->count()))
+                    @php
+                        $count = 1; 
+                    @endphp
                        @foreach ($designations as $designation)
                         <tr>
-                            <td>{{$designation->id}}</td>
+                            <td>{{$count}}</td>
                             <td>{{$designation->name}}</td>
                             <td>{{$designation->department->name}}</td>
                             <td class="text-right">
@@ -52,6 +55,9 @@
                                 </div>
                             </td>
                         </tr>
+                         @php
+                             $count++;
+                         @endphp
                        @endforeach
                        <x-modals.delete :route="'designation.destroy'" :title="'designation'"/>
                    @endif

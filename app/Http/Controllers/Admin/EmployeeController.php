@@ -77,6 +77,9 @@ class EmployeeController extends Controller
             'designation_id'=>$request->designation,
             'avatar'=>$imageName,
         ]);
+        $id=Employee::latest('id')->first('id');
+        storeActivityLog($userId=1, $action='store', $description=$request->firstname.''.$request->lastname, $moduleName='Employee', $moduleId=$id->id ,$status='Employee has been added');
+
         return back()->with('success',"Employee has been added");
     }
 
@@ -135,10 +138,9 @@ class EmployeeController extends Controller
             'designation_id' => $request->designation_id,
             'avatar' => $imageName,
         ]);
-    
-        storeActivityLog($userId = 1, $action = 'Update', $description = $request->firstname . ' ' . $request->lastname, $moduleName = 'Employee', $moduleId = $request->id, $status = 'Employee has been updated');
-    
-        return back()->with('success', "Employee details have been updated");
+        storeActivityLog($userId=1, $action='Update', $description=$request->firstname.''.$request->lastname, $moduleName='Employee', $moduleId=$request->id ,$status='Employee has been updated');
+
+        return back()->with('success',"Employee details has been updated");
     }
     
     /**
@@ -151,6 +153,8 @@ class EmployeeController extends Controller
     { 
         $employee = Employee::find($request->id);
         $employee->delete();
+        storeActivityLog($userId=1, $action='Delete', $description='delete', $moduleName='Employee', $moduleId=$request->id ,$status='Employee has been deleted');
+
         return back()->with('success',"Employee has been deleted");
     }
 }

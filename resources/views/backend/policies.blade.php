@@ -87,8 +87,8 @@
                         <textarea name="description" class="form-control" rows="4"></textarea>
                     </div>
                     <div class="form-group">
-                        <label class="col-form-label">Department</label>
-                        <select name="department" class="select">
+                        <label class="col-form-label">Department<span class="text-danger">*</span></label>
+                        <select name="department" class="select" required>
                             @if(!empty($departments->count()))
                             @foreach($departments as $department)
                                 <option value="{{$department->id}}">{{$department->name}}</option>

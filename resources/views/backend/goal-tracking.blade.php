@@ -102,8 +102,8 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="form-group">
-								<label class="col-form-label">Goal Type</label>
-								<select name="goal_type" class="select">
+								<label class="col-form-label">Goal Type<span class="text-danger">*</span></label>
+								<select name="goal_type" class="select" required>
 									@foreach ($goal_types as $type)
 										<option value="{{$type->id}}">{{$type->type}}</option>
 									@endforeach
@@ -112,14 +112,14 @@
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label class="col-form-label">Subject</label>
-								<input name="subject" class="form-control" type="text">
+								<label class="col-form-label">Subject<span class="text-danger">*</span></label>
+								<input name="subject" class="form-control" type="text" required>
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label class="col-form-label">Target Achievement</label>
-								<input name="target" class="form-control" type="text">
+								<label class="col-form-label">Target Achievement<span class="text-danger">*</span></label>
+								<input name="target" class="form-control" type="text" required>
 							</div>
 						</div>
 
@@ -144,8 +144,8 @@
 						</div>
 						<div class="col-sm-12">
 							<div class="form-group">
-								<label class="col-form-label">Status</label>
-								<select name="status" class="select">
+								<label class="col-form-label">Status<span class="text-danger">*</span></label>
+								<select name="status" class="select" required>
 									<option>Active</option>
 									<option>Inactive</option>
 								</select>
