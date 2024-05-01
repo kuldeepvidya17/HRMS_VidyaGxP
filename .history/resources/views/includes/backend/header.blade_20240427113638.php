@@ -4,12 +4,14 @@
     <!-- Logo -->
     <div class="header-left">
         <a href="{{route('dashboard')}}" class="logo">
-            <img style="height: 59px;
-    width: 115px;" src="{{!empty(app(App\Settings\ThemeSettings::class)->logo) ? asset('storage/settings/'.app(App\Settings\ThemeSettings::class)->logo):asset('assets/img/logovidyagxp.png')}}" alt="logo" width="50" height="40">
+            <!-- <img style="height: 59px;
+    width: 115px;" src="{{!empty(app(App\Settings\ThemeSettings::class)->logo) ? asset('storage/settings/'.app(App\Settings\ThemeSettings::class)->logo):asset('assets/img/logovidyagxp.png')}}" alt="logo" width="50" height="40"> -->
+    <img style="height: 59px;
+    width: 115px;" src="{{!empty($settings->logo) ? asset('storage/settings/theme/'.$settings->logo):asset('assets/img/logovidyagxp.png')}}" alt="logo" width="50" height="40">
         </a>
     </div>
     <!-- /Logo -->
-    
+
     <a id="toggle_btn" href="javascript:void(0);">
         <span class="bar-icon">
             <span></span>

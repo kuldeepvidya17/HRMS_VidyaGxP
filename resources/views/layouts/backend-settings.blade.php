@@ -7,7 +7,7 @@
         <meta name="robots" content="noindex, nofollow">
         <title>{{ucfirst(config('app.name'))}} - {{ucfirst($title ?? '')}}</title>
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="{{!empty(app(App\Settings\ThemeSettings::class)->favicon) ? asset('storage/settings/'.app(App\Settings\ThemeSettings::class)->favicon):asset('assets/img/logovidyagxp.png')}}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{!empty(app(App\Settings\ThemeSettings::class)->favicon) ? asset('storage/settings/theme/'.app(App\Settings\ThemeSettings::class)->favicon):asset('assets/img/logovidyagxp.png')}}">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
