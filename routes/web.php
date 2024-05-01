@@ -147,7 +147,7 @@ Route::group(['middleware'=>['auth']], function (){
 
     Route::get('clients',[ClientController::class,'index'])->name('clients');
     Route::post('clients',[ClientController::class,'store'])->name('client.add');
-    Route::put('clients',[ClientController::class,'update'])->name('client.update');
+    Route::put('clients/{id}',[ClientController::class,'update'])->name('client.update');
     Route::delete('clients',[ClientController::class,'destroy'])->name('client.destroy');
     Route::get('clients-list',[ClientController::class,'lists'])->name('clients-list');
 

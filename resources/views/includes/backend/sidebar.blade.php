@@ -40,8 +40,8 @@
                                 href="{{route('designations')}}">Designations</a></li>
                         <li><a class="{{ route_is('overtime') ? 'active' : '' }}"
                                 href="{{route('overtime')}}">Overtime</a></li>
-                        <li><a class="{{ route_is('salary') ? 'active' : '' }}" href="{{route('salary')}}">Employee
-                                Salary</a></li>
+                        {{-- <li><a class="{{ route_is('salary') ? 'active' : '' }}" href="{{route('salary')}}">Employee
+                                Salary</a></li> --}}
 
                     </ul>
                 </li>
