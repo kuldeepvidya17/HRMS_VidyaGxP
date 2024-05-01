@@ -15,7 +15,6 @@ class CreateSettingsTable extends Migration
             $table->string('name');
             $table->boolean('locked')->nullable(true);
             $table->json('payload');
-
             $table->timestamps();
         });
     }
