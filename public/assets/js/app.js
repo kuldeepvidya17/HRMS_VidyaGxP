@@ -351,3 +351,10 @@ $(window).on ('load', function (){
 	$('#loader').delay(100).fadeOut('slow');
 	$('#loader-wrapper').delay(500).fadeOut('slow');
 });
+
+$(document).ready(function(){
+    var value = parseInt($('.progress-main h3').text()); 
+    $('.progress-main .progress-bar.bg-primary ').width(value + '%'); 
+
+	
+});

@@ -24,24 +24,16 @@
                     <a href="#" class="{{ route_is(['employees','employees-list']) ? 'active' : '' }} noti-dot"><i
                             class="la la-user"></i> <span> Employees</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a class="{{ route_is('employees') ? 'active' : '' }}" href="{{route('employees')}}">All
-                                Employees</a></li>
-                        <li><a class="{{ route_is('holidays') ? 'active' : '' }}"
-                                href="{{route('holidays')}}">Holidays</a></li>
-                        <li><a class="{{ route_is('employees.attendance') ? 'active' : '' }}"
-                                href="{{route('employees.attendance')}}">Attendance</a></li>
-                        <li><a class="{{ route_is('leave-type') ? 'active' : '' }}" href="{{route('leave-type')}}">Leave
-                                Type</a></li>
-                        <li><a class="{{ route_is('employee-leave') ? 'active' : '' }}"
-                                href="{{route('employee-leave')}}">Leaves (Employee)</a></li>
-                        <li><a class="{{ route_is('departments') ? 'active' : '' }}"
-                                href="{{route('departments')}}">Departments</a></li>
-                        <li><a class="{{ route_is('designations') ? 'active' : '' }}"
-                                href="{{route('designations')}}">Designations</a></li>
-                        <li><a class="{{ route_is('overtime') ? 'active' : '' }}"
-                                href="{{route('overtime')}}">Overtime</a></li>
-                        <li><a class="{{ route_is('salary') ? 'active' : '' }}" href="{{route('salary')}}">Employee
-                                Salary</a></li>
+                        <li><a class="{{ route_is('employees') ? 'active' : '' }}" href="{{route('employees')}}">All Employees</a></li>
+                        <li><a class="{{ route_is('holidays') ? 'active' : '' }}" href="{{route('holidays')}}">Holidays</a></li>
+                        <li><a class="{{ route_is('employees.attendance') ? 'active' : '' }}" href="{{route('employees.attendance')}}">Attendance</a></li>
+                        <li><a class="{{ route_is('leave-type') ? 'active' : '' }}" href="{{route('leave-type')}}">Leave Type</a></li>
+                        <li><a class="{{ route_is('employee-leave') ? 'active' : '' }}" href="{{route('employee-leave')}}">Leaves (Employee)</a></li>
+                        <li><a class="{{ route_is('departments') ? 'active' : '' }}" href="{{route('departments')}}">Departments</a></li>
+                        <li><a class="{{ route_is('designations') ? 'active' : '' }}" href="{{route('designations')}}">Designations</a></li>
+                        <li><a class="{{ route_is('overtime') ? 'active' : '' }}" href="{{route('overtime')}}">Overtime</a></li>
+                        {{-- <li><a class="{{ route_is('salary') ? 'active' : '' }}" href="{{route('salary')}}">Employee Salary</a></li> --}}
+                        {{-- <li><a class="{{ route_is('salary') ? 'active' : '' }}" href="{{route('salary')}}">Employee Salary</a></li> --}}
 
                     </ul>
                 </li>
@@ -127,8 +119,9 @@
                     <a class="{{ route_is('settings.theme') ? 'active' : '' }}" href="{{route('settings.theme')}}"><i
                             class="la la-cog"></i> <span>Settings</span></a>
                 </li>
-                <li class="{{ Request::is('backups') ? 'active' : '' }}">
-                    <a href="backups"><i class="la la-cloud-upload"></i> <span>Backups </span>
+                <li class="{{ Request::is('backup_file') ? 'active' : '' }}">
+                    <a href="{{ route('backup_file') }}"
+                        ><i class="la la-cloud-upload"></i> <span>Backups </span>
                     </a>
                 </li>
 
