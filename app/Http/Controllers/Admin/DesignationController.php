@@ -28,35 +28,6 @@ class DesignationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-
-    //     $this->validate($request, [
-    //         'designation' => 'required|max:200',
-    //         'department' => 'required',
-    //     ]);
-        
-    //     // Custom validation rule to check if the combination of designation and department already exists
-    //     $this->validate($request, [
-    //         'designation' => [
-    //             'required',
-    //             'max:200',
-    //             Designation  ::unique('designations')->where(function ($query) use ($request) {
-    //                 return $query->where('name', $request->designation)
-    //                              ->where('department_id', $request->department);
-    //             }),
-    //         ],
-    //         'department' => 'required',
-    //     ]);
-        
-    //     // If validation passes, create the record
-    //     Designation::create([
-    //         'name' => $request->designation,
-    //         'department_id' => $request->department,
-    //     ]);
-        
-    //     return back()->with('success','Designation added successfully!!!');
-    // }
     public function store(Request $request)
 {
     $this->validate($request, [
@@ -70,10 +41,10 @@ class DesignationController extends Controller
             'required',
             'max:200',
             function ($attribute, $value, $fail) use ($request) {
-                $exists = Designation::where('name', $request->designation)
-                    ->where('department_id', $request->department)
-                    ->exists();
-    
+                $exists = Designation::where('name', $value)
+                                     ->where('department_id', $request->department)
+                                     ->exists();
+
                 if ($exists) {
                     $fail('The combination of designation and department already exists.');
                 }
@@ -81,14 +52,13 @@ class DesignationController extends Controller
         ],
         'department' => 'required',
     ]);
-    
     // If validation passes, create the record
     Designation::create([
         'name' => $request->designation,
         'department_id' => $request->department,
     ]);
     
-    return back()->with('success','Designation added successfully!!!');
+    return back()->with('success', 'Designation added successfully!!!');
 }
 
 

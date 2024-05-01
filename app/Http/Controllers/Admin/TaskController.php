@@ -140,13 +140,14 @@ class TaskController extends Controller
             $imageName = time().'.'.$request->image->extension();
             $request->image->move(public_path('storage/tasks'), $imageName);
         }
-       $task =Task::findorfail($request->id);
-        
+      //  return $request;
+       $task =Task::find($request->edit_id);
+        //dd($task);
         $task->update([
-             'task_name'=>$request->task_name,
-             'task_description'=>$request->lastname,
-             'task_deadline'=>$request->email,
-             'task_priority'=>$request->phone,
+            'task_name'=>$request->task_name,
+            'task_description'=>$request->task_description,
+            'task_deadline'=>$request->task_deadline,
+            'task_priority'=>$request->task_priority,
             //  'image'=>$imageName,
             //  'company'=>$request->company
         ]);

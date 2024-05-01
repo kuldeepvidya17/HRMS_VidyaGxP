@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <label>Start Date <span class="text-danger">*</span></label>
                                     <div class="cal-icon">
-                                        <input class="form-control datetimepicker" type="text" name="start_date" required>
+                                        <input class="form-control datetimepicker" type="text" name="start_date"  required>
                                     </div>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                     <label>End Date <span class="text-danger">*</span></label>
                                     <div class="cal-icon">
-                                        <input class="form-control datetimepicker" name="end_date" type="text" required>
+                                        <input class="form-control datetimepicker" name="end_date" type="text"  required>
                                     </div>
                                 </div>
                             </div>
