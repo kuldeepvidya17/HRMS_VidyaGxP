@@ -60,7 +60,7 @@
                         Deadline:
                     </div>
                     <div class="text-muted">
-                        {{date_format(date_create($project->end_date),"D M, Y")}}
+                        {{date_format(date_create($project->end_date),"d M, Y")}}
                     </div>
                 </div>
                 <div class="project-members m-b-15">
