@@ -1,5 +1,7 @@
 @if (route_is(['projects','project-list']))
     <!-- Create Project Modal -->
+
+    
     <div id="create_project" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -31,23 +33,54 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>Start Date <span class="text-danger">*</span></label>
-                                    <div class="cal-icon">
-                                        <input class="form-control datetimepicker" type="text" name="start_date"  required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>End Date <span class="text-danger">*</span></label>
-                                    <div class="cal-icon">
-                                        <input class="form-control datetimepicker" name="end_date" type="text"  required>
-                                    </div>
+                           <div class="col-sm-6">
+                            <div class="form-group" id="start_date_group">
+                                <label>Start Date <span class="text-danger">*</span></label>
+                                <div class="cal-icon">
+                                    <input class="form-control datetimepicker" id="start_date_input" type="text" name="start_date" required>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-6">
+                            <div class="form-group" id="end_date_group">
+                                <label>End Date <span class="text-danger">*</span></label>
+                                <div class="cal-icon">
+                                    <input class="form-control datetimepicker" id="end_date_input" name="end_date" type="text" required>
+                                </div>
+                            </div>
+                        </div>
+                        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+                        <script>
+                            $(document).ready(function() {
+                                console.log('jquery iniialized')
+                                // Initialize datetimepicker for start date
+                                $('#start_date_input').datetimepicker({
+                                    format: 'YYYY-MM-DD',
+                                    minDate: moment().startOf('day'), // Set min date to today
+                                });
+
+                                // Initialize datetimepicker for end date
+                                $('#end_date_input').datetimepicker({
+                                    format: 'YYYY-MM-DD',
+                                    useCurrent: false, // Do not automatically set to current date
+                                });
+
+                                // Set min date for end date based on start date
+                                $('#start_date_input').on('dp.change', function(e) {
+                                    $('#end_date_input').data('DateTimePicker').minDate(e.date);
+                                });
+
+                                // Set max date for start date based on end date
+                                $('#end_date_input').on('dp.change', function(e) {
+                                    $('#start_date_input').data('DateTimePicker').maxDate(e.date);
+                                });
+                            });
+                        </script>   
+                        </div>
+
+
+
+                        
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
