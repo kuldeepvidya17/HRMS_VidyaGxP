@@ -58,7 +58,7 @@
                                 @php
                                     $leader = $project->employee($project->leader);
                                 @endphp
-                                <a href="#" class="avatar" data-toggle="tooltip" title="{{$leader->firstname.' '.$leader->lastname}}">
+                                <a href="#" class="avatar1" data-toggle="tooltip" title="{{$leader->firstname.' '.$leader->lastname}}">
                                     <img src="{{ !empty($leader->avatar) ? asset('storage/employees/'.$leader->avatar): asset('assets/img/user.jpg')}}">
                                 </a>
                                 <a href="#">{{$leader->firstname.' '.$leader->lastname}}</a>

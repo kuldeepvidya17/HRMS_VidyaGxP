@@ -54,7 +54,7 @@
                         <td>{{$ticket->subject}}</td>
                         <td>
                             <h2 class="table-avatar">
-                                <a class="avatar avatar-xs" href="#">
+                                <a class="avatar1 avatar-xs" href="#">
                                     <img alt="avatar"  src="{{!empty($ticket->employee->avatar) ? asset('storage/employees/'.$ticket->employee->avatar): asset('assets/img/profiles/avatar-19.jpg')}}"></a>
                                 <a href="#">{{$ticket->employee->firstname.' '.$ticket->employee->lastname}}</a>
                             </h2>
@@ -111,10 +111,16 @@
                                 <input class="form-control" name="subject" type="text" required>
                             </div>
                         </div>
+                       
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Ticket Id  <span class="text-danger">*</span></label>
-                                <input class="form-control" name="ticket_id" type="text" required>
+                                <td>
+
+                                <input  class="form-control" name="ticket_id" id="ticket_id" type="text" readonly required  style="font-size: 41px;">
+                                
+                                <button style="margin-left:70px;" type="button" onclick="generateTicketId()" class="btn btn-primary mt-2">Generate Random Ticket ID</button>
+                                </td>
                             </div>
                         </div>
                     </div>
@@ -343,6 +349,21 @@
 <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
 <!-- summernote JS -->
 <script src="{{asset('assets/plugins/summernote/dist/summernote-bs4.min.js')}}"></script>
+
+
+<script>
+    function generateTicketId() {
+        // Define characters allowed in the random ID
+        const chars = '0123456789';
+        let ticketId = '';
+        // Generate a random 8-character ticket ID
+        for (let i = 0; i < 4; i++) {
+            ticketId += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        // Set the generated ID to the input field
+        document.getElementById('ticket_id').value = ticketId;
+    }
+</script>
 <script>
     $(document).ready(function(){
         $('.table').on('click','.editbtn',(function(){

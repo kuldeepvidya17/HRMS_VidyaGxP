@@ -17,6 +17,7 @@ class ExpenseController extends Controller
     {
         $title = 'expenses';
         $expenses = Expense::get();
+        // dd($expenses);
         return view('backend.expenses',compact(
             'title','expenses'
         ));

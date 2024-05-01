@@ -126,8 +126,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" enctype="multipart/form-data" action="{{route('task.add')}}">
-                    @csrf
+                <form method="POST" enctype="multipart/form-data" action="{{route('task.update')}}">
+                    	@csrf
+							@method("PUT")
                     <input type="hidden" name="edit_id" id="edit_id">
                     <div class="form-group">
                         <label for="edit_task_name">Task Name:</label>

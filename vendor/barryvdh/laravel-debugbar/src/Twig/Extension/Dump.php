@@ -29,7 +29,7 @@ class Dump extends Extension
      */
     public function getName()
     {
-        return 'Laravel_Debugbar_Dump';
+        return 'Laravel_Dump';
     }
 
     /**

@@ -73,7 +73,10 @@ Version      : 3.4
 64. Responsive
 
 ========================================*/
+/* 
 
+
+*/
 @font-face {
   font-family: "Material Icons";
   font-style: normal;
@@ -1178,14 +1181,14 @@ table.dataTable thead > tr > td.sorting {
   z-index: 1002;
 }
 .header .header-left {
-  float: left;
-  height: 60px;
-  padding: 0 20px;
-  position: relative;
-  text-align: center;
-  width: 230px;
-  z-index: 1;
-  transition: all 0.2s ease-in-out;
+	float: left;
+	height: 60px;
+	/* padding: 0 20px; */
+	position: relative;
+	text-align: center;
+	/* width: 230px; */
+	z-index: 1;
+	transition: all 0.2s ease-in-out;
 }
 .header .header-left .logo {
   display: inline-block;
@@ -1335,6 +1338,12 @@ table.dataTable thead > tr > td.sorting {
   min-width: 130px;
   padding: 0;
 }
+
+
+
+
+  
+ 
 
 /*-----------------
 	9. Sidebar
@@ -1651,9 +1660,6 @@ table.dataTable thead > tr > td.sorting {
 	border: 1px solid #ededed;
 	box-shadow: rgba(252, 90, 10, 0.25) 0px 50px 100px -20px, rgba(231, 87, 3, 0.3) 0px 30px 60px -30px, rgba(241, 93, 1, 0.35) 0px -2px 6px 0px inset;
 	margin-bottom: 30px;
-  border: 1px solid #ededed;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
-  margin-bottom: 30px;
 }
 .card-title {
   color: #1f1f1f;
@@ -1754,7 +1760,7 @@ table.dataTable thead > tr > td.sorting {
     margin-bottom: 8px;
 	margin-top:10px;
     text-align: center;
-	background: linear-gradient(to right, #211101, #fd455d);
+	background: linear-gradient(to right, #211101, #fe6201);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
   font-size: 26px;
@@ -1800,10 +1806,10 @@ table.dataTable thead > tr > td.sorting {
 }
 .account-box .account-btn {
 	background: #ff9b44;
-	background: -moz-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
+	background: -moz-linear-gradient(left, #ff9b44 0%, #fb5c00 100%);
 	background: -webkit-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
 	background: -ms-linear-gradient(left, #ff9b44 0%, #fc6075 100%);
-	background: linear-gradient(to right, #ff9b44 0%, #fc6075 100%);
+	background: linear-gradient(to right, #ff9b44 0%, #ff5b02 100%);
 	border: 0;
     border-radius: 4px;
     display: block;
@@ -1833,7 +1839,7 @@ table.dataTable thead > tr > td.sorting {
     border: 1px solid #e3e3e3;
     border-radius: 4px;
     height: 46px;
-	box-shadow: inset 2px 2px 5px #97c9f3,
+	box-shadow: inset 2px 2px 5px #ff9b44,
 			   inset -5px -5px 10px #cee7ef73;
   background-color: #fbfbfb;
   border: 1px solid #e3e3e3;
@@ -2652,6 +2658,31 @@ table.dataTable thead > tr > td.sorting {
   overflow: hidden;
   width: 100%;
   height: 100%;
+}
+/* =================table avtar css */
+.avatar1 {
+	background-color: #aaa;
+	border-radius: 50%;
+	color: #fff;
+	display: inline-block;
+	font-weight: 500;
+	height: 38px;
+	line-height: 38px;
+	margin: 0 10px 0 0;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	vertical-align: middle;
+	width: 38px;
+	position: relative;
+	white-space: nowrap;
+}
+.avatar1 > img {
+    border-radius: 50%;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+	height: 38px;
 }
 .chat.chat-left .chat-bubble:first-child .chat-content {
   border-top-left-radius: 20px;
@@ -3796,7 +3827,7 @@ table.dataTable thead > tr > td.sorting {
   display: block;
 }
 .slide-nav .sidebar {
-  margin-left: 0;
+	margin-left: 0;
 }
 
 /*-----------------

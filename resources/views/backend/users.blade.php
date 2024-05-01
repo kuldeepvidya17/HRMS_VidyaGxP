@@ -42,7 +42,7 @@
 					<tr>
 						<td>
 							<h2 class="table-avatar">
-								<a href="javascript:void(0)" class="avatar"><img src="{{!empty(auth()->user()->avatar) ? asset('storage/users/'.$user->avatar) : asset('assets/img/user.jpg') }}" alt="user"></a>
+								<a href="javascript:void(0)" class="avatar1"><img src="{{!empty(auth()->user()->avatar) ? asset('storage/users/'.$user->avatar) : asset('assets/img/user.jpg') }}" alt="user"></a>
 								{{$user->name}}
 							</h2>
 						</td>
@@ -96,7 +96,8 @@
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label>Username <span class="text-danger">*</span></label>
-								<input class="form-control" name="username" type="text" required>
+								<input class="form-control" name="username" id="username" type="text" required>
+								<div id="username-error" class="text-danger"></div>
 							</div>
 						</div>
 						<div class="col-sm-6">
@@ -105,22 +106,24 @@
 								<input class="form-control" name="email" type="email" required>
 							</div>
 						</div>
-						<div class="col-sm-6">
+					    <div class="col-sm-6">
 							<div class="form-group">
 								<label>Password<span class="text-danger">*</span></label>
-								<input class="form-control" name="password" type="password" required>
+								<input class="form-control" id="password" name="password" type="password" required autocomplete="new-password">
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label>Confirm Password<span class="text-danger">*</span></label>
-								<input class="form-control" name="password_confirmation" type="password" required>
+								<input class="form-control" id="confirmPassword" name="password_confirmation" type="password" required autocomplete="new-password">
+								<div id="passwordMatchError" class="text-red-500" style="display:none;">Passwords do not match</div>
 							</div>
-						</div>					
+						</div>
+								
 					</div>
 					
 					<div class="submit-section">
-						<button class="btn btn-primary submit-btn">Submit</button>
+						<button class="btn btn-primary submit-btn" onclick="return validatePasswords()">Submit</button>
 					</div>
 				</form>
 			</div>
@@ -160,7 +163,7 @@
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label>Username <span class="text-danger">*</span></label>
-								<input class="form-control edit_username" name="username" type="text">
+								<input class="form-control edit_username" minlength="10" name="username" type="text">
 							</div>
 						</div>
 						<div class="col-sm-6">
@@ -169,22 +172,22 @@
 								<input class="form-control edit_email" name="email" type="email">
 							</div>
 						</div>
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label>Password</label>
-								<input class="form-control edit_password" name="password" type="password">
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label>Confirm Password</label>
-								<input class="form-control edit_password" name="password_confirmation" type="password">
-							</div>
-						</div>					
 					</div>
-					
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>Password<span class="text-danger">*</span></label>
+							<input class="form-control" id="password" name="password" type="password" required autocomplete="new-password">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label>Confirm Password<span class="text-danger">*</span></label>
+							<input class="form-control" id="confirmPassword" name="password_confirmation" type="password" required autocomplete="new-password">
+							<div id="passwordMatchError" class="text-danger" style="display:none;">Passwords do not match</div>
+						</div>
+					</div>
 					<div class="submit-section">
-						<button class="btn btn-primary submit-btn">Submit</button>
+						<button class="btn btn-primary submit-btn" onclick="return validatePasswords()">Submit</button>
 					</div>
 				</form>
 			</div>
@@ -216,6 +219,46 @@
 			});
 		});
 	</script>
+
+	
+<script>
+    document.getElementById('username').addEventListener('input', function() {
+        var usernameInput = this.value;
+        var errorMessage = document.getElementById('username-error');
+
+        if (usernameInput.length !== 10) {
+            errorMessage.textContent = 'The username must be exactly 10 characters.';
+            this.setCustomValidity('Invalid');
+        } else {
+            errorMessage.textContent = '';
+            this.setCustomValidity('');
+        }
+    });
+</script>
+
+<script>
+    function validatePasswords() {
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+        if (password !== confirmPassword) {
+            document.getElementById('passwordMatchError').style.display = 'block';
+            return false; // Prevent form submission
+        }
+        return true; // Allow form submission
+    }
+</script>
+
+<script>
+    function validatePasswords() {
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+        if (password !== confirmPassword) {
+            document.getElementById('passwordMatchError').style.display = 'block';
+            return false; // Prevent form submission
+        }
+        return true; // Allow form submission
+    }
+</script>
 @endsection	
 
 

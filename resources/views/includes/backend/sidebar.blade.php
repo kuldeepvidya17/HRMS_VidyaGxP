@@ -13,14 +13,16 @@
                     <a href="#"><i class="la la-cube"></i> <span> Apps</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
 
-                        <li><a class="{{ route_is('contacts') ? 'active' : '' }}" href="{{route('contacts')}}">Contacts</a></li>
+                        <li><a class="{{ route_is('contacts') ? 'active' : '' }}"
+                                href="{{route('contacts')}}">Contacts</a></li>
                     </ul>
                 </li>
                 <li class="menu-title">
                     <span>Employees</span>
                 </li>
                 <li class="submenu">
-                    <a href="#" class="{{ route_is(['employees','employees-list']) ? 'active' : '' }} noti-dot"><i class="la la-user"></i> <span> Employees</span> <span class="menu-arrow"></span></a>
+                    <a href="#" class="{{ route_is(['employees','employees-list']) ? 'active' : '' }} noti-dot"><i
+                            class="la la-user"></i> <span> Employees</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a class="{{ route_is('employees') ? 'active' : '' }}" href="{{route('employees')}}">All Employees</a></li>
                         <li><a class="{{ route_is('holidays') ? 'active' : '' }}" href="{{route('holidays')}}">Holidays</a></li>
@@ -41,10 +43,12 @@
                 </li>
 
                 <li class="submenu">
-                    <a href="#"><i class="la la-rocket"></i> <span> Projects </span> <span class="menu-arrow"></span></a>
+                    <a href="#"><i class="la la-rocket"></i> <span> Projects </span> <span
+                            class="menu-arrow"></span></a>
                     <ul style="display: non;">
                         <li>
-                            <a class="{{ route_is(['projects','project-list']) ? 'active' : '' }}" href="{{route('projects')}}">Projects</a>
+                            <a class="{{ route_is(['projects','project-list']) ? 'active' : '' }}"
+                                href="{{route('projects')}}">Projects</a>
                         </li>
                     </ul>
                 </li>
@@ -64,11 +68,15 @@
                     <span>HR</span>
                 </li>
                 <li class="submenu">
-                    <a href="#"><i class="la la-files-o"></i> <span> Accounts </span> <span class="menu-arrow"></span></a>
+                    <a href="#"><i class="la la-files-o"></i> <span> Accounts </span> <span
+                            class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a class="{{ route_is('invoices.*') ? 'active' : '' }}" href="{{route('invoices.index')}}">Invoices</a></li>
-                        <li><a class="{{ route_is('expenses') ? 'active' : '' }}" href="{{route('expenses')}}">Expenses</a></li>
-                        <li><a class="{{ route_is('provident-fund') ? 'active' : '' }}" href="{{route('provident-fund')}}">Provident Fund</a></li>
+                        <li><a class="{{ route_is('invoices.*') ? 'active' : '' }}"
+                                href="{{route('invoices.index')}}">Invoices</a></li>
+                        <li><a class="{{ route_is('expenses') ? 'active' : '' }}"
+                                href="{{route('expenses')}}">Expenses</a></li>
+                        <li><a class="{{ route_is('provident-fund') ? 'active' : '' }}"
+                                href="{{route('provident-fund')}}">Provident Fund</a></li>
                         <li><a class="{{ route_is('taxes') ? 'active' : '' }}" href="{{route('taxes')}}">Taxes</a></li>
                     </ul>
                 </li>
@@ -80,29 +88,36 @@
                 <li class="submenu">
                     <a href="#"><i class="la la-briefcase"></i> <span> Jobs </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a class="{{ route_is('jobs') ? 'active' : '' }}" href="{{route('jobs')}}"> Manage Jobs </a></li>
-                        <li><a class="{{ route_is('job-applicants') ? 'active' : '' }}" href="{{route('job-applicants')}}"> Applied Candidates </a></li>
+                        <li><a class="{{ route_is('jobs') ? 'active' : '' }}" href="{{route('jobs')}}"> Manage Jobs </a>
+                        </li>
+                        <li><a class="{{ route_is('job-applicants') ? 'active' : '' }}"
+                                href="{{route('job-applicants')}}"> Applied Candidates </a></li>
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><i class="la la-crosshairs"></i> <span> Goals </span> <span class="menu-arrow"></span></a>
+                    <a href="#"><i class="la la-crosshairs"></i> <span> Goals </span> <span
+                            class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a class="{{ route_is('goal-tracking') ? 'active' : '' }}" href="{{route('goal-tracking')}}"> Goal List </a></li>
-                        <li><a class="{{ route_is('goal-type') ? 'active' : '' }}" href="{{route('goal-type')}}"> Goal Type </a></li>
+                        <li><a class="{{ route_is('goal-tracking') ? 'active' : '' }}"
+                                href="{{route('goal-tracking')}}"> Goal List </a></li>
+                        <li><a class="{{ route_is('goal-type') ? 'active' : '' }}" href="{{route('goal-type')}}"> Goal
+                                Type </a></li>
                     </ul>
                 </li>
                 <li class="{{ route_is('assets') ? 'active' : '' }}">
                     <a href="{{route('assets')}}"><i class="la la-object-ungroup"></i> <span>Assets</span></a>
                 </li>
                 <li>
-                    <a class="{{ route_is('activity') ? 'active' : '' }}" href="{{route('activity')}}"><i class="la la-bell"></i> <span>Activities</span></a>
+                    <a class="{{ route_is('activity') ? 'active' : '' }}" href="{{route('activity')}}"><i
+                            class="la la-bell"></i> <span>Activities</span></a>
                 </li>
                 <li class="{{ route_is('users') ? 'active' : '' }}">
                     <a href="{{route('users')}}"><i class="la la-user-plus"></i> <span>Users</span></a>
                 </li>
 
                 <li>
-                    <a class="{{ route_is('settings.theme') ? 'active' : '' }}" href="{{route('settings.theme')}}"><i class="la la-cog"></i> <span>Settings</span></a>
+                    <a class="{{ route_is('settings.theme') ? 'active' : '' }}" href="{{route('settings.theme')}}"><i
+                            class="la la-cog"></i> <span>Settings</span></a>
                 </li>
                 <li class="{{ Request::is('backup_file') ? 'active' : '' }}">
                     <a href="{{ route('backup_file') }}"

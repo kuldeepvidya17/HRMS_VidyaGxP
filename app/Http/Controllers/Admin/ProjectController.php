@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Carbon\Carbon;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -31,6 +31,7 @@ class ProjectController extends Controller
     {
         $title = 'projects';
         $projects = Project::latest()->get();
+        // dd($projects);
         return view('backend.projects.list',compact(
             'title','projects'
         ));
@@ -60,8 +61,8 @@ class ProjectController extends Controller
         $request->validate([
             'name' => 'required',
             'client' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
+            'start_date' => 'required|date',
+        'end_date' => 'required|date|after_or_equal:start_date',
             'rate' => 'required',
             'rate_type' => 'required',
             'priority' => 'required',
@@ -70,6 +71,9 @@ class ProjectController extends Controller
             'description' => 'required',
             'project_files' => 'nullable'
         ]); 
+        $start_date = Carbon::createFromFormat('Y-m-d', $request->start_date);
+        $end_date = Carbon::createFromFormat('Y-m-d', $request->end_date);
+    
         $files = null;
         if($request->hasFile('project_files')){
             $files = array();
@@ -79,7 +83,7 @@ class ProjectController extends Controller
                 array_push($files,$fileName);
             }
         }
-
+       
         // $imageName = null;
         // if($request->avatar != null){
         //     $imageName = time().'.'.$request->avatar->extension();
@@ -144,6 +148,7 @@ class ProjectController extends Controller
             'project_files' => 'nullable'
         ]); 
         $project = Project::findOrfail($request->id);
+        // dd($project);
         $files = $project->files;
         if($request->hasFile('project_files')){
             $files = array();

@@ -48,7 +48,7 @@
                         <td>{{$count}}</td>
                         <td>
                             <h2 class="table-avatar blue-link">
-                                <a href="javascript:void(0)" class="avatar"><img alt="avatar"  src="{{ !empty($overtime->employee->avatar) ? asset('storage/employees/'.$overtime->employee->avatar): asset('assets/img/user.jpg') }}"></a>
+                                <a href="javascript:void(0)" class="avatar1"><img alt="avatar"  src="{{ !empty($overtime->employee->avatar) ? asset('storage/employees/'.$overtime->employee->avatar): asset('assets/img/user.jpg') }}"></a>
                                 <a href="javascript:void(0)">{{ !empty($overtime->employee) ? $overtime->employee->firstname.' '.$overtime->employee->lastname: ' '}}</a>
                             </h2>
                         </td>
