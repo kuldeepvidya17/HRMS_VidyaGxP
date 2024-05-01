@@ -8,6 +8,7 @@ use App\Models\Designation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use App\Helpers\ActivityLogHelper;
 
 class EmployeeController extends Controller
 {
@@ -110,40 +111,46 @@ class EmployeeController extends Controller
      */
     public function update(Request $request)
     {
-        $this->validate($request,[
-            'firstname'=>'required',
-            'lastname'=>'required',
-            'email'=>'required|email',
-            'phone'=>'nullable|max:15',
-            'company'=>'required|max:200',
-            'avatar'=>'file|image|mimes:jpg,jpeg,png,gif',
-            'department'=>'required',
-            'designation'=>'required',
+        $this->validate($request, [
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required|email',
+            'phone' => 'nullable|max:15',
+            'company' => 'required|max:200',
+            'avatar' => 'file|image|mimes:jpg,jpeg,png,gif',
+            'department_id' => 'required', // Add validation for department_id
+            'designation_id' => 'required', // Add validation for designation_id
         ]);
-        if ($request->hasFile('avatar')){
-            $imageName = time().'.'.$request->avatar->extension();
+    
+        if ($request->hasFile('avatar')) {
+            $imageName = time() . '.' . $request->avatar->extension();
             $request->avatar->move(public_path('storage/employees'), $imageName);
-        }else{
-            $imageName = Null;
+        } else {
+            $imageName = null;
         }
-        
+    
         $employee = Employee::find($request->id);
+    
+        if (!$employee) {
+            return back()->with('error', "Employee not found");
+        }
+    
         $employee->update([
             'uuid' => $employee->uuid,
-            'firstname'=>$request->firstname,
-            'lastname'=>$request->lastname,
-            'email'=>$request->email,
-            'phone'=>$request->phone,
-            'company'=>$request->company,
-            'department_id'=>$request->department,
-            'designation_id'=>$request->designation,
-            'avatar'=>$imageName,
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'company' => $request->company,
+            'department_id' => $request->department_id,
+            'designation_id' => $request->designation_id,
+            'avatar' => $imageName,
         ]);
         storeActivityLog($userId=1, $action='Update', $description=$request->firstname.''.$request->lastname, $moduleName='Employee', $moduleId=$request->id ,$status='Employee has been updated');
 
         return back()->with('success',"Employee details has been updated");
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -151,7 +158,7 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
-    {
+    { 
         $employee = Employee::find($request->id);
         $employee->delete();
         storeActivityLog($userId=1, $action='Delete', $description='delete', $moduleName='Employee', $moduleId=$request->id ,$status='Employee has been deleted');

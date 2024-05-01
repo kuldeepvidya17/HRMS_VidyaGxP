@@ -5,8 +5,8 @@
     <div class="header-left">
         <a href="{{route('dashboard')}}" class="logo">
             <img style="height: 59px;
-    width: 115px;" src="{{!empty(app(App\Settings\ThemeSettings::class)->logo) ? asset('storage/settings/'.app(App\Settings\ThemeSettings::class)->logo):asset('assets/img/logovidyagxp.png')}}" alt="logo" width="50" height="40">
-        </a>
+    width: 115px;" src="{{!empty(app(App\Settings\ThemeSettings::class)->logo) ? asset('storage/settings/theme/'.app(App\Settings\ThemeSettings::class)->logo):asset('assets/img/logovidyagxp.png')}}" alt="logo" width="50" height="40">
+    </a>
     </div>
     <!-- /Logo -->
     

@@ -1,0 +1,22 @@
+{
+    "sourceFile": "composer.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1714374965940,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1714375209074,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,10 +25,9 @@\n         \"laravel/sail\": \"^1.18\",\r\n         \"mockery/mockery\": \"^1.4.4\",\r\n         \"nunomaduro/collision\": \"^7.0\",\r\n         \"phpunit/phpunit\": \"^10.1\",\r\n-        // \"spatie/laravel-ignition\": \"^2.0\"\r\n-        \"spatie/laravel-backup\": \"^6.0\"\r\n+        \"spatie/laravel-ignition\": \"^2.0\"\r\n     },\r\n     \"autoload\": {\r\n         \"psr-4\": {\r\n             \"App\\\\\": \"app/\",\r\n"
+                }
+            ],
+            "date": 1714374965940,
+            "name": "Commit-0",
+            "content": "{\r\n    \"name\": \"laravel/laravel\",\r\n    \"type\": \"project\",\r\n    \"description\": \"The Laravel Framework.\",\r\n    \"keywords\": [\"framework\", \"laravel\"],\r\n    \"license\": \"MIT\",\r\n    \"require\": {\r\n        \"php\": \"^8.1\",\r\n        \"arcanedev/log-viewer\": \"^10.0\",\r\n        \"doctrine/dbal\": \"^3.6\",\r\n        \"guzzlehttp/guzzle\": \"^7.2\",\r\n        \"haruncpi/laravel-id-generator\": \"^1.1\",\r\n        \"laravel/framework\": \"^10.10\",\r\n        \"laravel/sanctum\": \"^3.3\",\r\n        \"laravel/tinker\": \"^2.8\",\r\n        \"pavel-mironchik/laravel-backup-panel\": \"^2.2\",\r\n        \"spatie/laravel-permission\": \"^6.3\",\r\n        \"spatie/laravel-settings\": \"^3.2\",\r\n        \"yajra/laravel-datatables\": \"^10.1\"\r\n    },\r\n    \"require-dev\": {\r\n        \"barryvdh/laravel-debugbar\": \"^3.9\",\r\n        \"fakerphp/faker\": \"^1.9.1\",\r\n        \"laravel/pint\": \"^1.0\",\r\n        \"laravel/sail\": \"^1.18\",\r\n        \"mockery/mockery\": \"^1.4.4\",\r\n        \"nunomaduro/collision\": \"^7.0\",\r\n        \"phpunit/phpunit\": \"^10.1\",\r\n        // \"spatie/laravel-ignition\": \"^2.0\"\r\n        \"spatie/laravel-backup\": \"^6.0\"\r\n    },\r\n    \"autoload\": {\r\n        \"psr-4\": {\r\n            \"App\\\\\": \"app/\",\r\n            \"Database\\\\Factories\\\\\": \"database/factories/\",\r\n            \"Database\\\\Seeders\\\\\": \"database/seeders/\"\r\n        },\r\n        \"files\": [\r\n            \"app/Helpers/Helpers.php\"\r\n        ]\r\n    },\r\n    \"autoload-dev\": {\r\n        \"psr-4\": {\r\n            \"Tests\\\\\": \"tests/\"\r\n        }\r\n    },\r\n    \"scripts\": {\r\n        \"post-autoload-dump\": [\r\n            \"Illuminate\\\\Foundation\\\\ComposerScripts::postAutoloadDump\",\r\n            \"@php artisan package:discover --ansi\"\r\n        ],\r\n        \"post-root-package-install\": [\r\n            \"@php -r \\\"file_exists('.env') || copy('.env.example', '.env');\\\"\"\r\n        ],\r\n        \"post-create-project-cmd\": [\r\n            \"@php artisan key:generate --ansi\"\r\n        ]\r\n    },\r\n    \"extra\": {\r\n        \"laravel\": {\r\n            \"dont-discover\": []\r\n        }\r\n    },\r\n    \"config\": {\r\n        \"optimize-autoloader\": true,\r\n        \"preferred-install\": \"dist\",\r\n        \"sort-packages\": true\r\n    },\r\n    \"minimum-stability\": \"dev\",\r\n    \"prefer-stable\": true\r\n}\r\n"
+        }
+    ]
+}

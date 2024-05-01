@@ -7,8 +7,8 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 <title>{{ucfirst(config('app.name'))}} - {{ucfirst($title)}}</title>
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="{{!empty(app(App\Settings\ThemeSettings::class)->favicon) ? asset('storage/settings/'.app(App\Settings\ThemeSettings::class)->favicon):asset('assets/img/logovidyagxp.png')}}">
-		<!-- Bootstrap CSS -->
+        <link rel="shortcut icon" type="image/x-icon" href="{{!empty(app(App\Settings\ThemeSettings::class)->favicon) ? asset('storage/settings/theme/'.app(App\Settings\ThemeSettings::class)->favicon):asset('assets/img/logovidyagxp.png')}}">
+		{{-- <link rel="icon" type="image/png" href="{{ !empty($settings->favicon) ? asset('storage/settings/theme/'.$settings->favicon) : asset('assets/img/logovidyagxp.png') }}">		<!-- Bootstrap CSS --> --}}
         <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
 		<!-- Fontawesome CSS -->
         <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">

@@ -16,7 +16,7 @@ class CreateLeavesTable extends Migration
         Schema::create('leaves', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->nullable()->constrained();
-            $table->foreignId('leave_type_id')->nullable()->constrained();
+            $table->foreignId('leave_type_id')->nullable()->constrained()->onDelete('restrict');
             $table->date('from');
             $table->date('to');
             $table->text('reason');
