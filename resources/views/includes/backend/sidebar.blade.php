@@ -31,6 +31,7 @@
                         <li><a class="{{ route_is('designations') ? 'active' : '' }}" href="{{route('designations')}}">Designations</a></li>
                         <li><a class="{{ route_is('overtime') ? 'active' : '' }}" href="{{route('overtime')}}">Overtime</a></li>
                         {{-- <li><a class="{{ route_is('salary') ? 'active' : '' }}" href="{{route('salary')}}">Employee Salary</a></li> --}}
+                        {{-- <li><a class="{{ route_is('salary') ? 'active' : '' }}" href="{{route('salary')}}">Employee Salary</a></li> --}}
 
                     </ul>
                 </li>
@@ -103,8 +104,8 @@
                 <li>
                     <a class="{{ route_is('settings.theme') ? 'active' : '' }}" href="{{route('settings.theme')}}"><i class="la la-cog"></i> <span>Settings</span></a>
                 </li>
-                <li class="{{ Request::is('backups') ? 'active' : '' }}">
-                    <a href="backups"
+                <li class="{{ Request::is('backup_file') ? 'active' : '' }}">
+                    <a href="{{ route('backup_file') }}"
                         ><i class="la la-cloud-upload"></i> <span>Backups </span>
                     </a>
                 </li>

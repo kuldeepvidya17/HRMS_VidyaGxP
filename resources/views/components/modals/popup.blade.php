@@ -24,7 +24,7 @@
                                     <label>Client <span class="text-danger">*</span></label>
                                     <select class="select2" name="client" required>
                                         @foreach (\App\Models\Client::get() as $client)
-                                        <option value="{{$client->id}}">{{$client->firstname.' '.$client->lastname}}</option>
+                                        <option value="{{$client->id}}" required>{{$client->firstname.' '.$client->lastname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -36,6 +36,7 @@
                                     <label>Start Date <span class="text-danger">*</span></label>
                                     <div class="cal-icon">
                                         <input class="form-control datetimepicker" type="text" name="start_date" required>
+                                        <input class="form-control datetimepicker" type="text" name="start_date" required>
                                     </div>
                                 </div>
                             </div>
@@ -43,6 +44,7 @@
                                 <div class="form-group">
                                     <label>End Date <span class="text-danger">*</span></label>
                                     <div class="cal-icon">
+                                        <input class="form-control datetimepicker" name="end_date" type="text" required>
                                         <input class="form-control datetimepicker" name="end_date" type="text" required>
                                     </div>
                                 </div>
@@ -58,7 +60,7 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label>&nbsp;</label>
-                                    <select class="select" name="rate_type">
+                                    <select class="select" name="rate_type" required>
                                         <option>Hourly</option>
                                         <option>Fixed</option>
                                     </select>
@@ -79,7 +81,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Project Leader</label>
-                                    <select class="select2" name="leader">
+                                    <select class="select2" name="leader" required>
                                         <option>Select Project Leader</option>
                                         @foreach (\App\Models\Employee::get() as $employee)
                                             <option value="{{$employee->id}}">{{$employee->firstname.' '.$employee->lastname}} </option>
@@ -92,7 +94,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Add Team</label>
-                                    <select class="select select2" multiple name="team[]">
+                                    <select class="select select2" multiple name="team[]" required>
                                         <option>High</option>
                                         @foreach (\App\Models\Employee::get() as $employee)
                                             <option value="{{$employee->id}}">{{$employee->firstname.' '.$employee->lastname}} </option>
@@ -104,7 +106,7 @@
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea name="description" rows="4" class="form-control summernote" placeholder="Enter your message here"></textarea>
+                            <textarea name="description" rows="4" class="form-control summernote" placeholder="Enter your message here" required></textarea>
                         </div>
                         <div class="form-group">
                             <label>Upload Files <span class="text-danger">*</span></label>
