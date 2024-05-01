@@ -36,7 +36,7 @@ class Debug extends Extension
      */
     public function getName()
     {
-        return 'Laravel_Debugbar_Debug';
+        return 'Laravel_Debug';
     }
 
     /**

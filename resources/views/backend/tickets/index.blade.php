@@ -54,7 +54,7 @@
                         <td>{{$ticket->subject}}</td>
                         <td>
                             <h2 class="table-avatar">
-                                <a class="avatar avatar-xs" href="#">
+                                <a class="avatar1 avatar-xs" href="#">
                                     <img alt="avatar"  src="{{!empty($ticket->employee->avatar) ? asset('storage/employees/'.$ticket->employee->avatar): asset('assets/img/profiles/avatar-19.jpg')}}"></a>
                                 <a href="#">{{$ticket->employee->firstname.' '.$ticket->employee->lastname}}</a>
                             </h2>
