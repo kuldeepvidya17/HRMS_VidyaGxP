@@ -191,15 +191,8 @@
                             <div id="progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
-                    
-                    {{-- <div class="stats-info">
-                        <p>Pending Invoice <strong>{{ $invoices }}<small>/ {{ $invoices_count }}</small></strong></p>
-                        <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="31" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                    </div> --}}
                     <div class="stats-info">
-                        <p>Pending Invoice <strong>{{ $invoices }}<small>/ {{ $invoices_count }}</small></strong></p>
+                        <p>Pending Invoice <strong>{{ $invoice }}<small>/ {{ $invoice_count }}</small></strong></p>
                         <div class="progress">
                             <div id="invoice-progress-bar" class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
@@ -211,13 +204,13 @@
                         </div>
                     </div>
                     <div class="stats-info">
-                        <p>Open Tickets <strong>0 <small>/ 0</small></strong></p>
+                        <p>Open Tickets <strong>{{ $open_ticket }} <small>/ {{ $ticket_count }}</small></strong></p>
                         <div class="progress">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div id="ticket-progress-bar" class="progress-bar bg-danger" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                     <div class="stats-info">
-                        <p>Closed Tickets <strong>0 <small>/ 0</small></strong></p>
+                        <p>Closed Tickets <strong>{{ $close_ticket }} <small>/ {{ $ticket_count }}</small></strong></p>
                         <div class="progress">
                             <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
@@ -236,7 +229,7 @@
                         <div class="col-md-6 col-6 text-center">
                             <div class="stats-box mb-4">
                                 <p>Total Tasks</p>
-                                <h3>0</h3>
+                                <h3>{{ $task_count }}</h3>
                             </div>
                         </div>
                         <div class="col-md-6 col-6 text-center">
@@ -331,13 +324,22 @@
 
     <script>
         // Calculate the percentage of pending invoices
-        var pendingInvoices = {{ $invoices }};
-        var totalInvoices = {{ $invoices_count }};
+        var pendingInvoices = {{ $invoice }};
+        var totalInvoices = {{ $invoice_count }};
         var percentage = (pendingInvoices / totalInvoices) * 100;
 
         // Update the width of the progress bar
         document.getElementById("invoice-progress-bar").style.width = percentage + "%";
         document.getElementById("invoice-progress-bar").setAttribute("aria-valuenow", percentage);
+    </script>
+
+    <script>
+        var openTickets = {{ $open_ticket }};
+        var totalTickets = {{ $ticket_count }};
+        var percentage = (openTickets / totalTickets) * 100;
+
+        document.getElemenById("ticket-progress-bar").style.width = percentage + "%";
+        document.getElementById("ticket-progress-bar").set.setAttribute("aria-valuenow", percentage);
     </script>
 {{-- <script>
     

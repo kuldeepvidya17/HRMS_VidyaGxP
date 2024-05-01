@@ -18,6 +18,7 @@ class TicketController extends Controller
     {
         $title = 'tickets';
         $tickets = Ticket::get();
+        // dd($tickets);
         return view('backend.tickets.index',compact(
             'title','tickets'
         ));
