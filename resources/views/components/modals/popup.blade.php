@@ -15,14 +15,14 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Project Name</label>
+                                    <label>Project Name <span class="text-danger">*</span></label>
                                     <input class="form-control" type="text" name="name" required>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Client</label>
-                                    <select class="select2" name="client">
+                                    <label>Client <span class="text-danger">*</span></label>
+                                    <select class="select2" name="client" required>
                                         @foreach (\App\Models\Client::get() as $client)
                                         <option value="{{$client->id}}" required>{{$client->firstname.' '.$client->lastname}}</option>
                                         @endforeach
@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Start Date</label>
+                                    <label>Start Date <span class="text-danger">*</span></label>
                                     <div class="cal-icon">
                                         <input class="form-control datetimepicker" type="text" name="start_date" required>
                                     </div>
@@ -41,7 +41,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>End Date</label>
+                                    <label>End Date <span class="text-danger">*</span></label>
                                     <div class="cal-icon">
                                         <input class="form-control datetimepicker" name="end_date" type="text" required>
                                     </div>
@@ -51,7 +51,7 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label>Rate</label>
+                                    <label>Rate <span class="text-danger">*</span></label>
                                     <input placeholder="Rate in currency: 50" name="rate" class="form-control" type="text" required>
                                 </div>
                             </div>
@@ -66,8 +66,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Priority</label>
-                                    <select class="select" name="priority" required>
+                                    <label>Priority <span class="text-danger">*</span></label>
+                                    <select class="select" name="priority">
                                         <option>High</option>
                                         <option>Medium</option>
                                         <option>Low</option>
@@ -107,7 +107,7 @@
                             <textarea name="description" rows="4" class="form-control summernote" placeholder="Enter your message here" required></textarea>
                         </div>
                         <div class="form-group">
-                            <label>Upload Files</label>
+                            <label>Upload Files <span class="text-danger">*</span></label>
                             <input class="form-control" name="project_files[]" multiple type="file" required>
                         </div>
                         <div class="submit-section">

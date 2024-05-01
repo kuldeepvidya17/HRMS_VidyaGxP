@@ -5,7 +5,7 @@
     <div class="header-left" id="logoContainer" >
         <a href="{{route('dashboard')}}" class="logo">
             <img style="height: 59px;
-    width: 115px;" src="{{!empty(app(App\Settings\ThemeSettings::class)->logo) ? asset('storage/settings/'.app(App\Settings\ThemeSettings::class)->logo):asset('assets/img/logovidyagxp.png')}}" alt="logo" width="100" height="40">
+    width: 115px;" src="{{!empty(app(App\Settings\ThemeSettings::class)->logo) ? asset('storage/settings/'.app(App\Settings\ThemeSettings::class)->logo):asset('assets/img/logovidyagxp.png')}}" alt="logo" width="50" height="40">
         </a>
     </div>
     <!-- /Logo -->
@@ -69,7 +69,7 @@
         
         
 
-        <li class="nav-item dropdown has-arrow main-drop">
+        <li class="nav-item dropdown has-arrow main-drop ">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                 <span class="user-img"><img src="{{!empty(auth()->user()->avatar) ? asset('storage/users/'.auth()->user()->avatar) : asset('assets/img/user.jpg')}}" alt="user">
                 <span class="status online"></span></span>

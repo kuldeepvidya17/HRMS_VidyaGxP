@@ -79,7 +79,7 @@
 				<form method="POST" enctype="multipart/form-data" action="{{route('task.add')}}">
 					@csrf
 					<div class="form-group">
-						<label for="task_name">Task Name:</label>
+						<label for="task_name">Task Name:<span class="text-danger">*</span></label>
 						<input type="text" name="task_name" id="task_name" class="form-control" placeholder="Enter task name" required>
 					</div>
 					
@@ -87,13 +87,13 @@
 				
 					<!-- Task Deadline -->
 					<div class="form-group">
-						<label for="task_deadline">Task Deadline:</label>
+						<label for="task_deadline">Task Deadline:<span class="text-danger">*</span></label>
 						<input type="date" name="task_deadline" id="task_deadline" class="form-control" required>
 					</div>
 					
 					<!-- Task Priority -->
 					<div class="form-group">
-						<label for="task_priority">Task Priority:</label>
+						<label for="task_priority">Task Priority:<span class="text-danger">*</span></label>
 						<select name="task_priority" id="task_priority" class="form-control" required>
 							<option value="low">Low</option>
 							<option value="medium">Medium</option>
@@ -101,8 +101,8 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="task_description">Task Description:</label>
-						<textarea name="task_description" id="task_description" class="form-control" rows="3" placeholder="Enter task description"></textarea>
+						<label for="task_description">Task Description:<span class="text-danger">*</span></label>
+						<textarea name="task_description" id="task_description" class="form-control" rows="3" placeholder="Enter task description" required></textarea>
 					</div>
 					
 					

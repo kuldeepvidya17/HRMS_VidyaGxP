@@ -508,6 +508,7 @@ table.dataTable thead > tr > td.sorting {
 .text-primary,
 .dropdown-menu > li > a.text-primary {
   color: #ff9b44 !important;
+  color: #4454ff !important;
 }
 .text-success,
 .dropdown-menu > li > a.text-success {
@@ -1371,6 +1372,9 @@ table.dataTable thead > tr > td.sorting {
   padding: 5px 15px;
   white-space: nowrap;
 }
+.menu-title:hover {
+  color: rgb(255, 77, 0);
+}
 .menu-title > i {
   float: right;
   line-height: 40px;
@@ -1593,6 +1597,9 @@ table.dataTable thead > tr > td.sorting {
 .page-header .breadcrumb a {
   color: #333;
 }
+.page-header .breadcrumb a:hover {
+  color: #333333;
+}
 .card {
   border: 1px solid #ededed;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
@@ -1732,6 +1739,7 @@ table.dataTable thead > tr > td.sorting {
   border-radius: 4px;
   height: 46px;
 }
+
 .account-box label {
   color: #1f1f1f;
   font-size: 16px;
@@ -1757,6 +1765,9 @@ table.dataTable thead > tr > td.sorting {
 /*-----------------
 	12. Dashboard
 -----------------------*/
+.card-group {
+  gap: 15px;
+}
 
 .card-table .card-header {
   background-color: #fff;
@@ -2499,6 +2510,7 @@ table.dataTable thead > tr > td.sorting {
   position: relative;
   white-space: nowrap;
 }
+
 .avatar:hover {
   color: #fff;
 }
@@ -2511,7 +2523,6 @@ table.dataTable thead > tr > td.sorting {
   display: block;
   overflow: hidden;
   width: 100%;
-  height: 100%;
 }
 .chat.chat-left .chat-bubble:first-child .chat-content {
   border-top-left-radius: 20px;

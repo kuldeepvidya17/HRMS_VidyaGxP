@@ -107,22 +107,22 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Ticket Subject</label>
-                                <input class="form-control" name="subject" type="text">
+                                <label>Ticket Subject  <span class="text-danger">*</span></label>
+                                <input class="form-control" name="subject" type="text" required>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Ticket Id</label>
-                                <input class="form-control" name="ticket_id" type="text">
+                                <label>Ticket Id  <span class="text-danger">*</span></label>
+                                <input class="form-control" name="ticket_id" type="text" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Assign Staff</label>
-                                <select class="select" name="staff">
+                                <label>Assign Staff  <span class="text-danger">*</span></label>
+                                <select class="select" name="staff" required>
                                     <option value="null" disabled>-</option>
                                     @foreach (\App\Models\Employee::get() as $employee)
                                         <option value="{{$employee->id}}"> {{$employee->firstname.' '.$employee->lastname}} </option>
@@ -132,8 +132,8 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Client</label>
-                                <select class="select" name="client">
+                                <label>Client <span class="text-danger">*</span></label>
+                                <select class="select" name="client" required>
                                     <option value="null" disabled>-</option>
                                     @foreach (\App\Models\Client::get() as $client)
                                         <option value="{{$client->id}}">{{$client->firstname.' '.$client->lastname}}</option>
@@ -145,8 +145,8 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Priority</label>
-                                <select class="select" name="priority">
+                                <label>Priority  <span class="text-danger">*</span></label>
+                                <select class="select" name="priority" required>
                                     <option value="high">High</option>
                                     <option value="medium">Medium</option>
                                     <option value="low">Low</option>
@@ -156,7 +156,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>CC</label>
-                                <input class="form-control" name="cc" type="text">
+                                <input class="form-control" name="cc" type="text" required>
                             </div>
                         </div>
                     </div>
@@ -175,8 +175,8 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Status</label>
-                                <select class="select" name="status">
+                                <label>Status <span class="text-danger">*</span></label>
+                                <select class="select" name="status" required>
                                     <option value="null" disabled>-</option>
                                     <option value="New">New</option>
                                     <option value="Open">Open</option>
@@ -191,8 +191,8 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label>Description</label>
-                                <textarea class="form-control summernote" name="description"></textarea>
+                                <label>Description<span class="text-danger">*</span></label>
+                                <textarea class="form-control summernote" name="description" required></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Upload Files</label>
