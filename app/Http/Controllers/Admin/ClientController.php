@@ -96,7 +96,9 @@ class ClientController extends Controller
             $imageName = time().'.'.$request->avatar->extension();
             $request->avatar->move(public_path('storage/clients'), $imageName);
         }
+       // return $request;
         $client = Client::find($request->id);
+        //dd($client);
         $client->update([
             'firstname'=>$request->firstname,
             'lastname'=>$request->lastname,

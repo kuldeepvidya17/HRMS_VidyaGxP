@@ -17,7 +17,7 @@
 		</ul>
 	</div>
 	<div class="col-auto float-right ml-auto">
-		<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_attendance"><i class="fa fa-plus"></i> Add Employee Attendance</a>
+		<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_attendance"><i class="fa fa-plus"></i> Add Attendance </a>
 	</div>
 </div>
 @endsection
@@ -43,8 +43,16 @@
 					<tr>
 					   {{-- <td>
 							<h2 class="table-avatar">
-								<a href="#" class="avatar"><img alt="avatar"  src="{{ !empty($attendance->employee->avatar) ? asset('storage/employees/'.$attendance->employee->avatar): asset('assets/img/profiles/avatar-19.jpg') }}"></a>
-								<a href="#">{{$attendance->employee->firstname.' '. $attendance->employee->lastname}}<span>{{$attendance->employee->designation->name}}</span></a>
+								<a href="#" class="avatar1"><img alt="avatar"  src="{{ !empty($attendance->employee->avatar) ? asset('storage/employees/'.$attendance->employee->avatar): asset('assets/img/profiles/avatar-19.jpg') }}"></a>
+								<a href="#">
+									{{$attendance->employee->firstname.' '. $attendance->employee->lastname}}
+									@if ($attendance->employee->designation)
+										<span>{{$attendance->employee->designation->name}}</span>
+									@else
+										<span>No Designation</span>
+									@endif
+								</a>
+								
 							</h2>
 						</td> --}}
 						<td>

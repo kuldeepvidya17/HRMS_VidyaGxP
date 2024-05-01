@@ -75,36 +75,16 @@
                     </div>
                     
                 </div>
-
-                
-                {{-- new added Total Revenue --}}
-                    <div class="col-md-6 text-center">
-                    <div class="card"><div class="card-body">
-                    <h3 class="card-title">Total Revenue</h3>
-                    <div id="bar-charts"></div>
-                </div>
-                </div>
-                </div>
-                {{-- end total revenue  --}}
             </div>
 
 
-            <div class="col-md-6 text-center">
+            <div class="col-lg-6 text-center">
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title">Sales Overview</h3>
                         <div id="line-charts"></div>
                     </div>
                 </div>
-                                {{-- new added Sales Overview --}}
-                                <div class="col-md-6 text-center">
-                                    <div class="card"><div class="card-body">
-                                    <h3 class="card-title">Sales Overview</h3>
-                                    <div id="bar-charts"></div>
-                                </div>
-                                </div>
-                            </div>
-                                {{-- end  Sales Overview --}}
             </div>
             
         </div>
@@ -132,7 +112,7 @@
                     <div class="progress mb-2" style="height: 5px;">
                         <div class="progress-bar bg-primary" role="progressbar" style="width: {{ $newEmployeePercentage }}%;" aria-valuenow="{{ $newEmployeePercentage }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <p class="mb-0">Overall Employees <span id="overallEmployeesPlaceholder">Loading...</span></p>
+                    <p class="mb-0">Overall Employees<span id="overallEmployeesPlaceholder">Loading...</span></p>
                 </div>
             </div>
         
@@ -206,15 +186,15 @@
                 <h5 class="card-title">Statistics</h5>
                 <div class="stats-list">
                     <div class="stats-info">
-                        <p>Today Leave <strong>0 <small>/ 0</small></strong></p>
+                        <p>Today Leave <strong>{{ $absent_employee }}<small>/ {{ $employee_count }}</small></strong></p>
                         <div class="progress">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="31" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div id="progress-bar" class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                     <div class="stats-info">
-                        <p>Pending Invoice <strong>0 <small>/ 0</small></strong></p>
+                        <p>Pending Invoice <strong>{{ $invoice }}<small>/ {{ $invoice_count }}</small></strong></p>
                         <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="31" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div id="invoice-progress-bar" class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                     <div class="stats-info">
@@ -224,13 +204,13 @@
                         </div>
                     </div>
                     <div class="stats-info">
-                        <p>Open Tickets <strong>0 <small>/ 0</small></strong></p>
+                        <p>Open Tickets <strong>{{ $open_ticket }} <small>/ {{ $ticket_count }}</small></strong></p>
                         <div class="progress">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div id="ticket-progress-bar" class="progress-bar bg-danger" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                     <div class="stats-info">
-                        <p>Closed Tickets <strong>0 <small>/ 0</small></strong></p>
+                        <p>Closed Tickets <strong>{{ $close_ticket }} <small>/ {{ $ticket_count }}</small></strong></p>
                         <div class="progress">
                             <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
@@ -249,7 +229,7 @@
                         <div class="col-md-6 col-6 text-center">
                             <div class="stats-box mb-4">
                                 <p>Total Tasks</p>
-                                <h3>0</h3>
+                                <h3>{{ $task_count }}</h3>
                             </div>
                         </div>
                         <div class="col-md-6 col-6 text-center">
@@ -331,6 +311,36 @@
     document.getElementById('newEmployeePercentage').innerHTML = '<span class="text-success">+' + newEmployeePercentage.toFixed(2) + '%</span>';
 </script>
 
+    <script>
+        // Calculate the percentage of absent employees
+        var absentEmployees = {{ $absent_employee }};
+        var totalEmployees = {{ $employee_count }};
+        var percentage = (absentEmployees / totalEmployees) * 100;
+
+        // Update the width of the progress bar
+        document.getElementById("progress-bar").style.width = percentage + "%";
+        document.getElementById("progress-bar").setAttribute("aria-valuenow", percentage);
+    </script>
+
+    <script>
+        // Calculate the percentage of pending invoices
+        var pendingInvoices = {{ $invoice }};
+        var totalInvoices = {{ $invoice_count }};
+        var percentage = (pendingInvoices / totalInvoices) * 100;
+
+        // Update the width of the progress bar
+        document.getElementById("invoice-progress-bar").style.width = percentage + "%";
+        document.getElementById("invoice-progress-bar").setAttribute("aria-valuenow", percentage);
+    </script>
+
+    <script>
+        var openTickets = {{ $open_ticket }};
+        var totalTickets = {{ $ticket_count }};
+        var percentage = (openTickets / totalTickets) * 100;
+
+        document.getElemenById("ticket-progress-bar").style.width = percentage + "%";
+        document.getElementById("ticket-progress-bar").set.setAttribute("aria-valuenow", percentage);
+    </script>
 {{-- <script>
     
     fetch('/getTotalEmployees') 
