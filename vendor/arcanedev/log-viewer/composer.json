@@ -23,7 +23,7 @@
         "laravel/framework": "^10.0",
         "mockery/mockery": "^1.5.1",
         "orchestra/testbench-core": "^8.0",
-        "phpunit/phpunit": "^10.0"
+        "phpunit/phpunit": "^10.1"
     },
     "autoload": {
         "psr-4": {
@@ -39,7 +39,7 @@
     "scripts": {
         "test": "phpunit --colors=always",
         "test:dox": "phpunit --testdox --colors=always",
-        "test:cov": "phpunit --coverage-html coverage"
+        "test:cov": "phpunit --coverage-html build/coverage"
     },
     "extra": {
         "branch-alias": {
