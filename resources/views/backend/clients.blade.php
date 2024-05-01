@@ -60,7 +60,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form method="POST" enctype="multipart/form-data" action="{{route('client.update')}}">
+						<form method="POST" enctype="multipart/form-data" action="{{route('task.update')}}">
 							@csrf
 							@method("PUT")
 							<div class="row">
