@@ -164,10 +164,11 @@ Route::group(['middleware'=>['auth']], function (){
 
     //Task controller
     // Route::post('tasks',[TaskController::class,'index'])->name('tasks');
-    //  Route::post('tasks',[TaskController::class,'store'])->name('tasks.add');
-    // Route::put('tasks',[TaskController::class,'update'])->name('tasks.update');
-    // // Route::delete('clients',[ClientController::class,'destroy'])->name('client.destroy');
-    //  Route::get('tasks-list',[TaskController::class,'show'])->name('tasks-show');
+    Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
+
+     Route::post('tasks',[TaskController::class,'store'])->name('tasks.add');
+    Route::put('tasks/{id}',[TaskController::class,'update'])->name('tasks.update');
+     Route::get('tasks-list',[TaskController::class,'show'])->name('tasks-show');
 
     Route::get('employees',[EmployeeController::class,'index'])->name('employees');
     Route::post('employees',[EmployeeController::class,'store'])->name('employee.add');

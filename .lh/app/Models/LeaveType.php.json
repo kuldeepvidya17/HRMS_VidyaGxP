@@ -1,0 +1,26 @@
+{
+    "sourceFile": "app/Models/LeaveType.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1714472889575,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1714472895279,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,7 +9,7 @@\n {\r\n     use HasFactory;\r\n \r\n     // protected $fillable = ['type','days']\r\n-    protected $fillable = ['type','days'];\r\n+    protected $fillable = ['type'];\r\n     ;\r\n }\r\n"
+                },
+                {
+                    "date": 1714472902701,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,8 @@\n class LeaveType extends Model\r\n {\r\n     use HasFactory;\r\n \r\n-    // protected $fillable = ['type','days']\r\n+    // protected $fillable = ['type','days'];\r\n     protected $fillable = ['type'];\r\n-    ;\r\n+    \r\n }\r\n"
+                }
+            ],
+            "date": 1714472889575,
+            "name": "Commit-0",
+            "content": "<?php\r\n\r\nnamespace App\\Models;\r\n\r\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\r\nuse Illuminate\\Database\\Eloquent\\Model;\r\n\r\nclass LeaveType extends Model\r\n{\r\n    use HasFactory;\r\n\r\n    // protected $fillable = ['type','days']\r\n    protected $fillable = ['type','days'];\r\n    ;\r\n}\r\n"
+        }
+    ]
+}

@@ -11,8 +11,8 @@
     <!-- /Logo -->
 
     
-    <a style="" id="toggle_btn" href="javascript:void(0);">
-        <span style="margin-top: 25px;" class="bar-icon">
+    <a id="toggle_btn" href="javascript:void(0);">
+        <span style=" margin-top: 25px ;"class="bar-icon">
             <span></span>
             <span></span>
             <span></span>

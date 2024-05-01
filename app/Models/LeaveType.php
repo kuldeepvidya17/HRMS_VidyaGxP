@@ -9,5 +9,7 @@ class LeaveType extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['type','days'];
+    // protected $fillable = ['type','days'];
+    protected $fillable = ['type'];
+    
 }

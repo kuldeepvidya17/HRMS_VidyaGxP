@@ -17,7 +17,7 @@
 		</ul>
 	</div>
 	<div class="col-auto float-right ml-auto">
-		<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_attendance"><i class="fa fa-plus"></i> Add Modal</a>
+		<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_attendance"><i class="fa fa-plus"></i> Add Employee Attendance</a>
 	</div>
 </div>
 @endsection
@@ -34,23 +34,36 @@
 						<th>TimeIn</th>
 						<th>TimeOut</th>
 						<th>Date</th>
-						<th>Status</th>
+						{{-- <th>Status</th> --}}
 						<th class="text-end">Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach ($attendances as $attendance) 
 					<tr>
-					   <td>
+					   {{-- <td>
 							<h2 class="table-avatar">
 								<a href="#" class="avatar"><img alt="avatar"  src="{{ !empty($attendance->employee->avatar) ? asset('storage/employees/'.$attendance->employee->avatar): asset('assets/img/profiles/avatar-19.jpg') }}"></a>
 								<a href="#">{{$attendance->employee->firstname.' '. $attendance->employee->lastname}}<span>{{$attendance->employee->designation->name}}</span></a>
+							</h2>
+						</td> --}}
+						<td>
+							<h2 class="table-avatar">
+								<a href="#" class="avatar">
+									<img alt="avatar"  src="{{ !empty($attendance->employee->avatar) ? asset('storage/employees/'.$attendance->employee->avatar): asset('assets/img/profiles/avatar-19.jpg') }}">
+								</a>
+								<a href="#">
+									{{$attendance->employee->firstname.' '. $attendance->employee->lastname}}
+									@if (!empty($attendance->employee->designation))
+										<span>{{$attendance->employee->designation->name}}</span>
+									@endif
+								</a>
 							</h2>
 						</td>
 					   <td>{{date_format(date_create($attendance->checkin),'H:i a')}}</td>
 					   <td>{{!empty($attendance->checkout) ? date_format(date_create($attendance->checkout),'H:i a'): ' '}}</td>
 					   <td>{{date_format(date_create($attendance->created_at),'d M, Y')}}</td>
-					   <td>{{$attendance->status}}</td>
+					   {{-- <td>{{$attendance->status}}</td> --}}
 					   <td class="text-end">
 							<div class="dropdown dropdown-action">
 								<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>

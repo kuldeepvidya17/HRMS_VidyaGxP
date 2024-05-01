@@ -17,7 +17,7 @@
 	<div class="col-auto float-right ml-auto">
 		<a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_client"><i class="fa fa-plus"></i> Add Task</a>
 		<div class="view-icons">
-			<a href="{{route('tasks')}}" class="grid-view btn btn-link {{route_is('tasks') ? 'active' : '' }}"><i class="fa fa-th"></i></a>
+			{{-- <a href="{{route('tasks')}}" class="grid-view btn btn-link {{route_is('tasks') ? 'active' : '' }}"><i class="fa fa-th"></i></a> --}}
 			<a href="{{route('task-list')}}" class="list-view btn btn-link {{route_is('clients-list') ? 'active' : '' }}"><i class="fa fa-bars"></i></a>
 		</div>
 	</div>
@@ -43,13 +43,13 @@
 					@if (!empty($tasks->count()))
 						@foreach ($tasks as $task)
 						<tr>
-							<td>
+							{{-- <td>
 								<h2 class="table-avatar">
 									<a href="task-profile.html" class="avatar"><img src="assets/img/profiles/avatar-19.jpg" alt=""></a>
 									<a href="client-profile.html">Global Technologies</a>
 								</h2>
-							</td>
-							<td>CLT-{{$task->id}}</td>
+							</td> --}}
+							{{-- <td>CLT-{{$task->id}}</td> --}}
 							<td>{{$task->task_name}} </td>
 							<td>{{$task->task_description}}</td>
 							<td>{{$task->task_deadline}}</td>
@@ -67,7 +67,7 @@
 						</tr>
 						@endforeach
 						<x-modals.delete :route="'task.destroy'" :title="'task'" />
-						<!-- Edit Client Modal -->
+						<!-- Edit task Modal -->
 						<div id="edit_task" class="modal custom-modal fade" role="dialog">
 							<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 								<div class="modal-content">
@@ -86,27 +86,27 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="col-form-label">Task Name <span class="text-danger">*</span></label>
-														<input class="form-control edit_firstname" name="firstname" type="text">
+														<input class="form-control edit_firstname" name="task_name" id="task_name" type="text" value="{{ $task->task_name }}">
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="col-form-label">Task Description</label>
-														<input class="form-control edit_lastname" name="lastname" type="text">
+														<input class="form-control edit_lastname" name="task_description" id="task_description" type="text" value="{{ $task->task_description }}">
 													</div>
 												</div>
 												
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="col-form-label">Task Deadline <span class="text-danger">*</span></label>
-														<input class="form-control floating edit_email" name="email" type="email">
+														<input class="form-control floating edit_email" name="task_deadline" id="task_deadline" type="date" value="{{ $task->task_deadline }}">
 													</div>
 												</div>
 												
 												<div class="col-md-6">  
 													<div class="form-group">
 														<label class="col-form-label">Task Priority<span class="text-danger">*</span></label>
-														<input class="form-control floating edit_image" name="avatar" type="file">
+														<input class="form-control floating edit_image" name="task_priority" type="text" value="task_priority">
 													</div>
 												</div>
 												
@@ -129,7 +129,7 @@
 	</div>
 </div>
 
-<!-- Add Client Modal -->
+<!-- Add Task Modal -->
 <div id="add_client" class="modal custom-modal fade" role="dialog">
 	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 		<div class="modal-content">
@@ -140,7 +140,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-			<form method="POST" action="#">
+	<form method="POST" action="{{ route('tasks.add') }}" enctype="multipart/form-data">
     			@csrf <!-- CSRF Protection -->
     
     <!-- Task Name -->
@@ -178,7 +178,7 @@
 		</div>
 	</div>
 </div>
-<!-- /Add Client Modal -->
+<!-- /Add task Modal -->
 @endsection
 
 @section('scripts')

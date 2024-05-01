@@ -56,9 +56,17 @@
 						<td>{{$employee->email}}</td>
 						<td>{{$employee->phone}}</td>
 						<td>{{date_format(date_create($employee->date_created),"d M,Y")}}</td>
-						<td>
+						{{-- <td>
 							{{$employee->designation->name}}
+						</td> --}}
+						<td>
+						    @if ($employee->designation)
+						        {{$employee->designation->name}}
+						    @else
+						        No Designation
+						    @endif
 						</td>
+						<td class="
 						<td class="text-right">
 							<div class="dropdown dropdown-action">
 								<a href="javascript:void(0)" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>

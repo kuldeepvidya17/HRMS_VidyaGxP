@@ -28,7 +28,7 @@
 				<thead>
 					<tr>
 						<th>Leave Type</th>
-						<th>Leave Days</th>
+						{{-- <th>Leave Days</th> --}}
 						<th class="text-right">Action</th>
 					</tr>
 				</thead>
@@ -37,7 +37,7 @@
 						@foreach($leave_types as $leave_type)
 						<tr>
 							<td>{{$leave_type->type}}</td>
-							<td>{{$leave_type->days}} {{ Str::plural('day',$leave_type->days) }}</td>
+							{{-- <td>{{$leave_type->days}} {{ Str::plural('day',$leave_type->days) }}</td> --}}
 						   
 							<td class="text-right">
 								<div class="dropdown dropdown-action">
@@ -75,10 +75,10 @@
 						<label>Leave Type <span class="text-danger">*</span></label>
 						<input class="form-control" name="type" type="text">
 					</div>
-					<div class="form-group">
+					{{-- <div class="form-group">
 						<label>Number of days <span class="text-danger">*</span></label>
 						<input class="form-control" name="days" type="text">
-					</div>
+					</div> --}}
 					<div class="submit-section">
 						<button class="btn btn-primary submit-btn">Submit</button>
 					</div>
@@ -108,10 +108,10 @@
 						<label>Leave Type <span class="text-danger">*</span></label>
 						<input class="form-control edit_type" name="type" type="text" >
 					</div>
-					<div class="form-group">
+					{{-- <div class="form-group">
 						<label>Number of days <span class="text-danger">*</span></label>
 						<input class="form-control edit_days" name="days" type="text" >
-					</div>
+					</div> --}}
 					<div class="submit-section">
 						<button type="submit" class="btn btn-primary submit-btn">Save</button>
 					</div>
@@ -134,11 +134,11 @@
 			$('#edit_leavetype').modal('show');
 			var id = $(this).data('id');
 			var type = $(this).data('type');
-			var days = $(this).data('days');
+			// var days = $(this).data('days');
 			
 			$('#edit_id').val(id);
 			$('.edit_type').val(type);
-			$('.edit_days').val(days);
+			// $('.edit_days').val(days);
 
 		});
 	});
