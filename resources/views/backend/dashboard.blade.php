@@ -206,13 +206,13 @@
                     <div class="stats-info">
                         <p>Open Tickets <strong>{{ $open_ticket }} <small>/ {{ $ticket_count }}</small></strong></p>
                         <div class="progress">
-                            <div id="ticket-progress-bar" class="progress-bar bg-danger" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div id="open-ticket-bar" class="progress-bar bg-danger" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                     <div class="stats-info">
                         <p>Closed Tickets <strong>{{ $close_ticket }} <small>/ {{ $ticket_count }}</small></strong></p>
                         <div class="progress">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div id="close-ticket-bar" class="progress-bar bg-info" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -248,11 +248,11 @@
                     <div class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100">0%</div>
                 </div>
                 <div>
-                    <p><i class="fa fa-dot-circle-o text-purple mr-2"></i>Completed Tasks <span class="float-right">0</span></p>
-                    <p><i class="fa fa-dot-circle-o text-warning mr-2"></i>Inprogress Tasks <span class="float-right">0</span></p>
-                    <p><i class="fa fa-dot-circle-o text-success mr-2"></i>On Hold Tasks <span class="float-right">0</span></p>
-                    <p><i class="fa fa-dot-circle-o text-danger mr-2"></i>Pending Tasks <span class="float-right">0</span></p>
-                    <p class="mb-0"><i class="fa fa-dot-circle-o text-info mr-2"></i>Review Tasks <span class="float-right">0</span></p>
+                    <p><i class="fa fa-dot-circle-o text-purple mr-2"></i>Completed Tasks <span class="float-right">{{ $complete_task_count }}</span></p>
+                    <p><i class="fa fa-dot-circle-o text-warning mr-2"></i>Inprogress Tasks <span class="float-right">{{ $inprogress_task_count }}</span></p>
+                    <p><i class="fa fa-dot-circle-o text-success mr-2"></i>On Hold Tasks <span class="float-right">{{  $onhold_task_count }}</span></p>
+                    <p><i class="fa fa-dot-circle-o text-danger mr-2"></i>Pending Tasks <span class="float-right">{{ $pending_task_count }}</span></p>
+                    <p class="mb-0"><i class="fa fa-dot-circle-o text-info mr-2"></i>Review Tasks <span class="float-right">{{ $review_task_count }}</span></p>
                 </div>
             </div>
         </div>
@@ -338,8 +338,17 @@
         var totalTickets = {{ $ticket_count }};
         var percentage = (openTickets / totalTickets) * 100;
 
-        document.getElemenById("ticket-progress-bar").style.width = percentage + "%";
-        document.getElementById("ticket-progress-bar").set.setAttribute("aria-valuenow", percentage);
+        document.getElementById("open-ticket-bar").style.width = percentage + "%";
+        document.getElementById("open-ticket-bar").setAttribute("aria-valuenow", percentage);
+    </script>
+
+    <script>
+        var closeTickets = {{ $close_ticket }};
+        var totalTickets = {{ $ticket_count }};
+        var percentage = (closeTickets / totalTickets) * 100;
+
+        document.getElementById("close-ticket-bar").style.width = percentage + "%";
+        document.getElementById("close-ticket-bar").setAttribute("aria-valuenow", percentage);
     </script>
 {{-- <script>
     

@@ -20,6 +20,12 @@ class DashboardController extends Controller
         $title = 'Dashboard';
         $clients_count = Client::count();
         $task_count = Task::count();
+        $complete_task_count = Task::where('status','completed-tasks')->count();
+        $inprogress_task_count = Task::where('status','inprogress-tasks')->count();
+        $onhold_task_count = Task::where('status','on-hold-tasks')->count();
+        $pending_task_count = Task::where('status','pending-tasks')->count();
+        $review_task_count = Task::where('status','review-tasks')->count();
+        // dd($complete_task_count);
         $employee_count = Employee::count();
         $absent_employee = EmployeeAttendance::where('status', 0)->count();
         $invoice_count = Invoice::count();
@@ -38,7 +44,7 @@ class DashboardController extends Controller
         
 
         return view('backend.dashboard',compact(
-            'title','clients_count','employee_count','project_count','new_employee_count','task_count','absent_employee','invoice_count','invoice','ticket_count','open_ticket','close_ticket'
+            'title','clients_count','employee_count','project_count','new_employee_count','task_count','absent_employee','invoice_count','invoice','ticket_count','open_ticket','close_ticket','complete_task_count','inprogress_task_count','onhold_task_count','pending_task_count','review_task_count'
         ));
     }
 

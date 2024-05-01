@@ -12,7 +12,7 @@ class Task extends Model
 
     protected $fillable=[
         'task_name','task_description',
-        'task_deadline','task_priority',
+        'task_deadline','task_priority', 'status'
     ];
 
 }
