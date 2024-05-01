@@ -136,16 +136,45 @@
 					<div class="form-group">
 						<label>From <span class="text-danger">*</span></label>
 						<div class="cal-icon">
-							<input name="from" class="form-control datetimepicker" type="text" required>
+							{{-- <input name="from" class="form-control datetimepicker" type="text"> --}}
+							 <input class="form-control datetimepicker" id="start_date_input" type="text" name="from" required> 
 						</div>
 					</div>
 					<div class="form-group">
 						<label>To <span class="text-danger">*</span></label>
 						<div class="cal-icon">
-							<input name="to" class="form-control datetimepicker" type="text" required>
+							{{-- <input name="to" class="form-control datetimepicker" type="text"> --}}
+							  <input class="form-control datetimepicker" id="end_date_input" name="to" type="text" required> 
 						</div>
 					</div>
 					
+								<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+					<script>
+                            $(document).ready(function() {
+                                console.log('jquery iniialized')
+                                // Initialize datetimepicker for start date
+                                $('#start_date_input').datetimepicker({
+                                    format: 'YYYY-MM-DD',
+                                    minDate: moment().startOf('day'), // Set min date to today
+                                });
+
+                                // Initialize datetimepicker for end date
+                                $('#end_date_input').datetimepicker({
+                                    format: 'YYYY-MM-DD',
+                                    useCurrent: false, // Do not automatically set to current date
+                                });
+
+                                // Set min date for end date based on start date
+                                $('#start_date_input').on('dp.change', function(e) {
+                                    $('#end_date_input').data('DateTimePicker').minDate(e.date);
+                                });
+
+                                // Set max date for start date based on end date
+                                $('#end_date_input').on('dp.change', function(e) {
+                                    $('#start_date_input').data('DateTimePicker').maxDate(e.date);
+                                });
+                            });
+                        </script>   
 					<div class="form-group">
 						<label>Leave Reason <span class="text-danger">*</span></label>
 						<textarea name="reason" rows="4" class="form-control" required></textarea>
@@ -288,24 +317,5 @@
 		});
 	});
 </script>
-{{-- ---------Date format edit------------------------------------------- --}}
-
-
-
-
-<script>
-	 $(document).ready(function(){
-		$("input.DateFrom").datepicker({
-    changeMonth: true, 
-    changeYear: true, 
-    dateFormat: 'yy-mm-dd',
-    minDate: 0, // 0 days offset = today
-    maxDate: 'today',
-    onSelect: function(dateText) {
-        $sD = new Date(dateText);
-        $("input#DateTo").datepicker('option', 'minDate', min);
-    }
-});
-    });
-</script>
+	
 @endsection

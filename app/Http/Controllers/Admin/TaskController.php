@@ -124,6 +124,7 @@ class TaskController extends Controller
      */
     public function update(Request $request ,$id)
     {
+      //  dd($request);
         $request->validate([
             'task_name' => 'required',
             'task_description' => 'required',
