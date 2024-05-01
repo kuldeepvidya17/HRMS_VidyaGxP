@@ -191,7 +191,7 @@
                                 <div class="form-group">
                                     <label>Start Date</label>
                                     <div class="cal-icon">
-                                        <input id="edit_startdate" class="form-control datetimepicker" type="text" name="start_date">
+                                        <input id="edit_startdate"   class="form-control datetimepicker" type="text" name="start_date">
                                     </div>
                                 </div>
                             </div>
@@ -199,10 +199,37 @@
                                 <div class="form-group">
                                     <label>End Date</label>
                                     <div class="cal-icon">
-                                        <input id="edit_enddate" class="form-control datetimepicker" name="end_date" type="text">
+                                        <input id="edit_enddate"  class="form-control datetimepicker" name="end_date" type="text">
                                     </div>
                                 </div>
                             </div>
+
+                             <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+                      <script>
+                                    $(document).ready(function() {
+                                        // Initialize datetimepicker for start date
+                                        $('#edit_startdate').datetimepicker({
+                                            format: 'YYYY-MM-DD',
+                                            minDate: moment().startOf('day'), // Set min date to today
+                                        });
+
+                                        // Initialize datetimepicker for end date
+                                        $('#edit_enddate').datetimepicker({
+                                            format: 'YYYY-MM-DD',
+                                            useCurrent: false, // Do not automatically set to current date
+                                        });
+
+                                        // Set min date for end date based on start date
+                                        $('#edit_startdate').on('dp.change', function(e) {
+                                            $('#edit_enddate').data('DateTimePicker').minDate(e.date);
+                                        });
+
+                                        // Set max date for start date based on end date
+                                        $('#edit_enddate').on('dp.change', function(e) {
+                                            $('#edit_startdate').data('DateTimePicker').maxDate(e.date);
+                                        });
+                                    });
+                                </script>
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
