@@ -43,7 +43,7 @@ class DesignationController extends Controller
                 'max:200',
                 $request->validate([
                     'designation' => 'required|unique:designations,name,NULL,id,department_id,' . $request->department,
-                    // Other validation rules...
+                    
                 ])
                 
                 // Designation  ::unique('designations')->where(function ($query) use ($request) {
