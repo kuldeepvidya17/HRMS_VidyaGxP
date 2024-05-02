@@ -45,7 +45,7 @@ class ClientController extends Controller
             'company'=>'required',
             'email'=>'required|email',
             'phone'=>'required|max:15',
-            'avatar'=>'file|image|mimes:jpg,jpeg,png,gif',
+            //'avatar'=>'file|image|mimes:jpg,jpeg,png,gif',
         ]);
         $imageName = null;
         if($request->avatar != null){
@@ -89,7 +89,7 @@ class ClientController extends Controller
             'company'=>'required',
             'email'=>'required|email',
             'phone'=>'required|max:15',
-            'avatar'=>'file|image|mimes:jpg,jpeg,png,gif',
+           // 'avatar'=>'file|image|mimes:jpg,jpeg,png,gif',
         ]);
         $imageName = null;
         if($request->hasFile('avatar')){
