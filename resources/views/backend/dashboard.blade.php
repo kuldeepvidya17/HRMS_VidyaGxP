@@ -75,8 +75,6 @@
                     </div>
                     
                 </div>
-
-                
             </div>
 
 
@@ -87,7 +85,6 @@
                         <div id="line-charts"></div>
                     </div>
                 </div>
-                               
             </div>
             
         </div>
@@ -98,7 +95,7 @@
     <div class="col-md-12">
         <div class="card-group m-b-30">
             <div class="card">
-                <div class="card-body progress-main">
+                <div class="card-body">
                     <div class="d-flex justify-content-between mb-3">
                         <div>
                             <span class="d-block">New Employees</span>

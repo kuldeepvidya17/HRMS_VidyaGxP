@@ -57,6 +57,7 @@ Route::group(['middleware'=>['guest']], function (){
     Route::post('register',[RegisterController::class,'store']);
     Route::get('login',[LoginController::class,'index'])->name('login');
     Route::post('login',[LoginController::class,'login']);
+
     Route::get('forgot-password',[ForgotPasswordController::class,'index'])->name('forgot-password');
     Route::post('forgot-password',[ForgotPasswordController::class,'reset']);
 
@@ -257,15 +258,6 @@ Route::get('employeessalary', [SalaryController::class, 'index'])->name('employe
     Route::get('clear-activity',[ActivityController::class,'markAsRead'])->name('clear-all');
 
     Route::get('backups',[BackupsController::class,'index'])->name('backups');
-    Route::post('backups', [BackupsController::class, 'backupmain'])->name('backup_file');
-    
-
-    
-
-
-    
-    
-
 
 
 });
