@@ -6,6 +6,28 @@ All notable changes to `laravel-settings` will be documented in this file
 
 - Make `spatie/data-transfer-object` dependency optional. (#160)
 
+## 3.3.1 - 2024-03-13
+
+### What's Changed
+
+* fix when base path is app path by @mvenghaus in https://github.com/spatie/laravel-settings/pull/259
+
+**Full Changelog**: https://github.com/spatie/laravel-settings/compare/3.3.0...3.3.1
+
+## 3.3.0 - 2024-02-19
+
+### What's Changed
+
+* Update composer.json to use Larastan Org by @arnebr in https://github.com/spatie/laravel-settings/pull/252
+* Add support for laravel 11 by @shuvroroy in https://github.com/spatie/laravel-settings/pull/256
+* Added settings driven custom encoder/decoder by @naxvog in https://github.com/spatie/laravel-settings/pull/250
+
+**Full Changelog**: https://github.com/spatie/laravel-settings/compare/3.2.3...3.3.0
+
+## 3.2.3 - 2023-12-04
+
+- Revert "Use Illuminate\Database\Eloquent\Casts\Json if possible" (#249)
+
 ## 3.2.2 - 2023-12-01
 
 - Use Illuminate\Database\Eloquent\Casts\Json if possible (#241)
