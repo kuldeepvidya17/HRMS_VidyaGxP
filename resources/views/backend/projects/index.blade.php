@@ -94,7 +94,7 @@
                         @endphp
                           {{-- {{ $member->firstname }} --}}
                         <li>
-                            <a href="#" data-bs-toggle="tooltip" title="{{$member->firstname.' '.$member->lastname}}"><img  src="{{ !empty($member->avatar) ? asset('storage/employees/'.$member->avatar): asset('assets/img/user.jpg')}}"></a>
+                            <a href="#" data-bs-toggle="tooltip" title="{{ $member ? $member->firstname.' '.$member->lastname : ''}}"><img  src="{{ !empty($member->avatar) ? asset('storage/employees/'.$member->avatar): asset('assets/img/user.jpg')}}"></a>
                         </li>
                         @endforeach
                     </ul>

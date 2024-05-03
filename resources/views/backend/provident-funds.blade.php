@@ -109,13 +109,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Employee Share (Amount)<span class="text-danger">*</span></label>
-                                            <input class="form-control" name="emp_amount" type="text" required>
+                                            <input class="form-control" name="emp_amount" type="number" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Organization Share (Amount)<span class="text-danger">*</span></label>
-                                            <input class="form-control" name="org_amount" type="text" required>
+                                            <input class="form-control" name="org_amount" type="number" required>
                                         </div>
                                     </div>
                                 </div>
@@ -127,13 +127,13 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Employee Share (%)<span class="text-danger">*</span></label>
-                                            <input class="form-control" name="emp_percent" type="text" required>
+                                            <input class="form-control" name="emp_percent" type="number" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Organization Share (%)<span class="text-danger">*</span></label>
-                                            <input class="form-control" name="org_percent" type="text" required>
+                                            <input class="form-control" name="org_percent" type="number" required>
                                         </div>
                                     </div>
                                 </div>

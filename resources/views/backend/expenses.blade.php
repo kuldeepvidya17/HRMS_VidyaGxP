@@ -51,7 +51,7 @@
                         <td>{{date_format(date_create($expense->purchased_date),'D M,Y')}}</td>
                         <td>
                             <h2 class="table-avatar">
-                                <a href="javascript:void(0)" class="avatar"><img alt=""  src="{{!empty($expense->user->avatar) ? asset('storage/users/'.$expense->user->avatar): asset('assets/img/profiles/avatar-02.jpg')}}"></a>
+                                <a href="javascript:void(0)" class="avatar"><img alt=""  src="{{!empty($expense->user->avatar) ? asset('storage/users/'.$expense->user->avatar): asset('assets\img\img-01.jpg')}}"></a>
                                 <a href="javascript:void(0)">{{$expense->user->name}}</a>
                             </h2>
                         </td>
