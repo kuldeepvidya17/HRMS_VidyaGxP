@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('employee_details', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('phone');
-            $table->string('email');
-            $table->string('address');
-            $table->string('permanent_address');
-            $table->string('document_attachment'); // Assuming you store the file path
+            $table->string('name')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('address')->nullable();
+            $table->string('permanent_address')->nullable();
+            $table->string('document_attachment')->nullable(); // Assuming you store the file path
             $table->timestamps();
         });
     }
