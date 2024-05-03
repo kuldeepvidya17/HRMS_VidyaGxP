@@ -68,7 +68,7 @@
                     @php
                         $leader = $project->project_employee;
                     @endphp
-                    {{$leader}}
+                    {{-- {{$leader}} --}}
                     <ul class="team-members">
                         <li class="d-flex">
                         
