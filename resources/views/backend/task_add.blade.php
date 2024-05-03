@@ -50,7 +50,7 @@
 							<div class="dropdown dropdown-action">
 								<a href="javascript:void(0)" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 								<div class="dropdown-menu dropdown-menu-right">
-									<a data-id="{{$task->id}}" data-name="{{$task->task_name}}"  data-task_deadline="{{$task->task_deadline}}"  data-task_priority="{{$task->task_priority}}" data-status="{{$task->status}}" data-task_description="{{$task->task_description}}"class="dropdown-item editbtn" href="javascript:void(0)" data-toggle="modal"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+									<a data-id="{{$task->id}}" data-name="{{$task->task_name}}"  data-task_deadline="{{$task->task_deadline}}"  data-task_priority="{{$task->task_priority}}" data-task_description="{{$task->task_description}}"class="dropdown-item editbtn" href="javascript:void(0)" data-toggle="modal"><i class="fa fa-pencil m-r-5"></i> Edit</a>
 									<a data-id="{{$task->id}}" class="dropdown-item deletebtn" href="javascript:void(0)" data-toggle="modal" ><i class="fa fa-trash-o m-r-5"></i> Delete</a>
 								</div>
 							</div>
@@ -100,20 +100,6 @@
 							<option value="high">High</option>
 						</select>
 					</div>
-
-					<!-- Task Status -->
-					<div class="form-group">
-						<label>Status <span class="text-danger">*</span></label>
-						<select class="select form-control" name="status" required>
-							<option value="completed-tasks">Completed Tasks</option>
-							<option value="inprogress-tasks">Inprogress Tasks</option>
-							<option value="on-hold-tasks">On Hold Tasks</option>
-							<option value="pending-tasks">Pending Tasks</option>
-							<option value="review-tasks">Review Tasks</option>
-						</select>
-					</div>
-					
-			
 					<div class="form-group">
 						<label for="task_description">Task Description:<span class="text-danger">*</span></label>
 						<textarea name="task_description" id="task_description" class="form-control" rows="3" placeholder="Enter task description" required></textarea>
@@ -166,19 +152,6 @@
                             <option value="high">High</option>
                         </select>
                     </div>
-
-                    <!-- Task Status -->
-					<div class="form-group">
-						<label for="edit_task_status">Status:<span class="text-danger">*</span></label>
-						<select class="select form-control" name="status" id="edit_task_status" required>
-							<option value="completed-tasks">Completed Tasks</option>
-							<option value="inprogress-tasks">Inprogress Tasks</option>
-							<option value="on-hold-tasks">On Hold Tasks</option>
-							<option value="pending-tasks">Pending Tasks</option>
-							<option value="review-tasks">Review Tasks</option>
-						</select>
-					</div>
-
                     <div class="form-group">
                         <label for="edit_task_description">Task Description:</label>
                         <textarea name="task_description" id="edit_task_description" class="form-control" rows="3" placeholder="Enter task description"></textarea>
@@ -198,26 +171,22 @@
 
 @section('scripts')
 <script>
-	$(document).ready(function (){
-		$('.editbtn').on('click',function (){
-			$('#edit_task').modal('show');
-			console.log(document.getElementById('#'));
-			var id = $(this).data('id');
-			var task_name = $(this).data('name');
-			var task_deadline = $(this).data('task_deadline');
-			var task_priority = $(this).data('task_priority');
-			var status = $(this).data('status'); 
-			// console.log(status);
-			var task_description = $(this).data('task_description');
-	
-			$('#edit_id').val(id);
-			$('#edit_task_name').val(task_name);
-			$('#edit_task_deadline').val(task_deadline);
-			$('#edit_task_priority').val(task_priority);
-			$('#edit_task_status').val(status); 
-			$('#edit_task_description').val(task_description);
-		});
-	});
-	</script>
-	
+$(document).ready(function (){
+    $('.editbtn').on('click',function (){
+        $('#edit_task').modal('show');
+        var id = $(this).data('id');
+        var task_name = $(this).data('name');
+        var task_deadline = $(this).data('task_deadline');
+        var task_priority = $(this).data('task_priority');
+        var task_description = $(this).data('task_description');
+
+        $('#edit_id').val(id);
+        $('#edit_task_name').val(task_name);
+        $('#edit_task_deadline').val(task_deadline);
+        $('#edit_task_priority').val(task_priority);
+        $('#edit_task_description').val(task_description);
+    })
+})
+
+</script>
 @endsection
