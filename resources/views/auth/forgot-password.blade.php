@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-<form action="{{route('forgot-password')}}" method="POST">
+<form action="{{route('reset-password')}}" method="POST">
     @csrf
     <div class="form-group">
         <label>Email</label>

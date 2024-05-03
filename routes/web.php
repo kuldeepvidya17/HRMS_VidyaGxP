@@ -41,6 +41,7 @@ use App\Http\Controllers\Admin\EmployeeAttendanceController;
 use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\JobController as BackendJobController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\ResetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,7 +60,15 @@ Route::group(['middleware'=>['guest']], function (){
     Route::post('login',[LoginController::class,'login']);
 
     Route::get('forgot-password',[ForgotPasswordController::class,'index'])->name('forgot-password');
-    Route::post('forgot-password',[ForgotPasswordController::class,'reset']);
+   // Route::post('forgot-password',[ForgotPasswordController::class,'reset'])->name('forgot-password');
+
+    Route::post('reset-password',[ForgotPasswordController::class,'reset'])->name('reset-password');
+
+
+
+    Route::get('/reset-password/{token}', [ResetPasswordController::class,'update'])->name('password.reset');
+    Route::post('/login', [ResetPasswordController::class,'submitResetPasswordForm'])->name('submitResetPasswordForm');
+
 
 });
 

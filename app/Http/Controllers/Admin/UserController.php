@@ -34,11 +34,20 @@ class UserController extends Controller
     {
         $this->validate($request,[
             'name' => 'required|max:100',
-            'username' => 'required|max:10',
+            'username' => 'required|min:10|max:10', // Ensures username is exactly 10 characters long
+
             'email' => 'required|email',
             'password' => 'required|confirmed|max:200|min:5',
+           // 'password' => 'required|min:6|confirmed', // 'confirmed' checks if password_confirmation field matches 'password'
+
             'avatar'=>'nullable|file|image|mimes:jpg,jpeg,png,gif',
-        ]);
+        ],
+        [
+          
+        'username.min' => 'The username must be exactly 10 characters.', // Custom error message for minimum length
+        'username.max' => 'The username must be exactly 10 characters.', // Custom error message for maximum length
+    ]);  
+       
         $imageName = null;
         if($request->hasFile('avatar')){
             $imageName = time().'.'.$request->avatar->extension();
@@ -51,9 +60,13 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
             'avatar' => $imageName,
         ]);
-        $user->notify(new NewUserNotification($user));
+      
         return back()->with('success',"New user has been added");
     }
+        
+        
+  
+    
 
     /**
      * Display the specified resource.
