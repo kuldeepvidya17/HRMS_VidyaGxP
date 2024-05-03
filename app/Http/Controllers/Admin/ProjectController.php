@@ -57,56 +57,51 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'client' => 'required',
-            'start_date' => 'required|date',
+{
+    $request->validate([
+        'name' => 'required',
+        'client' => 'required',
+        'start_date' => 'required|date',
         'end_date' => 'required|date|after_or_equal:start_date',
-            'rate' => 'required',
-            'rate_type' => 'required',
-            'priority' => 'required',
-            'leader' => 'required',
-            'team' => 'required',
-            'description' => 'required',
-            'project_files' => 'nullable'
-        ]); 
-        $start_date = Carbon::createFromFormat('Y-m-d', $request->start_date);
-        $end_date = Carbon::createFromFormat('Y-m-d', $request->end_date);
-    
-        $files = null;
-        if($request->hasFile('project_files')){
-            $files = array();
-            foreach($request->project_files as $file){
-                $fileName = time().'.'.$file->extension();
-                $file->move(public_path('storage/projects/'.$request->name), $fileName);
-                array_push($files,$fileName);
-            }
+        'rate' => 'required',
+        'rate_type' => 'required',
+        'priority' => 'required',
+        'leader' => 'required',
+        'team' => 'required',
+        'description' => 'required',
+        'project_files.*' => 'nullable|file',
+    ]);
+
+    $files = [];
+    if ($request->hasFile('project_files')) {
+        foreach ($request->file('project_files') as $file) {
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('storage/projects/' . $request->name), $fileName);
+            $files[] = $fileName;
         }
-       
-        // $imageName = null;
-        // if($request->avatar != null){
-        //     $imageName = time().'.'.$request->avatar->extension();
-        //     $request->avatar->move(public_path('storage/clients'), $imageName);
-        // }
-      
-        Project::create([
-            'name' => $request->name,
-            'client_id' => $request->client,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
-            'rate' => $request->rate,
-            'rate_type' => $request->rate_type,
-            'priority' => $request->priority,
-            'leader' => $request->leader,
-            'team' => $request->team,
-            'description' => $request->description,
-            'files' => $files,
-            'progress' => $request->progress,
-        ]);
-        $notification = notify('project has been added');
-        return back()->with($notification);
     }
+
+    $project = Project::create([
+        'name' => $request->name,
+        'client_id' => $request->client,
+        'start_date' => $request->start_date,
+        'end_date' => $request->end_date,
+        'rate' => $request->rate,
+        'rate_type' => $request->rate_type,
+        'priority' => $request->priority,
+        'leader' => $request->leader,
+        'team' => $request->team,
+        'description' => $request->description,
+        'progress' => $request->progress,
+    ]);
+
+    $project->files = $files;
+    $project->save();
+
+    $notification = notify('Project has been added.');
+    return back()->with($notification);
+}
+        
 
     /**
      * Display the specified resource.
@@ -118,6 +113,7 @@ class ProjectController extends Controller
     {
         $title = 'view project';
         $project = Project::where('name','=',$project_name)->firstOrFail();
+      //  return $project;
         return view('backend.projects.show',compact(
             'title','project'
         ));
@@ -185,7 +181,7 @@ class ProjectController extends Controller
     public function destroy(Request $request)
     {
         Project::findOrfail($request->id)->delete();
-        $notification = notify('project has been added');
+        $notification = notify('project has been deleted');
         return back()->with($notification);
     }
 }

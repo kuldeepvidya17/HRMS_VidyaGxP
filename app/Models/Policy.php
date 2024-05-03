@@ -17,6 +17,10 @@ class Policy extends Model
         'file',
     ];
 
+    protected $casts = [
+        'file' => 'array',
+    ];
+
     public function department(){
         return $this->belongsTo(Department::class);
     }

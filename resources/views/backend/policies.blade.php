@@ -76,7 +76,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('policies')}}" method="POST">
+                <form action="{{route('policies')}}" method="POST" enctype="multipart/form-data" >
                     @csrf
                     <div class="form-group">
                         <label>Policy Name <span class="text-danger">*</span></label>
@@ -96,13 +96,12 @@
                             @endif
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label>Upload Policy <span class="text-danger">*</span></label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="policy_upload">
-                            <label class="custom-file-label" for="policy_upload">Choose file</label>
+                    
+                        <div class="form-group">
+                                <label>Upload Files</label>
+                                <input class="form-control" name="files[]" type="file">
                         </div>
-                    </div>
+                    
                     <div class="submit-section">
                         <button class="btn btn-primary submit-btn">Submit</button>
                     </div>

@@ -66,13 +66,7 @@ class TicketController extends Controller
             }
         }
 
-
-
-
-
-
-
-        $uuid = IdGenerator::generate(['table' => 'tickets', 'field' => 'tk_id', 'length' => 9, 'prefix' => '#TKT-']);
+        $uuid = IdGenerator::generate(['table' => 'tickets','field'=>'tk_id', 'length' => 9, 'prefix' =>'#TKT-']);
         Ticket::create([
             'subject' => $request->subject,
             'tk_id' => $request->ticket_id ?? $uuid,
@@ -81,7 +75,7 @@ class TicketController extends Controller
             'priority' => $request->priority,
             'cc' => $request->cc,
             'followers' => $request->followers,
-            'files' => $files,
+            'files'=>$files,
             'status' => $request->status,
             'description' => $request->description,
         ]);

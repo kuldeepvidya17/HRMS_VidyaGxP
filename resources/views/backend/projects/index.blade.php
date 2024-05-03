@@ -66,24 +66,33 @@
                 <div class="project-members m-b-15">
                     <div>Project Leader :</div>
                     @php
-                        $leader = $project->employee($project->leader);
+                        $leader = $project->project_employee;
                     @endphp
+                    {{$leader}}
                     <ul class="team-members">
-                        <li>
-                            <a href="#" data-bs-toggle="tooltip" title="{{$leader->firstname.' '.$leader->lastname}}">
-                                <img alt="avatar"  src="{{ !empty($leader->avatar) ? asset('storage/employees/'.$leader->avatar): asset('assets/img/user.jpg')}}">
+                        <li class="d-flex">
+                        
+                            <a href="#" data-bs-toggle="tooltip" title="{{ $leader ? $leader->firstname.' '. $leader->lastname : ''}}">
+
+                                <img alt="avatar"  src="{{ $leader && !empty($leader->avatar) ? asset('storage/projects/'.$leader->avatar) : asset('assets/img/user.jpg')}}">
                             </a>
+
+                            {{ $leader ? $leader->firstname.' '. $leader->lastname : ''}}
                         </li>
                     </ul>
+                    
                 </div>
                 <div class="project-members m-b-15">
                     <div>Team :</div>
                    
                     <ul class="team-members">
                         @foreach ($project->team as $team_member)
+
                         @php
                             $member = $project->employee($team_member);
+                           
                         @endphp
+                          {{-- {{ $member->firstname }} --}}
                         <li>
                             <a href="#" data-bs-toggle="tooltip" title="{{$member->firstname.' '.$member->lastname}}"><img  src="{{ !empty($member->avatar) ? asset('storage/employees/'.$member->avatar): asset('assets/img/user.jpg')}}"></a>
                         </li>
