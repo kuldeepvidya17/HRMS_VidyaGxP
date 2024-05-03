@@ -83,7 +83,7 @@
 					<div class="form-group">
 						<label>Invoice date <span class="text-danger">*</span></label>
 						<div class="cal-icon">
-							<input class="form-control datetimepicker" type="text" name="invoice_date">
+							<input class="form-control datetimepicker"   id="start_date_input" type="text" name="invoice_date">
 						</div>
 					</div>
 				</div>
@@ -91,11 +91,41 @@
 					<div class="form-group">
 						<label>Due Date <span class="text-danger">*</span></label>
 						<div class="cal-icon">
-							<input class="form-control datetimepicker" type="text" name="due_date">
+							<input class="form-control datetimepicker" type="text"  id="end_date_input" name="due_date">
 						</div>
 					</div>
 				</div>
 			</div>
+
+			<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+			<script>
+				$(document).ready(function() {
+					console.log('jquery iniialized')
+					// Initialize datetimepicker for start date
+					$('#start_date_input').datetimepicker({
+						format: 'YYYY-MM-DD',
+						minDate: moment().startOf('day'), // Set min date to today
+					});
+
+					// Initialize datetimepicker for end date
+					$('#end_date_input').datetimepicker({
+						format: 'YYYY-MM-DD',
+						useCurrent: false, // Do not automatically set to current date
+					});
+
+					// Set min date for end date based on start date
+					$('#start_date_input').on('dp.change', function(e) {
+						$('#end_date_input').data('DateTimePicker').minDate(e.date);
+					});
+
+					// Set max date for start date based on end date
+					$('#end_date_input').on('dp.change', function(e) {
+						$('#start_date_input').data('DateTimePicker').maxDate(e.date);
+					});
+				});
+			</script>
+
+
 			<div class="row">
 				<div class="col-md-12 col-sm-12">
 					<div class="table-responsive">
@@ -125,14 +155,14 @@
 										<input class="form-control" name="description" type="text" style="min-width:150px">
 									</td>
 									<td>
-										<input class="form-control"  name="unit_cost"  style="width:100px" type="text">
-									</td>
-									<td>
-										<input class="form-control" name="quantity" style="width:80px" type="text">
-									</td>
-									<td>
-										<input class="form-control" name="amount" readonly style="width:120px" type="text">
-									</td>
+  									  <input class="form-control" name="unit_cost" id="unit_cost" style="width:100px" type="number" oninput="calculateAmount()">
+															</td>
+															<td>
+    									<input class="form-control" name="quantity" id="quantity" style="width:80px" type="number" oninput="calculateAmount()">
+															</td>
+															<td>
+    								<input class="form-control" name="amount" id="amount" readonly style="width:120px" type="text">
+													</td>
 									<td>
 										<button type="button" class="btn btn-sm btn-danger font-18 ml-2" title="Delete" data-repeater-delete>
 											<i class="fa fa-trash"></i>
@@ -147,11 +177,37 @@
 			</div>
 
 
+
+			
+			
+
+
+
+
+<script>
+    function calculateAmount() {
+        // Get unit cost and quantity input values
+        var unitCost = document.getElementById('unit_cost').value;
+        var quantity = document.getElementById('quantity').value;
+
+        // Check if both unit cost and quantity are provided
+        if (unitCost !== '' && quantity !== '') {
+            // Calculate the amount as the product of unit cost and quantity
+            var amount = parseFloat(unitCost) * parseInt(quantity);
+            // Update the amount field with the calculated value
+            document.getElementById('amount').value = amount.toFixed(2); // Adjust the decimal places as needed
+        } else {
+            // If either unit cost or quantity is empty, clear the amount field
+            document.getElementById('amount').value = '';
+        }
+    }
+</script>
+
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
 						<label>Discount <span class="text-danger">* must be a number</span></label>
-						<input class="form-control text-right" type="text" name="discount" value="0">
+						<input class="form-control text-right" type="number" name="discount" value="">
 					</div>
 				</div>
 				<div class="col-md-6">
