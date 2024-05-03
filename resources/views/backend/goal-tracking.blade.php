@@ -139,7 +139,7 @@
 						<div class="col-sm-12">
 							<div class="form-group">
 								<label>Description <span class="text-danger">*</span></label>
-								<textarea class="form-control" name="description" rows="4"></textarea>
+								<textarea class="form-control" name="description" rows="4" required></textarea>
 							</div>
 						</div>
 						<div class="col-sm-12">

@@ -61,16 +61,25 @@ class DepartmentController extends Controller
         return back()->with('success',"Holiday has been updated successfully!!.");
     }
 
+   
+
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request)
-    {
-        $department = Department::find($request->id);
+ * Remove the specified resource from storage.
+ *
+ * @param  int  $id
+ * @return \Illuminate\Http\Response
+ */
+public function destroy(Request $request)
+{
+    $department = Department::find($request->id);
+
+    // Check if there are any dependent records in the designations table
+    if ($department->designations->isEmpty()) {
         $department->delete();
-        return back()->with('success',"Holiday has been deleted successfully!!.");
+        return back()->with('success', "Department has been deleted successfully.");
+    } else {
+        return back()->with('error', "Cannot delete the department. It is referenced by other records.");
     }
+}
+
 }

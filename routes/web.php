@@ -41,6 +41,7 @@ use App\Http\Controllers\Admin\EmployeeAttendanceController;
 use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\JobController as BackendJobController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\EmployeeDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +83,22 @@ Route::group(['middleware'=>['auth']], function (){
     Route::put('contacts',[ContactController::class,'update']);
     Route::delete('contacts',[ContactController::class,'destroy'])->name('contact.destroy');
     Route::get('file-manager',[FileManagerController::class,'index'])->name('filemanager');
+
+
+
+
+    // =================================emp-personaldetal-----------------------=================
+
+    Route::get('employeedetail',[EmployeeDetailController::class,'index'])->name('employeedetail');
+    Route::post('employeedetail',[EmployeeDetailController::class, 'store'])->name('employeedetail.add');
+    Route::put('/employeedetail/{employeedetail}', [EmployeeDetailController::class, 'update'])->name('employeedetail.update');
+    Route::delete('/employeedetail/{employeedetail}', [EmployeeDetailController::class, 'destroy'])->name('employeedetail.destroy');
+
+
+
+
+    // =================================end-emp-personaldetal-----------------------=================
+
 
     Route::get('holidays',[HolidayController::class,'index'])->name('holidays');
     Route::post('holidays',[HolidayController::class,'store']);
@@ -147,7 +164,7 @@ Route::group(['middleware'=>['auth']], function (){
 
     Route::get('clients',[ClientController::class,'index'])->name('clients');
     Route::post('clients',[ClientController::class,'store'])->name('client.add');
-    Route::put('clients',[ClientController::class,'update'])->name('client.update');
+    Route::put('clients/{id}',[ClientController::class,'update'])->name('client.update');
     Route::delete('clients',[ClientController::class,'destroy'])->name('client.destroy');
     Route::get('clients-list',[ClientController::class,'lists'])->name('clients-list');
 
@@ -197,6 +214,7 @@ Route::group(['middleware'=>['auth']], function (){
     Route::put('salary',[SalaryController::class,'update']);
     Route::delete('salary',[SalaryController::class,'destroy']);
 
+Route::get('employeessalary', [SalaryController::class, 'index'])->name('employeessalary');
 
 
 
@@ -257,6 +275,8 @@ Route::group(['middleware'=>['auth']], function (){
     Route::get('clear-activity',[ActivityController::class,'markAsRead'])->name('clear-all');
 
     Route::get('backups',[BackupsController::class,'index'])->name('backups');
+
+    
 
 
 });

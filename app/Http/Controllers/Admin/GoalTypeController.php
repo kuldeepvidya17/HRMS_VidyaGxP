@@ -34,7 +34,7 @@ class GoalTypeController extends Controller
     {
         $this->validate($request,[
             'type' => 'required|max:100',
-            'description' => 'nullable|max:255'
+            'description' => 'required|nullable|max:255'
         ]);
         GoalType::create([
             'type' => $request->type,
@@ -76,7 +76,7 @@ class GoalTypeController extends Controller
     {
         $this->validate($request,[
             'type' => 'required|max:100',
-            'description' => 'nullable|max:255'
+            'description' => 'required|nullable|max:255'
         ]);
         $goal_type = GoalType::findOrFail($request->id);
         $goal_type->update([

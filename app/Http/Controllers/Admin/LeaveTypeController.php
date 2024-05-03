@@ -15,7 +15,7 @@ class LeaveTypeController extends Controller
      */
     public function index()
     {
-        $title = "Leave Type";
+        $title = "Leave Type"; 
         $leave_types = LeaveType::get();
         return view('backend.leave-type',compact('title','leave_types'));
     }
@@ -29,8 +29,8 @@ class LeaveTypeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'type'=>'required|max:255',
-            'days'=>'required|numeric|integer|min:1'
+            'type'=>'required|max:255'
+            // 'days'=>'required|numeric|integer|min:1'
         ]);
         LeaveType::create($request->all());
         storeActivityLog($userId=1, $action='store', $description=$request->type, $moduleName='Leave', $moduleId=$request->id,$status='Leave Has Been Successfully added.');
@@ -60,7 +60,7 @@ class LeaveTypeController extends Controller
     {
         $this->validate($request,[
             'type'=>'required|max:255',
-            'days'=>'required|numeric|integer|min:1'
+            // 'days'=>'required|numeric|integer|min:1'
         ]);
         $leave_type = LeaveType::find($request->id);
         $leave_type->update($request->all());
@@ -75,11 +75,30 @@ class LeaveTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function destroy(Request $request)
+    // {
+    //     $leave_type = LeaveType::find($request->id);
+    //     $leave_type->delete();
+    //     storeActivityLog($userId=1, $action='Delete', $description=$request->type, $moduleName='Leave', $moduleId=$request->id,$status='Leave Has Been Successfully deleted.');
+    //     return back()->with('success',"Leave Type has been deleted successfully!!");
+    // }
     public function destroy(Request $request)
-    {
-        $leave_type = LeaveType::find($request->id);
-        $leave_type->delete();
-        storeActivityLog($userId=1, $action='Delete', $description=$request->type, $moduleName='Leave', $moduleId=$request->id,$status='Leave Has Been Successfully deleted.');
-        return back()->with('success',"Leave Type has been deleted successfully!!");
+{
+    $leaveTypeId = $request->id;
+
+    // Check if there are any associated leaves
+    $relatedLeaves = \App\Models\Leave::where('leave_type_id', $leaveTypeId)->exists();
+
+    if ($relatedLeaves) {
+        return back()->with('error', "Cannot delete leave type. There are associated leaves.");
     }
+
+    // If no associated leaves, delete the leave type
+    LeaveType::destroy($leaveTypeId);
+
+    storeActivityLog($userId = 1, $action = 'Delete', $description = $request->type, $moduleName = 'Leave', $moduleId = $request->id, $status = 'Leave has been successfully deleted.');
+    
+    return back()->with('success', "Leave Type has been deleted successfully!!");
+}
+
 }

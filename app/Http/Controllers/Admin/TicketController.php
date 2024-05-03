@@ -18,8 +18,9 @@ class TicketController extends Controller
     {
         $title = 'tickets';
         $tickets = Ticket::get();
-        return view('backend.tickets.index',compact(
-            'title','tickets'
+        return view('backend.tickets.index', compact(
+            'title',
+            'tickets'
         ));
     }
 
@@ -33,7 +34,7 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'subject' => 'required',
             'staff' => 'required',
             "client" => "required",
@@ -64,11 +65,10 @@ class TicketController extends Controller
                 }
             }
         }
-        
 
         $uuid = IdGenerator::generate(['table' => 'tickets','field'=>'tk_id', 'length' => 9, 'prefix' =>'#TKT-']);
         Ticket::create([
-            'subject'=> $request->subject,
+            'subject' => $request->subject,
             'tk_id' => $request->ticket_id ?? $uuid,
             'employee_id' => $request->staff,
             'client_id' => $request->client,
@@ -91,14 +91,15 @@ class TicketController extends Controller
      */
     public function show($ticket)
     {
-        $title = 'view ticket';        
-        $ticket = Ticket::where('subject','=',$ticket)->firstOrFail();
-        return view('backend.tickets.show',compact(
-            'title','ticket'
+        $title = 'view ticket';
+        $ticket = Ticket::where('subject', '=', $ticket)->firstOrFail();
+        return view('backend.tickets.show', compact(
+            'title',
+            'ticket'
         ));
     }
 
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -109,7 +110,7 @@ class TicketController extends Controller
      */
     public function update(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'subject' => 'required',
             'ticket_id' => 'required',
             'staff' => 'required',
@@ -123,18 +124,18 @@ class TicketController extends Controller
         ]);
         $ticket = Ticket::findOrFail($request->id);
         $files = $ticket->files;
-        if(!empty($request->files)){
+        if (!empty($request->files)) {
             $files = array();
             $index = 0;
-            foreach($request->files as $file){
-                $fileName = time().$index.'.'.$file[$index]->getClientOriginalExtension();
-                $file[$index]->move(public_path('storage/tickets/'.$request->subject), $fileName);
-                array_push($files,$fileName);
+            foreach ($request->files as $file) {
+                $fileName = time() . $index . '.' . $file[$index]->getClientOriginalExtension();
+                $file[$index]->move(public_path('storage/tickets/' . $request->subject), $fileName);
+                array_push($files, $fileName);
                 $index++;
             }
         }
         $ticket->update([
-            'subject'=> $request->subject,
+            'subject' => $request->subject,
             'tk_id' => $request->ticket_id,
             'employee_id' => $request->staff,
             'client_id' => $request->client,

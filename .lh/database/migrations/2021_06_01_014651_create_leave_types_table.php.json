@@ -1,0 +1,30 @@
+{
+    "sourceFile": "database/migrations/2021_06_01_014651_create_leave_types_table.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1714474379131,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1714474676918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     {\r\n         Schema::create('leave_types', function (Blueprint $table) {\r\n             $table->id();\r\n             $table->string('type');\r\n-            // $table->string('days');\r\n+            $table->string('days')->default(0);\r\n             $table->timestamps();\r\n         });\r\n     }\r\n \r\n"
+                },
+                {
+                    "date": 1714474742383,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     {\r\n         Schema::create('leave_types', function (Blueprint $table) {\r\n             $table->id();\r\n             $table->string('type');\r\n-            $table->string('days')->default(0);\r\n+            $table->integer('days')->nullable();\r\n             $table->timestamps();\r\n         });\r\n     }\r\n \r\n"
+                },
+                {
+                    "date": 1714474768507,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     {\r\n         Schema::create('leave_types', function (Blueprint $table) {\r\n             $table->id();\r\n             $table->string('type');\r\n-            $table->integer('days')->nullable();\r\n+            // $table->string('days');\r\n             $table->timestamps();\r\n         });\r\n     }\r\n \r\n"
+                }
+            ],
+            "date": 1714474379131,
+            "name": "Commit-0",
+            "content": "<?php\r\n\r\nuse Illuminate\\Database\\Migrations\\Migration;\r\nuse Illuminate\\Database\\Schema\\Blueprint;\r\nuse Illuminate\\Support\\Facades\\Schema;\r\n\r\nclass CreateLeaveTypesTable extends Migration\r\n{\r\n    /**\r\n     * Run the migrations.\r\n     *\r\n     * @return void\r\n     */\r\n    public function up()\r\n    {\r\n        Schema::create('leave_types', function (Blueprint $table) {\r\n            $table->id();\r\n            $table->string('type');\r\n            // $table->string('days');\r\n            $table->timestamps();\r\n        });\r\n    }\r\n\r\n    /**\r\n     * Reverse the migrations.\r\n     *\r\n     * @return void\r\n     */\r\n    public function down()\r\n    {\r\n        Schema::dropIfExists('leave_types');\r\n    }\r\n}\r\n"
+        }
+    ]
+}

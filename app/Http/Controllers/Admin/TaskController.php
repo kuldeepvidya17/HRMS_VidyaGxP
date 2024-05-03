@@ -122,7 +122,7 @@ class TaskController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request ,$id)
     {
       //  dd($request);
         $request->validate([

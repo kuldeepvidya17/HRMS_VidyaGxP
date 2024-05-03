@@ -109,7 +109,7 @@
 						<input class="form-control edit_type" name="type" type="text" value="Invoice Goal">
 					</div>
 					<div class="form-group">
-						<label>Description</label>
+						<label>Description<span class="text-danger">*</span></label>
 						<textarea class="form-control edit_description" name="description" rows="4"></textarea>
 					</div>
 					

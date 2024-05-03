@@ -125,7 +125,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>No of Vacancies<span class="text-danger">*</span></label>
-								<input class="form-control" name="vacancies" type="text" required>
+								<input class="form-control" name="vacancies" type="number" required>
 							</div>
 						</div>
 					</div>
@@ -139,11 +139,11 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Age<span class="text-danger">*</span></label>
-								<input class="form-control" name="age" type="text" required>
+								<input class="form-control" name="age" type="number" required>
 							</div>
 						</div>
 					</div>
-					<div class="row">
+					{{-- <div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Salary From<span class="text-danger">*</span></label>
@@ -156,7 +156,33 @@
 								<input type="text" name="salary_to" class="form-control" required>
 							</div>
 						</div>
+					</div> --}}
+					
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Salary From <span class="text-danger">*</span></label>
+								<div class="cal-icon">
+									{{-- <input name="from" class="form-control datetimepicker" type="text"> --}}
+									 <input class="form-control datetimepicker" id="salary_from" type="text" name="salary_from" required> 
+								</div>
+							</div>
+		
+							</div>
+							<div class="col-md-6">
+							<div class="form-group">
+								<label>Salary To <span class="text-danger">*</span></label>
+								<div class="cal-icon">
+									{{-- <input name="to" class="form-control datetimepicker" type="text"> --}}
+									  <input class="form-control datetimepicker" id="salary_to" name="salary_to" type="text" required> 
+								</div>
+							</div>
+						</div>
 					</div>
+
+
+
+
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
@@ -186,13 +212,13 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Start Date<span class="text-danger">*</span></label>
-								<input type="text" name="start_date" class="form-control datetimepicker" required>
+								<input type="date" name="startDate" class="form-control datetimepicker" required>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Expired Date<span class="text-danger">*</span></label>
-								<input type="text" name="expire_date" class="form-control datetimepicker" required>
+								<input type="date" name="expireDate" class="form-control datetimepicker" required>
 							</div>
 						</div>
 					</div>

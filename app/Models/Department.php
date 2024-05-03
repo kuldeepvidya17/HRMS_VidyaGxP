@@ -10,4 +10,11 @@ class Department extends Model
     use HasFactory;
 
     protected $fillable=['name'];
+    // Department.php
+
+public function designations()
+{
+    return $this->hasMany('App\Models\Designation');
+}
+
 }

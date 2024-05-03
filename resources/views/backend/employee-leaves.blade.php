@@ -70,7 +70,7 @@
 								</td>
 								<td>
 									<h2 class="table-avatar">
-										<a href="javascript:void(0)" class="avatar avatar-xs">
+										<a href="javascript:void(0)" class="avatar1 avatar-xs">
 											<img alt="avatar" src="{{!empty($leave->employee->avatar)? asset('storage/employees/'.$leave->employee->avatar): asset('assets/img/user.jpg')}}">
 										</a>
 										<a href="#">{{$leave->employee->firstname}} {{$leave->employee->lastname}}</a>
@@ -116,6 +116,7 @@
 					<div class="form-group">
 						<label>Employee</label>
 						<select name="employee" class="select">
+							<option value="select_emplyess">select employee</option>
 							@foreach ($employees as $employee)
 								<option value="{{$employee->id}}">{{$employee->firstname}} {{$employee->lastname}}</option>
 							@endforeach
@@ -124,7 +125,9 @@
 
 					<div class="form-group">
 						<label>Leave Type <span class="text-danger">*</span></label>
-						<select name="leave_type" class="select">
+						<select name="leave_type" class="select" required>
+							<option value="select_leavetype">select leave type</option>
+
 							@foreach ($leave_types as $leave_type)
 								<option value="{{$leave_type->id}}">{{$leave_type->type}}</option>
 							@endforeach
@@ -174,12 +177,12 @@
                         </script>   
 					<div class="form-group">
 						<label>Leave Reason <span class="text-danger">*</span></label>
-						<textarea name="reason" rows="4" class="form-control"></textarea>
+						<textarea name="reason" rows="4" class="form-control" required></textarea>
 					</div>
 
 					<div class="form-group">
                         <label>Status </label>
-                        <select name="status" class="select">
+                        <select name="status" class="select" required>
                             <option value="null" disabled selected>Select Status</option>
                             <option>Approved</option>
                             <option>Pending</option>

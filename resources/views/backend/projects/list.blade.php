@@ -62,7 +62,7 @@
                                 @endphp
                                 <li>
                                     <a href="#" data-toggle="tooltip" title="{{$leader->firstname.' '.$leader->lastname}}">
-                                        <img alt="avatar"  src="{{ !empty($leader->avatar) ? asset('storage/employees/'.$leader->avatar): asset('assets/img/user.jpg')}}">
+                                        <img alt="avatar" src="{{ !empty($leader->avatar) ? asset('storage/employees/'.$leader->avatar): asset('assets/img/user.jpg')}}">
                                     </a>
                                 </li>
                             </ul>

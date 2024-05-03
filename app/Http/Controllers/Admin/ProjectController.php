@@ -31,6 +31,7 @@ class ProjectController extends Controller
     {
         $title = 'projects';
         $projects = Project::latest()->get();
+        // dd($projects);
         return view('backend.projects.list',compact(
             'title','projects'
         ));
@@ -143,6 +144,7 @@ class ProjectController extends Controller
             'project_files' => 'nullable'
         ]); 
         $project = Project::findOrfail($request->id);
+        // dd($project);
         $files = $project->files;
         if($request->hasFile('project_files')){
             $files = array();

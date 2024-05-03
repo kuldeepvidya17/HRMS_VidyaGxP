@@ -7,7 +7,7 @@
         <title>{{ucfirst(config('app.name'))}} - {{ucfirst($title)}}</title>
 		
 		<!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="{{!empty(app(App\Settings\ThemeSettings::class)->favicon) ? asset('storage/settings/'.app(App\Settings\ThemeSettings::class)->favicon):asset('assets/img/logovidyagxp.png')}} ">
+        <link rel="shortcut icon" type="image/x-icon" href="{{!empty(app(App\Settings\ThemeSettings::class)->favicon) ? asset('storage/settings/theme/'.app(App\Settings\ThemeSettings::class)->favicon):asset('assets/img/logovidyagxp.png')}} ">
 		
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
@@ -34,7 +34,7 @@
 				
 					<!-- Account Logo -->
 					<div class="account-logo">
-						<a href=""><img src="{{!empty(app(App\Settings\ThemeSettings::class)->logo) ? asset('storage/settings/'.app(App\Settings\ThemeSettings::class)->logo):asset('assets/img/logovidyagxp.png')}}" alt="logo" width="" height="80"></a>
+						<a href=""><img src="{{!empty(app(App\Settings\ThemeSettings::class)->logo) ? asset('storage/settings/theme/'.app(App\Settings\ThemeSettings::class)->logo):asset('assets/img/logovidyagxp.png')}}" alt="logo" width="" height="80"></a>
 					</div>
 					<!-- /Account Logo -->
 					
