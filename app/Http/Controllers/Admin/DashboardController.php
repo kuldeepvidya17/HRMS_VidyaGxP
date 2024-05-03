@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Client;
+use App\Models\Department;
+use App\Models\Designation;
 use App\Models\Employee;
 use App\Models\EmployeeAttendance;
 use App\Models\Expense;
@@ -33,18 +35,20 @@ class DashboardController extends Controller
         $ticket_count = Ticket::count();
         $open_ticket = Ticket::where('status','Open')->count();
         $close_ticket = Ticket::where('status','Closed')->count();
-        // dd($close_ticket);
-        // $expenses = Expense::count();
+        // $expenses = Expense::all();
+        // dd($expenses);
         // $tasks = Task::count();
         
 //$task_count = Task::count();
         $new_employee_count = Employee::where('created_at','DESC')->count();
         
         $project_count =Project::count();
-        
+        $departments = Department::get();
+        $employees = Employee::with('department','designation')->get();
+        $designations = Designation::with('department')->get();
 
         return view('backend.dashboard',compact(
-            'title','clients_count','employee_count','project_count','new_employee_count','task_count','absent_employee','invoice_count','invoice','ticket_count','open_ticket','close_ticket','complete_task_count','inprogress_task_count','onhold_task_count','pending_task_count','review_task_count'
+            'departments', 'title','clients_count','employee_count','project_count','new_employee_count','task_count','absent_employee','invoice_count','invoice','ticket_count','open_ticket','close_ticket','complete_task_count','inprogress_task_count','onhold_task_count','pending_task_count','review_task_count','employees','designations'
         ));
     }
 
