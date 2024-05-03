@@ -32,4 +32,9 @@ class Project extends Model
         $employee = Employee::where('id', '=',$id)->first();
         return $employee;
     }
+
+    public function project_employee()
+    {
+        return $this->belongsTo(Employee::class, 'leader',);
+    }
 }
