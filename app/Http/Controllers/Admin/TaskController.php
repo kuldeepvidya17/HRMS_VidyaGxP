@@ -61,6 +61,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'task_name'=>'required',
             'task_description'=>'required',
@@ -89,6 +90,7 @@ class TaskController extends Controller
             'task_description'=>$request->task_description,
             'task_deadline'=>$request->task_deadline,
             'task_priority'=>$request->task_priority,
+            'status' => $request->status
             // 'company'=>$request->company,
             // 'image' => $files,
                 ]);
@@ -122,7 +124,7 @@ class TaskController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request ,$id)
+    public function update(Request $request)
     {
       //  dd($request);
         $request->validate([
@@ -143,12 +145,13 @@ class TaskController extends Controller
         }
       //  return $request;
        $task =Task::find($request->edit_id);
-        //dd($task);
+        // dd($task);
         $task->update([
             'task_name'=>$request->task_name,
             'task_description'=>$request->task_description,
             'task_deadline'=>$request->task_deadline,
             'task_priority'=>$request->task_priority,
+            'status'=>$request->status
             //  'image'=>$imageName,
             //  'company'=>$request->company
         ]);
