@@ -68,7 +68,7 @@
 								</a>
 							</h2>
 						</td>
-					   <td>{{date_format(date_create($attendance->checkin),'H:i a')}}</td>
+					   <td>{{date_format(date_create($attendance->checkin),'h:i A')}}</td>
 					   <td>{{!empty($attendance->checkout) ? date_format(date_create($attendance->checkout),'H:i a'): ' '}}</td>
 					   <td>{{date_format(date_create($attendance->created_at),'d M, Y')}}</td>
 					   {{-- <td>{{$attendance->status}}</td> --}}

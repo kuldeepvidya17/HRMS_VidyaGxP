@@ -26,6 +26,11 @@
                     <ul style="display: none;">
                         <li><a class="{{ route_is('employees') ? 'active' : '' }}" href="{{route('employees')}}">All
                                 Employees</a></li>
+
+
+                         <li><a class="{{ route_is('employeedetail') ? 'active' : '' }}"
+                                    href="{{ route('employeedetail') }}">Employee Personal Detail</a></li>
+
                         <li><a class="{{ route_is('holidays') ? 'active' : '' }}"
                                 href="{{route('holidays')}}">Holidays</a></li>
                         <li><a class="{{ route_is('employees.attendance') ? 'active' : '' }}"

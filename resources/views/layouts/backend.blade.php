@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <meta name="robots" content="noindex, nofollow">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
-<title>{{ucfirst(config('app.name'))}} - {{ucfirst($title)}}</title>
+{{-- <title>{{ucfirst(config('app.name'))}} - {{ucfirst($title)}}</title> --}}
+<title>{{ ucfirst(config('app.name')) }} - {{ ucfirst($title ?? 'Default Title') }}</title>
+
 		<!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="{{!empty(app(App\Settings\ThemeSettings::class)->favicon) ? asset('storage/settings/theme/'.app(App\Settings\ThemeSettings::class)->favicon):asset('assets/img/logovidyagxp.png')}}">
 		{{-- <link rel="icon" type="image/png" href="{{ !empty($settings->favicon) ? asset('storage/settings/theme/'.$settings->favicon) : asset('assets/img/logovidyagxp.png') }}">		<!-- Bootstrap CSS --> --}}

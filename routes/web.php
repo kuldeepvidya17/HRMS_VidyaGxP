@@ -41,6 +41,7 @@ use App\Http\Controllers\Admin\EmployeeAttendanceController;
 use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\JobController as BackendJobController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\EmployeeDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +83,21 @@ Route::group(['middleware'=>['auth']], function (){
     Route::put('contacts',[ContactController::class,'update']);
     Route::delete('contacts',[ContactController::class,'destroy'])->name('contact.destroy');
     Route::get('file-manager',[FileManagerController::class,'index'])->name('filemanager');
+
+
+
+
+    // =================================emp-personaldetal-----------------------=================
+
+    Route::get('employeedetail',[EmployeeDetailController::class,'index'])->name('employeedetail');
+    Route::post('employeedetail',[EmployeeDetailController::class, 'store'])->name('employeedetail.add');
+   
+
+
+
+
+    // =================================end-emp-personaldetal-----------------------=================
+
 
     Route::get('holidays',[HolidayController::class,'index'])->name('holidays');
     Route::post('holidays',[HolidayController::class,'store']);
@@ -258,6 +274,8 @@ Route::get('employeessalary', [SalaryController::class, 'index'])->name('employe
     Route::get('clear-activity',[ActivityController::class,'markAsRead'])->name('clear-all');
 
     Route::get('backups',[BackupsController::class,'index'])->name('backups');
+
+    
 
 
 });
