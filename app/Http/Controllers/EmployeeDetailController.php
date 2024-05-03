@@ -83,5 +83,39 @@ class EmployeeDetailController extends Controller
     return redirect()->back()->with('success', 'Employee details stored successfully');
 }
 
+public function update(Request $request, EmployeeDetail $employeedetail)
+    {
+        $request->validate([
+            'phone' => 'required',
+            'email' => 'required|email',
+            'Address' => 'required',
+            'PAddress' => 'required',
+            'gov_id' => 'required',
+            'document_attachment' => 'nullable|file', 
+        ]);
+
+        $employeedetail->update([
+            'phone' => $request->input('phone'),
+            'email' => $request->input('email'),
+            'address' => $request->input('Address'),
+            'permanent_address' => $request->input('PAddress'),
+            'gov_id' => $request->input('gov_id'),
+            'document_attachment' => $request->file('document_attachment') ? $request->file('document_attachment')->store('attachments') : null,
+        ]);
+
+        // You can add any additional validation or processing here
+
+        return redirect()->back()->with('success', 'Employee detail updated successfully');
+    }
+
+
+
+public function destroy(EmployeeDetail $employeedetail)
+    {
+        $employeedetail->delete();
+
+        return redirect()->back()->with('success', 'Employee detail deleted successfully');
+    }
+
     
 }

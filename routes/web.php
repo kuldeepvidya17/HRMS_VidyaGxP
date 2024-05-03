@@ -91,7 +91,8 @@ Route::group(['middleware'=>['auth']], function (){
 
     Route::get('employeedetail',[EmployeeDetailController::class,'index'])->name('employeedetail');
     Route::post('employeedetail',[EmployeeDetailController::class, 'store'])->name('employeedetail.add');
-   
+    Route::put('/employeedetail/{employeedetail}', [EmployeeDetailController::class, 'update'])->name('employeedetail.update');
+    Route::delete('/employeedetail/{employeedetail}', [EmployeeDetailController::class, 'destroy'])->name('employeedetail.destroy');
 
 
 
