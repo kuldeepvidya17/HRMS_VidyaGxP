@@ -114,8 +114,8 @@
 					@csrf
 
 					<div class="form-group">
-						<label>Employee</label>
-						<select name="employee" class="select">
+						<label>Employee <span class="text-danger">*</span></label>
+						<select name="employee" class="select" required id = "myForm">
 							<option value="select_emplyess">select employee</option>
 							@foreach ($employees as $employee)
 								<option value="{{$employee->id}}">{{$employee->firstname}} {{$employee->lastname}}</option>
@@ -307,5 +307,23 @@
     }
 });
     });
+</script>
+<script>
+var form = document.getElementById('myForm');
+
+form.addEventListener('submit', function(event) {
+    var employeeInput = form.elements['employee'];
+    var employeeValue = employeeInput.value.trim();
+
+    var isEmployeeRequired = ;
+
+    if (isEmployeeRequired && employeeValue === '') {
+        alert('Employee field is required');
+        event.preventDefault();
+    }
+});
+
+
+
 </script>
 @endsection

@@ -78,7 +78,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Project Leader</label>
+                                    <label>Project Leader<span class="text-danger">*</span></label>
                                     <select class="select2" name="leader" required>
                                         <option>Select Project Leader</option>
                                         @foreach (\App\Models\Employee::get() as $employee)
@@ -91,7 +91,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Add Team</label>
+                                    <label>Add Team<span class="text-danger">*</span></label>
                                     <select class="select select2" multiple name="team[]" required>
                                         <option>High</option>
                                         @foreach (\App\Models\Employee::get() as $employee)
@@ -103,7 +103,7 @@
                             
                         </div>
                         <div class="form-group">
-                            <label>Description</label>
+                            <label>Description<span class="text-danger">*</span></label>
                             <textarea name="description" rows="4" class="form-control summernote" placeholder="Enter your message here" required></textarea>
                         </div>
                         <div class="form-group">

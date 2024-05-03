@@ -88,13 +88,18 @@
 							<div class="form-group">
 								<label class="col-form-label">Email <span class="text-danger">*</span></label>
 								<input class="form-control" name="email" type="email">
+							
+							
+							
+							
+							
 							</div>
 						</div>
 
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label class="col-form-label">Phone </label>
-								<input class="form-control" name="phone" type="text">
+								<label class="col-form-label">Phone <span class="text-danger">*</span></label>
+								<input class="form-control" name="phone" type="text" required>
 							</div>
 						</div>
 						<div class="col-sm-6">

@@ -98,7 +98,7 @@
                         </select>
                     </div>
                     <div class="submit-section">
-                        <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                        <button type="submit" class="btn btn-primary submit-btn" onclick="return validateTaxForm()">Submit</button>
                     </div>
                 </form>
             </div>
@@ -172,4 +172,26 @@
         }));
     });
 </script>
+<script>
+    function validateTaxForm() {
+        var taxName = document.getElementsByName("name")[0].value;
+        var taxPercentage = document.getElementsByName("percentage")[0].value;
+
+        // Check if Tax Name is empty
+        if (taxName.trim() === "") {
+            alert("Tax Name cannot be empty");
+            return false;
+        }
+
+        // Check if Tax Percentage is empty or not a valid number
+        if (taxPercentage.trim() === "" || isNaN(taxPercentage) || parseFloat(taxPercentage) < 0 || parseFloat(taxPercentage) > 100) {
+            alert("Tax Percentage must be a valid number between 0 and 100");
+            return false;
+        }
+
+        // If all validations pass, return true to submit the form
+        return true;
+    }
+</script>
+
 @endsection

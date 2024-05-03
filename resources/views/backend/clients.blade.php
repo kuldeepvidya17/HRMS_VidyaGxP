@@ -173,7 +173,7 @@
 					</div>
 					
 					<div class="submit-section">
-						<button class="btn btn-primary submit-btn">Submit</button>
+						<button class="btn btn-primary submit-btn" onclick="return validateClientForm()" >Submit</button>
 					</div>
 				</form>
 			</div>
@@ -206,4 +206,5 @@
 		})
 	})
 </script>
+
 @endsection

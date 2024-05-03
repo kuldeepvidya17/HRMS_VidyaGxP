@@ -72,11 +72,11 @@
 					@csrf
 					<div class="form-group">
 						<label>Goal Type <span class="text-danger">*</span></label>
-						<input class="form-control" name="type" type="text">
+						<input class="form-control" name="type" type="text" required>
 					</div>
 					<div class="form-group">
 						<label>Description <span class="text-danger">*</span></label>
-						<textarea name="description" class="form-control" rows="4"></textarea>
+						<textarea name="description" class="form-control" rows="4" required></textarea>
 					</div>
 					
 					<div class="submit-section">

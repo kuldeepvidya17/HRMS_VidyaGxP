@@ -78,7 +78,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form enctype="multipart/form-data" method="post" action="{{route('users')}}">
+				<form enctype="multipart/form-data" method="post" action="{{route('users')}}" onclick="return validatePasswords()">
 					@csrf
 					<div class="row">
 						<div class="col-sm-6">
@@ -258,7 +258,23 @@
         }
         return true; // Allow form submission
     }
+
 </script>
+<script>
+    function validatePasswords() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+
+        if (password != confirmPassword) {
+            document.getElementById("passwordMatchError").style.display = "block";
+            return false;
+        } else {
+            document.getElementById("passwordMatchError").style.display = "none";
+            return true;
+        }
+    }
+</script>
+
 @endsection	
 
 

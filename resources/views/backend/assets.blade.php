@@ -75,7 +75,7 @@
 	</div>
 </div>
 <!-- Add Asset Modal -->
-<div id="add_asset" class="modal custom-modal fade" role="dialog">
+<div id="add_asset" class="modal custom-modal fade" role="dialog" onsubmit="return validateForm()">
 	<div class="modal-dialog modal-md" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -90,8 +90,8 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label>Asset Name</label>
-								<input class="form-control" name="name" type="text">
+								<label>Asset Name<span class="text-danger">*</span></label>
+								<input class="form-control" name="name" type="text" required>
 							</div>
 						</div>
 
@@ -99,68 +99,68 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Purchase Date</label>
-								<input class="form-control datetimepicker" name="purchase_date" type="text">
+								<label>Purchase Date<span class="text-danger">*</span></label>
+								<input class="form-control datetimepicker" name="purchase_date" type="text" required>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Purchase From</label>
-								<input class="form-control" name="purchase_from" type="text">
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Manufacturer</label>
-								<input class="form-control" name="manufacturer" type="text">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Model</label>
-								<input class="form-control" name="model" type="text">
+								<label>Purchase From<span class="text-danger">*</span></label>
+								<input class="form-control" name="purchase_from" type="text" required>
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Serial Number</label>
-								<input class="form-control" name="serial_number" type="text">
+								<label>Manufacturer<span class="text-danger">*</span></label>
+								<input class="form-control" name="manufacturer" type="text" required>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Supplier</label>
-								<input class="form-control" name="supplier" type="text">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Condition</label>
-								<input class="form-control" name="condition" type="text">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Warranty</label>
-								<input class="form-control" name="warranty" type="text" placeholder="In Months">
+								<label>Model<span class="text-danger">*</span></label>
+								<input class="form-control" name="model" type="text" required>
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Value</label>
-								<input name="value" placeholder="1800" class="form-control" type="text">
+								<label>Serial Number<span class="text-danger">*</span></label>
+								<input class="form-control" name="serial_number" type="text" required>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label>Status</label>
-								<select name="status" class="select">
+								<label>Supplier<span class="text-danger">*</span></label>
+								<input class="form-control" name="supplier" type="text" required>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Condition<span class="text-danger">*</span></label>
+								<input class="form-control" name="condition" type="text" required>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Warranty<span class="text-danger">*</span></label>
+								<input class="form-control" name="warranty" type="text" placeholder="In Months" required>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Value<span class="text-danger">*</span></label>
+								<input name="value" placeholder="1800" class="form-control" type="text" required>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Status<span class="text-danger">*</span></label>
+								<select name="status" class="select" required>
 									<option>Approved</option>
 									<option>Pending</option>
 									<option>Returned</option>
@@ -169,8 +169,8 @@
 						</div>
 						<div class="col-md-12">
 							<div class="form-group">
-								<label>Description</label>
-								<textarea name="description" class="form-control"></textarea>
+								<label>Description<span class="text-danger">*</span></label>
+								<textarea name="description" class="form-control" required></textarea>
 							</div>
 						</div>
 					</div>
@@ -344,4 +344,18 @@
 			});
 		});
 	</script>
+	<script>
+		function validateForm() {
+			var name = document.forms["assetForm"]["name"].value;
+			var purchaseDate = document.forms["assetForm"]["purchase_date"].value;
+	
+			if (name == "") {
+				alert("Asset Name must be filled out");
+				return false;
+			}
+	
+			return true;
+		}
+	</script>
+	
 @endsection

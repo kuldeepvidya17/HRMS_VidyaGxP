@@ -161,7 +161,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>CC</label>
+                                <label>CC <span class="text-danger">*</span></label>
                                 <input class="form-control" name="cc" type="text" required>
                             </div>
                         </div>
@@ -170,8 +170,8 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Add Followers</label>
-                                <select class="select2" multiple name="followers[]">
+                                <label>Add Followers<span class="text-danger">*</span></label>
+                                <select class="select2" multiple name="followers[]" required>
                                     <option value="null" disabled>-</option>
                                     @foreach (\App\Models\Employee::get() as $employee)
                                         <option value="{{$employee->id}}"> {{$employee->firstname.' '.$employee->lastname}} </option>
@@ -201,8 +201,8 @@
                                 <textarea class="form-control summernote" name="description" required></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Upload Files</label>
-                                <input class="form-control" name="files[]" type="file">
+                                <label>Upload Files<span class="text-danger">*</span></label>
+                                <input class="form-control" name="files[]" type="file" required>
                             </div>
                         </div>
                     </div>
