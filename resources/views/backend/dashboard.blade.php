@@ -243,13 +243,22 @@
                 </div>
 
                 {{-- increase progress bar percentage --}}
-                <?php
-                $complete_percentage = ($complete_task_count / $task_count) * 100;
-                $inprogress_percentage = ($inprogress_task_count / $task_count) * 100;
-                $onhold_percentage = ($onhold_task_count / $task_count) * 100;
-                $pending_percentage = ($pending_task_count / $task_count) * 100;
-                $review_percentage = ($review_task_count / $task_count) * 100;
-                ?>
+                @php
+                    if ($task_count > 0) {
+                    $complete_percentage = ($complete_task_count / $task_count) * 100;
+                    $inprogress_percentage = ($inprogress_task_count / $task_count) * 100;
+                    $onhold_percentage = ($onhold_task_count / $task_count) * 100;
+                    $pending_percentage = ($pending_task_count / $task_count) * 100;
+                    $review_percentage = ($review_task_count / $task_count) * 100;
+                } else {
+                    // Handle the case where $task_count is zero
+                    $complete_percentage = 0;
+                    $inprogress_percentage = 0;
+                    $onhold_percentage = 0;
+                    $pending_percentage = 0;
+                    $review_percentage = 0;
+                }
+                @endphp
 
                 <div class="progress mb-4">
                     <div class="progress-bar bg-purple" role="progressbar" style="width: {{ $complete_percentage }}%" aria-valuenow="{{ $complete_task_count }}" aria-valuemin="0" aria-valuemax="100">{{ $complete_task_count }}%</div>
