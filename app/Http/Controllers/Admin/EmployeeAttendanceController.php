@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\EmployeeAttendance;
 use App\Http\Controllers\Controller;
 use App\Settings\AttendanceSettings;
+use App\Models\IclockTransaction;
 
 class EmployeeAttendanceController extends Controller
 {
@@ -18,8 +19,9 @@ class EmployeeAttendanceController extends Controller
     {
         $title = 'employee attendance';
         $attendances = EmployeeAttendance::latest()->get();
+        $db_attendances = IclockTransaction::get();
         return view('backend.attendance',compact(
-            'title','attendances'
+            'title','attendances', 'db_attendances'
         ));
     }
 

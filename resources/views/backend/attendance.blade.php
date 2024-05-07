@@ -27,9 +27,10 @@
 <div class="row">
 	<div class="col-lg-12">
 		<div class="table-responsive">
-			<table class="table datatable table-striped custom-table mb-0">
+			<table class="table datatable2 table-striped custom-table mb-0">
 				<thead>
 					<tr>
+						<th>ID</th>
 						<th>Employee</th>
 						<th>TimeIn</th>
 						<th>TimeOut</th>
@@ -39,13 +40,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach ($attendances as $attendance) 
+					@foreach ($db_attendances as $attendance) 
 					<tr>
 					   {{-- <td>
 							<h2 class="table-avatar">
 								<a href="#" class="avatar1"><img alt="avatar"  src="{{ !empty($attendance->employee->avatar) ? asset('storage/employees/'.$attendance->employee->avatar): asset('assets/img/profiles/avatar-19.jpg') }}"></a>
 								<a href="#">
-									{{$attendance->employee->firstname.' '. $attendance->employee->lastname}}
+									{{ $attendance->employee->firstname.' '. $attendance->employee->lastname}}
 									@if ($attendance->employee->designation)
 										<span>{{$attendance->employee->designation->name}}</span>
 									@else
@@ -55,7 +56,7 @@
 								
 							</h2>
 						</td> --}}
-						<td>
+						{{-- <td>
 							<h2 class="table-avatar">
 								<a href="#" class="avatar">
 									<img alt="avatar"  src="{{ !empty($attendance->employee->avatar) ? asset('storage/employees/'.$attendance->employee->avatar): asset('assets/img/profiles/avatar-19.jpg') }}">
@@ -66,11 +67,14 @@
 										<span>{{$attendance->employee->designation->name}}</span>
 									@endif
 								</a>
+								<p></p>
 							</h2>
-						</td>
-					   <td>{{date_format(date_create($attendance->checkin),'h:i A')}}</td>
-					   <td>{{!empty($attendance->checkout) ? date_format(date_create($attendance->checkout),'H:i a'): ' '}}</td>
-					   <td>{{date_format(date_create($attendance->created_at),'d M, Y')}}</td>
+						</td> --}}
+					   <td>{{ $attendance->id }}</td>
+					   <td>{{ $attendance->employee ? $attendance->employee->first_name . ' ' . $attendance->employee->last_name : '' }}</td>
+					   <td>{{ $attendance->punch_time ? Carbon\Carbon::parse($attendance->punch_time)->format('d F Y H:i') : '' }}</td>
+					   <td>{{ $attendance->punch_time ? Carbon\Carbon::parse($attendance->punch_time)->format('d F Y H:i') : '' }}</td>
+					   <td>{{ $attendance->punch_time ? Carbon\Carbon::parse($attendance->punch_time)->format('d F Y') : '' }}</td>
 					   {{-- <td>{{$attendance->status}}</td> --}}
 					   <td class="text-end">
 							<div class="dropdown dropdown-action">
@@ -113,6 +117,10 @@
 			$('#edit_checkin').val(checkin);
 			$('#edit_checkout').val(checkout);
 		});
+
+		$('.datatable2').DataTable({
+			"order": [[0, 'desc']]
+		})
 	});
 	</script>
 @endsection
