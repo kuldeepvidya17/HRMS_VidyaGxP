@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Employee;
 use App\Models\Department;
 use App\Models\Designation;
+use App\Models\PersonnelEmployee;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
@@ -23,7 +24,7 @@ class EmployeeController extends Controller
         $designations = Designation::get();
         $departments = Department::get();
         $employees = Employee::with('department','designation')->get();
-        // dd($employees);
+
         return view('backend.employees',
         compact('title','designations','departments','employees'));
     }
@@ -39,8 +40,11 @@ class EmployeeController extends Controller
        $designations = Designation::get();
        $departments = Department::get();
        $employees = Employee::with('department','designation')->get();
+       $dotnet_employees = PersonnelEmployee::get();
+       // dd($employees);
+
        return view('backend.employees-list',
-       compact('title','designations','departments','employees'));
+       compact('title','designations','departments','employees', 'dotnet_employees'));
    }
 
     /**

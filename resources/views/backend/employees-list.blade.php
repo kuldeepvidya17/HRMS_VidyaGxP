@@ -44,18 +44,17 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach ($employees as $employee)
+					@foreach ($dotnet_employees as $employee)
 					<tr>
 						<td>
-							<h2 class="table-avatar">
-								<a href="javascript:void(0)" class="avatar"><img alt="avatar" src="@if(!empty($employee->avatar)) {{asset('storage/employees/'.$employee->avatar)}} @else assets/img/profiles/default.jpg @endif"></a>
-								<a href="javascript:void(0)">{{$employee->firstname}} {{$employee->lastname}}</a>
+							<h2>
+								{{$employee->first_name}} {{$employee->last_name}}
 							</h2>
 						</td>
-						<td>{{$employee->uuid}}</td>
+						<td>{{$employee->emp_code}}</td>
 						<td>{{$employee->email}}</td>
-						<td>{{$employee->phone}}</td>
-						<td>{{date_format(date_create($employee->date_created),"d M,Y")}}</td>
+						<td>{{$employee->mobile}}</td>
+						<td>{{ $employee->hire_date ? Carbon\Carbon::parse($employee->hire_date)->format('d F Y') : '-' }}</td>
 						{{-- <td>
 							{{$employee->designation->name}}
 						</td> --}}
