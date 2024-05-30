@@ -24,9 +24,11 @@ class EmployeeController extends Controller
         $designations = Designation::get();
         $departments = Department::get();
         $employees = Employee::with('department','designation')->get();
+        $dotnet_employees = PersonnelEmployee::get();
+
 
         return view('backend.employees',
-        compact('title','designations','departments','employees'));
+        compact('title','designations','departments','employees', 'dotnet_employees'));
     }
 
     /**

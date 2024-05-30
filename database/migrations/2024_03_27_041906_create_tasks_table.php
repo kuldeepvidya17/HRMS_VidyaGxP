@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('task_description');
             $table->date('task_deadline');
             $table->string('task_priority');
+            $table->string('status');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -12,4 +12,9 @@ class PersonnelEmployee extends Model
     protected $connection = "dotnetDB";
 
     protected $table = "personnel_employee";
+
+    public function department()
+    {
+        return $this->belongsTo(PersonnelDepartment::class, 'department_id');
+    }
 }

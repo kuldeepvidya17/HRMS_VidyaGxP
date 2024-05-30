@@ -24,7 +24,7 @@
                     <a href="#" class="{{ route_is(['employees','employees-list']) ? 'active' : '' }} noti-dot"><i
                             class="la la-user"></i> <span> Employees</span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
-                        <li><a class="{{ route_is('employees') ? 'active' : '' }}" href="{{route('employees')}}">All
+                        <li><a class="{{ route_is('employees-list') ? 'active' : '' }}" href="{{route('employees-list')}}">All
                                 Employees</a></li>
 
 
