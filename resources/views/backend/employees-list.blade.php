@@ -31,7 +31,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="table-responsive">
-			<table class="table table-striped custom-table datatable">
+			<table class="table table-striped custom-table datatable2">
 				<thead>
 					<tr>
 						<th>Name</th>
@@ -59,8 +59,8 @@
 							{{$employee->designation->name}}
 						</td> --}}
 						<td>
-						    @if ($employee->designation)
-						        {{$employee->designation->name}}
+						    @if ($employee->department)
+						        {{ $employee->department->dept_name }}
 						    @else
 						        No Designation
 						    @endif
@@ -371,7 +371,12 @@
 			$('.edit_department').val(department.id);
 			$('.edit_avatar').val(avatar);
 		})
+
+		$('.datatable2').DataTable({
+			"order": [[1, 'asc']]
+		})
 	})
+
 </script>
 
 @endsection

@@ -35,57 +35,21 @@
 						<th>TimeIn</th>
 						<th>TimeOut</th>
 						<th>Date</th>
-						{{-- <th>Status</th> --}}
+						<th>Hours</th>
 						<th class="text-end">Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					@foreach ($db_attendances as $attendance) 
-					<tr>
-					   {{-- <td>
-							<h2 class="table-avatar">
-								<a href="#" class="avatar1"><img alt="avatar"  src="{{ !empty($attendance->employee->avatar) ? asset('storage/employees/'.$attendance->employee->avatar): asset('assets/img/profiles/avatar-19.jpg') }}"></a>
-								<a href="#">
-									{{ $attendance->employee->firstname.' '. $attendance->employee->lastname}}
-									@if ($attendance->employee->designation)
-										<span>{{$attendance->employee->designation->name}}</span>
-									@else
-										<span>No Designation</span>
-									@endif
-								</a>
-								
-							</h2>
-						</td> --}}
-						{{-- <td>
-							<h2 class="table-avatar">
-								<a href="#" class="avatar">
-									<img alt="avatar"  src="{{ !empty($attendance->employee->avatar) ? asset('storage/employees/'.$attendance->employee->avatar): asset('assets/img/profiles/avatar-19.jpg') }}">
-								</a>
-								<a href="#">
-									{{$attendance->employee->firstname.' '. $attendance->employee->lastname}}
-									@if (!empty($attendance->employee->designation))
-										<span>{{$attendance->employee->designation->name}}</span>
-									@endif
-								</a>
-								<p></p>
-							</h2>
-						</td> --}}
-					   <td>{{ $attendance->id }}</td>
-					   <td>{{ $attendance->employee ? $attendance->employee->first_name . ' ' . $attendance->employee->last_name : '' }}</td>
-					   <td>{{ $attendance->punch_time ? Carbon\Carbon::parse($attendance->punch_time)->format('d F Y H:i') : '' }}</td>
-					   <td>{{ $attendance->punch_time ? Carbon\Carbon::parse($attendance->punch_time)->format('d F Y H:i') : '' }}</td>
-					   <td>{{ $attendance->punch_time ? Carbon\Carbon::parse($attendance->punch_time)->format('d F Y') : '' }}</td>
-					   {{-- <td>{{$attendance->status}}</td> --}}
-					   <td class="text-end">
-							<div class="dropdown dropdown-action">
-								<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-								<div class="dropdown-menu dropdown-menu-right">
-									<a class="dropdown-item editbtn" href="javascript:void(0)" data-id="{{$attendance->id}}" data-checkin="{{$attendance->checkin}}" data-checkout="{{$attendance->checkout}}" data-employee="{{$attendance->employee_id}}"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-									<a class="dropdown-item deletebtn" href="javascript:void(0)" data-id="{{$attendance->id}}"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-								</div>
-							</div>
-						</td>
-					</tr>
+					@foreach ($db_attendances as $attendance)
+						<tr>
+							<td>{{ $loop->index + 1 }}</td>
+							<td>{{ get_employee_by_code($attendance->emp_code) }}</td>
+							<td>{{ format_date($attendance->check_in, 'd M Y g:iA') }}</td>
+							<td>{{ format_date($attendance->check_out, 'd M Y g:iA') }}</td>
+							<td>{{ format_date($attendance->check_in, 'l, d M Y') }}</td>
+							<td>{{ get_hours($attendance->check_in, $attendance->check_out, $attendance->emp_code) }}</td>
+							<td>-</td>
+						</tr>
 					@endforeach
 				</tbody>
 			</table>
@@ -119,7 +83,8 @@
 		});
 
 		$('.datatable2').DataTable({
-			"order": [[0, 'desc']]
+			//"order": [[0, 'desc']]
+			"ordering": false
 		})
 	});
 	</script>

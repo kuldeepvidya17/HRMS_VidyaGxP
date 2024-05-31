@@ -17,8 +17,8 @@
 	<div class="col-auto float-right ml-auto">
 		<a href="javascript:void(0)" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
 		<div class="view-icons">
-			<a href="{{route('employees')}}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
-			<a href="{{route('employees-list')}}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
+			<a href="{{route('employees')}}" class="grid-view btn btn-link"><i class="fa fa-th"></i></a>
+			<a href="{{route('employees-list')}}" class="list-view btn btn-link active"><i class="fa fa-bars"></i></a>
 		</div>
 	</div>
 </div>
@@ -28,24 +28,24 @@
 
 
 <div class="row staff-grid-row">
-	@if (!empty($employees->count()))
-		@foreach ($employees as $employee)
+	@if (!empty($dotnet_employees->count()))
+		@foreach ($dotnet_employees as $employee)
     <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
         <div class="profile-widget">
             <div class="profile-img">
                 <a href="javascript:void(0)" class="avatar">
-                    <img alt="avatar" src="@if(!empty($employee->avatar)) {{asset('storage/employees/'.$employee->avatar)}} @else assets/img/profiles/default.jpg @endif">
+                    <img alt="avatar" src="{{ $employee->photo ? 'http://13.210.213.33:8085/files/'. $employee->photo : 'assets/img/profiles/default.jpg' }}">
                 </a>
             </div>
             <div class="dropdown profile-action">
                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a data-id="{{$employee->id}}" data-firstname="{{$employee->firstname}}" data-lastname="{{$employee->lastname}}" data-email="{{$employee->email}}" data-phone="{{$employee->phone}}" data-avatar="{{$employee->avatar}}" data-company="{{$employee->company}}" data-designation="{{$employee->designation ? $employee->designation->id : ''}}" data-department="{{$employee->department ? $employee->department->id : ''}}" class="dropdown-item editbtn" href="javascript:void(0)" data-toggle="modal"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                    <a data-id="{{$employee->id}}" data-firstname="{{$employee->first_name}}" data-lastname="{{$employee->last_name}}" data-email="{{$employee->email}}" data-phone="{{$employee->phone}}" data-avatar="{{$employee->avatar}}" data-company="{{$employee->company}}" data-designation="{{$employee->designation ? $employee->designation->id : ''}}" data-department="{{$employee->department ? $employee->department->id : ''}}" class="dropdown-item editbtn" href="javascript:void(0)" data-toggle="modal"><i class="fa fa-pencil m-r-5"></i> Edit</a>
                     <a data-id="{{$employee->id}}" class="dropdown-item deletebtn" href="javascript:void(0)" data-toggle="modal" ><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                 </div>
             </div>
-            <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="javascript:void(0)">{{$employee->firstname}} {{$employee->lastname}}</a></h4>
-            <h5 class="user-name m-t-10 mb-0 text-ellipsis"><a href="javascript:void(0)">{{$employee->designation ? $employee->designation->name : 'No Designation'}}</a></h5>
+            <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="javascript:void(0)">{{$employee->first_name}} {{$employee->last_name}}</a></h4>
+            <h5 class="user-name m-t-10 mb-0 text-ellipsis"><a href="javascript:void(0)">{{$employee->department ? $employee->department->dept_name : 'No Designation'}}</a></h5>
         </div>
     </div>
 @endforeach
