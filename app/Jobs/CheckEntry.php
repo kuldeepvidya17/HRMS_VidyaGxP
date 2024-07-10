@@ -30,7 +30,7 @@ class CheckEntry implements ShouldQueue
      */
     public function handle(): void
     {
-        $entered_employees = IclockTransaction::whereDate('punch_time', Carbon::today())->where('punch_state', 1)->select('emp_code')->distinct()->get();
+        $entered_employees = IclockTransaction::whereDate('punch_time', Carbon::today())->where('punch_state', 0)->select('emp_code')->distinct()->get();
 
         $max_allowed_time = Carbon::today()->setTime(9, 10, 0);
 
@@ -41,20 +41,25 @@ class CheckEntry implements ShouldQueue
             $first_punch_in = IclockTransaction::whereDate('punch_time', Carbon::today())
                                 ->where([
                                     'emp_code' => $employee->emp_code,
-                                    'punch_state' => 1
+                                    'punch_state' => 0
                                 ])->first();
 
             $punch_time = Carbon::parse($first_punch_in->punch_time);
 
             if ($punch_time->gt($max_allowed_time))
             {
+                info('late entry', [$employee->first_name]);
                 $late_entry_mail_sent = LateEntryNotice::whereDate('created_at', today())->where('emp_code', $employee->emp_code)->first();
                 if (!$late_entry_mail_sent)
                 {
                     $notice = new LateEntryNotice();
                     $notice->emp_code = $employee->emp_code;
                     $notice->save();
-                    Mail::to($first_punch_in->employee->email)->send(new LateEntry($first_punch_in->employee->first_name));
+                    try {
+                        Mail::to($first_punch_in->employee->email)->send(new LateEntry($first_punch_in->employee->first_name));
+                    } catch (\Exception $e) {
+                        info('error sending late entry mail', [$employee]);
+                    }
                 }
             }
         }

@@ -40,7 +40,7 @@
         <div class="content">
             <p>Dear {{ $name }},</p>
 
-            <p>We have noticed that you were not present to the company today. As stated in our company attendance policy, your salary for today leave will be automatically be deducted.</p>
+            <p>We have noticed that you were not present to the company today. As stated in our company attendance policy.</p>
             
             <p>Thank you for your cooperation.</p>
 
