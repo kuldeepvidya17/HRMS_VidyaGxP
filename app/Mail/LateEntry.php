@@ -14,13 +14,15 @@ class LateEntry extends Mailable
     use Queueable, SerializesModels;
 
     public $name;
+    public $punch_time;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($name)
+    public function __construct($name, $punch_time)
     {
         $this->name = $name;
+        $this->punch_time = $punch_time;
     }
 
     /**

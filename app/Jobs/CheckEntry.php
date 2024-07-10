@@ -56,7 +56,7 @@ class CheckEntry implements ShouldQueue
                     $notice->emp_code = $employee->emp_code;
                     $notice->save();
                     try {
-                        Mail::to($first_punch_in->employee->email)->send(new LateEntry($first_punch_in->employee->first_name));
+                        Mail::to($first_punch_in->employee->email)->send(new LateEntry($first_punch_in->employee->first_name, $punch_time->format('g:i A - d M Y')));
                     } catch (\Exception $e) {
                         info('error sending late entry mail', [$employee]);
                     }

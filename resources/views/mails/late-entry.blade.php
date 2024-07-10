@@ -42,6 +42,11 @@
 
             <p>We have noticed that your recent attendance records shows late arrival to work. As stated in our company attendance policy, punctuality is essential for maintaining efficiency and effectiveness in our operations.</p>
 
+
+            <ul>
+                <li>Your Entry Time: {{ $punch_time }}</li>
+            </ul>
+
             <p>Please be reminded that continual late entries are recorded and may impact performance reviews and potential raises or promotions. We understand that unexpected delays can occur and are willing to support you in finding solutions if there are specific challenges you're facing.</p>
 
             <p>We expect all employees to adhere to the set work schedules, and we appreciate your immediate attention to this matter. Please consult your manager or HR department if you have any concerns or require assistance regarding this issue.</p>
