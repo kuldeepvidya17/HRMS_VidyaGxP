@@ -37,6 +37,7 @@
                         <th>Purchased By</th>
                         <th>Amount</th>
                         <th>Paid By</th>
+                        <th>Attachment</th>
                         <th class="text-center">Status</th>
                         <th class="text-end">Actions</th>
                     </tr>
@@ -57,6 +58,9 @@
                         </td>
                         <td>{{app(app\Settings\ThemeSettings::class)->currency_symbol.' '.$expense->amount}}</td>
                         <td>{{$expense->payment_method}}</td>
+                        <td>
+                            <a href="{{ asset('storage/expenses/' . $expense->file) }}" target="_blank">View</a>
+                        </td>
                         <td class="text-center">
                             {{$expense->status}}
                         </td>
