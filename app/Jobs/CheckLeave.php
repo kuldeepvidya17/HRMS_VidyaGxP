@@ -32,26 +32,33 @@ class CheckLeave implements ShouldQueue
     {
         $employees = PersonnelEmployee::get();
 
-        foreach ($employees as $employee)
-        {
-            $transaction_entry = IclockTransaction::whereDate('punch_time', today())->where('emp_code', $employee->emp_code)->first();
+        $is_sunday = today()->format('D') == 'Sun';
 
-            if (!$transaction_entry)
+        if (!$is_sunday) 
+        {
+            foreach ($employees as $employee)
             {
-                $emp_leave_record = EmployeeLeave::whereDate('created_at', today())->where('emp_code', $employee->emp_code)->first();
-                if (!$emp_leave_record)
+                $transaction_entry = IclockTransaction::whereDate('punch_time', today())->where('emp_code', $employee->emp_code)->first();
+    
+                if (!$transaction_entry)
                 {
-                    $leave_record = new EmployeeLeave();
-                    $leave_record->emp_code = $employee->emp_code;
-                    $leave_record->save();
-                    try{
-                        Mail::to($employee->email)->send(new LeaveMail($employee->first_name));
-                    } catch (\Exception $e)
+                    $emp_leave_record = EmployeeLeave::whereDate('created_at', today())->where('emp_code', $employee->emp_code)->first();
+                    if (!$emp_leave_record)
                     {
-                        info($e->getMessage());
+                        $leave_record = new EmployeeLeave();
+                        $leave_record->emp_code = $employee->emp_code;
+                        $leave_record->save();
+                        try{
+                            Mail::to($employee->email)->send(new LeaveMail($employee->first_name));
+                        } catch (\Exception $e)
+                        {
+                            info($e->getMessage());
+                        }
                     }
                 }
             }
         }
+
+        
     }
 }
