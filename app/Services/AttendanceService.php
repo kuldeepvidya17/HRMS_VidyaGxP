@@ -65,7 +65,7 @@ class AttendanceService
 
             }
 
-            Mail::to('admin@vidyagxp.com')->cc(['amit.g@vidyagxp.com'])->send(new DailyReport($reports));
+            Mail::to('admin@vidyagxp.com')->cc(['anshul.patel@vidyagxp.com'])->send(new DailyReport($reports));
         }
 
         return count($reports) . ' Reports Sent';
