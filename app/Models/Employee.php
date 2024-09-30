@@ -16,6 +16,25 @@ class Employee extends Model
         'firstname','lastname','uuid',
         'email','phone',
         'department_id','designation_id','company','avatar',
+        'Employee_id',
+        'position',
+        'area',
+        'employee_type',
+        'date_of_joining',
+        'aadhaar_no',
+        'passport_no',
+        'contact_no',
+        'card_no',
+        'permanent_address',
+        'birthday',
+        'nick_name',
+        'office_tel',
+        'religion',
+        'Pincode',
+        'gender',
+        'Motorcycle_lic',
+        'autoMobil_license',
+        'city'
     ];
 
 

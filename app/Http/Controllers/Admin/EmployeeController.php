@@ -80,6 +80,25 @@ class EmployeeController extends Controller
         'department_id' => $request->department,
         'designation_id' => $request->designation,
         'avatar' => $imageName,
+        'Employee_id' => $request->Employee_id,
+            'position' => $request->position,
+            'area' => $request->area,
+            'employee_type' => $request->employee_type,
+            'date_of_joining' => $request->date_of_joining,
+            'aadhaar_no' => $request->aadhaar_no,
+            'passport_no' => $request->passport_no,
+            'contact_no' => $request->contact_no,
+            'card_no' => $request->card_no,
+            'permanent_address' => $request->permanent_address,
+            'birthday' => $request->birthday,
+            'nick_name' => $request->nick_name,
+            'office_tel' => $request->office_tel,
+            'religion' => $request->religion,
+            'Pincode' => $request->Pincode,
+            'gender' => $request->gender,
+            'Motorcycle_lic' => $request->Motorcycle_lic,
+            'autoMobil_license' => $request->autoMobil_license,
+            'city' => $request->city,
     ]);
 
     if ($employee) {
@@ -183,6 +202,26 @@ class EmployeeController extends Controller
     $employee->company = $request->company;
     $employee->department_id = $request->department_id;
     $employee->designation_id = $request->designation_id;
+
+    $employee->Employee_id = $request->Employee_id;
+    $employee->position = $request->position;
+    $employee->area = $request->area;
+    $employee->employee_type = $request->employee_type;
+    $employee->date_of_joining = $request->date_of_joining;
+    $employee->aadhaar_no = $request->aadhaar_no;
+    $employee->passport_no = $request->passport_no;
+    $employee->contact_no = $request->contact_no;
+    $employee->card_no = $request->card_no;
+    $employee->permanent_address = $request->permanent_address;
+    $employee->birthday = $request->birthday;
+    $employee->nick_name = $request->nick_name;
+    $employee->office_tel = $request->office_tel;
+    $employee->religion = $request->religion;
+    $employee->Pincode = $request->Pincode;
+    $employee->gender = $request->gender;
+    $employee->Motorcycle_lic = $request->Motorcycle_lic;
+    $employee->autoMobil_license = $request->autoMobil_license;
+    $employee->city = $request->city;
 
     if ($employee->save()) {
         storeActivityLog($userId=1, $action='Update', $description=$request->firstname.' '.$request->lastname, $moduleName='Employee', $moduleId=$request->id ,$status='Employee has been updated');
