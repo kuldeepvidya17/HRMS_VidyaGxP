@@ -40,7 +40,7 @@
             <div class="dropdown profile-action">
                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a data-id="{{$employee->id}}"  data-employee_id="{{$employee->Employee_id}}"  data-firstname="{{$employee->firstname}}" data-position="{{$employee->position}}" data-area="{{$employee->area}}"     data-employee_type="{{ $employee->employee_type }}"
+                    <a data-id="{{$employee->id}}"  data-employee_id="{{$employee->Employee_id}}"  data-firstname="{{$employee->firstname}}" data-position="{{$employee->position}}" data-empsalary="{{$employee->empsalary}}" data-reporting_manager="{{$employee->reporting_manager}}" data-area="{{$employee->area}}"     data-employee_type="{{ $employee->employee_type }}"
                         data-date_of_joining="{{ $employee->date_of_joining }}"
                         data-aadhaar_no="{{ $employee->aadhaar_no }}"
                         data-passport_no="{{ $employee->passport_no }}"
@@ -132,16 +132,33 @@
 						</div>
                         <div class="col-sm-6">
 							<div class="form-group">
+								<label class="col-form-label">Salary<span class="text-danger">*</span></label>
+								<input type="text" class="form-control" name="empsalary">
+							</div>
+						</div> 
+                        <div class="col-sm-6">
+							<div class="form-group">
+								<label class="col-form-label">Reporting Manager<span class="text-danger">*</span></label>
+								<input type="text" class="form-control" name="reporting_manager">
+							</div>
+						</div> 
+                        <div class="col-sm-6">
+							<div class="form-group">
 								<label class="col-form-label">Area<span class="text-danger">*</span></label>
 								<input type="text" class="form-control" name="area">
 							</div>
 						</div>
                         <div class="col-sm-6">
-							<div class="form-group">
-								<label class="col-form-label">Employee Type</label>
-								<input type="text" class="form-control" name="employee_type">
-							</div>
-						</div>
+                            <div class="form-group">
+                                <label class="col-form-label">Employee Type</label>
+                                <select name="employee_type" class="form-control" id="">
+                                    <option value="">-- Select --</option>
+                                    <option value="permanent">Permanent</option>
+                                    <option value="temporary">Temporary</option>
+                                </select>
+                            </div>
+                        </div>
+                        
                         <div class="col-sm-6">
 							<div class="form-group">
 								<label class="col-form-label">Date of Joining</label>
@@ -185,7 +202,7 @@
                         <div class="col-sm-6">
 							<div class="form-group">
 								<label class="col-form-label">Passport No</label>
-								<input type="text" class="form-control" name="aadhaar_no">
+								<input type="text" class="form-control" name="passport_no">
 							</div>
 						</div>
                         <div class="col-sm-6">
@@ -203,7 +220,7 @@
                         <div class="col-sm-6">
 							<div class="form-group">
 								<label class="col-form-label">Permanent Address</label>
-								<input type="text" class="form-control" name="permanent_no">
+								<input type="text" class="form-control" name="permanent_address">
 							</div>
 						</div>
                         <div class="col-sm-6">
@@ -215,7 +232,7 @@
                         <div class="col-sm-6">
 							<div class="form-group">
 								<label class="col-form-label">Nick Name</label>
-								<input type="text" class="form-control" name="permanent_no">
+								<input type="text" class="form-control" name="nick_name">
 							</div>
 						</div>
                       
@@ -341,6 +358,18 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
+                                <label class="col-form-label">Salary<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control edit_empsalary" name="empsalary" value="{{ $employee->empsalary}}">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Reporting Manager<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control edit_reporting_manager" name="reporting_manager" value="{{ $employee->reporting_manager}}">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
                                 <label class="col-form-label">Area<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control edit_area" name="area" value="{{ $employee->area }}">
                             </div>
@@ -366,22 +395,30 @@
                                 <select name="department_id" class="select" id="edit_department">
                                     <option>Select Department</option>
                                     @foreach ($departments as $department)
-                                        <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                        <option value="{{ $department->id }}" 
+                                                @if ($employee->department_id == $department->id) selected @endif>
+                                            {{ $department->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
+                        
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Designation <span class="text-danger">*</span></label>
                                 <select name="designation_id" class="select" id="edit_designation">
                                     <option>Select Designation</option>
                                     @foreach ($designations as $designation)
-                                        <option value="{{ $designation->id }}">{{ $designation->name }}</option>
+                                        <option value="{{ $designation->id }}" 
+                                                @if ($employee->designation_id == $designation->id) selected @endif>
+                                            {{ $designation->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
+                        
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-form-label">Employee Picture<span class="text-danger">*</span></label>
@@ -546,23 +583,25 @@
             var department = $(this).data('department');
             var designation = $(this).data('designation');
             var position = $(this).data('edit_position');
+            var empsalary = $(this).data('edit_empsalary');
+            var reporting_manager = $(this).data('edit_reporting_manager');
             var area = $(this).data('edit_area');
             var employee_type = $(this).data('employee_type');
-        var date_of_joining = $(this).data('date_of_joining');
-        var aadhaar_no = $(this).data('aadhaar_no');
-        var passport_no = $(this).data('passport_no');
-        var contact_no = $(this).data('contact_no');
-        var card_no = $(this).data('card_no');
-        var permanent_address = $(this).data('permanent_address');
-        var birthday = $(this).data('birthday');
-        var nick_name = $(this).data('nick_name');
-        var office_tel = $(this).data('office_tel');
-        var religion = $(this).data('religion');
-        var pincode = $(this).data('pincode');
-        var gender = $(this).data('gender');
-        var motorcycle_lic = $(this).data('motorcycle_lic');
-        var automobil_license = $(this).data('automobil_license');
-        var city = $(this).data('city');
+            var date_of_joining = $(this).data('date_of_joining');
+            var aadhaar_no = $(this).data('aadhaar_no');
+            var passport_no = $(this).data('passport_no');
+            var contact_no = $(this).data('contact_no');
+            var card_no = $(this).data('card_no');
+            var permanent_address = $(this).data('permanent_address');
+            var birthday = $(this).data('birthday');
+            var nick_name = $(this).data('nick_name');
+            var office_tel = $(this).data('office_tel');
+            var religion = $(this).data('religion');
+            var pincode = $(this).data('pincode');
+            var gender = $(this).data('gender');
+            var motorcycle_lic = $(this).data('motorcycle_lic');
+            var automobil_license = $(this).data('automobil_license');
+            var city = $(this).data('city');
 
             // Assuming avatar is already shown in the UI
             $('#edit_id').val(id);
@@ -575,23 +614,25 @@
             $('#edit_department').val(department);
             $('#edit_designation').val(designation);
             $('#edit_position').val(position);
+            $('#edit_empsalary').val(empsalary);
+            $('#edit_reporting_manager').val(reporting_manager);
             $('#edit_area').val(area);
             $('#edit_employee_type').val(employee_type);
-        $('#edit_date_of_joining').val(date_of_joining);
-        $('#edit_aadhaar_no').val(aadhaar_no);
-        $('#edit_passport_no').val(passport_no);
-        $('#edit_contact_no').val(contact_no);
-        $('#edit_card_no').val(card_no);
-        $('#edit_permanent_address').val(permanent_address);
-        $('#edit_birthday').val(birthday);
-        $('#edit_nick_name').val(nick_name);
-        $('#edit_office_tel').val(office_tel);
-        $('#edit_religion').val(religion);
-        $('#edit_pincode').val(pincode);
-        $('#edit_gender').val(gender);
-        $('#edit_motorcycle_lic').val(motorcycle_lic);
-        $('#edit_automobil_license').val(automobil_license);
-        $('#edit_city').val(city);
+            $('#edit_date_of_joining').val(date_of_joining);
+            $('#edit_aadhaar_no').val(aadhaar_no);
+            $('#edit_passport_no').val(passport_no);
+            $('#edit_contact_no').val(contact_no);
+            $('#edit_card_no').val(card_no);
+            $('#edit_permanent_address').val(permanent_address);
+            $('#edit_birthday').val(birthday);
+            $('#edit_nick_name').val(nick_name);
+            $('#edit_office_tel').val(office_tel);
+            $('#edit_religion').val(religion);
+            $('#edit_pincode').val(pincode);
+            $('#edit_gender').val(gender);
+            $('#edit_motorcycle_lic').val(motorcycle_lic);
+            $('#edit_automobil_license').val(automobil_license);
+            $('#edit_city').val(city);
             // You can't set the value of a file input programmatically due to security reasons
         });
     });

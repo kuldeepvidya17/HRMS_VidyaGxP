@@ -82,6 +82,8 @@ class EmployeeController extends Controller
         'avatar' => $imageName,
         'Employee_id' => $request->Employee_id,
             'position' => $request->position,
+            'empsalary' => $request->empsalary,
+            'reporting_manager' => $request->reporting_manager,
             'area' => $request->area,
             'employee_type' => $request->employee_type,
             'date_of_joining' => $request->date_of_joining,
@@ -205,6 +207,8 @@ class EmployeeController extends Controller
 
     $employee->Employee_id = $request->Employee_id;
     $employee->position = $request->position;
+    $employee->empsalary = $request->empsalary;
+    $employee->reporting_manager = $request->reporting_manager;
     $employee->area = $request->area;
     $employee->employee_type = $request->employee_type;
     $employee->date_of_joining = $request->date_of_joining;

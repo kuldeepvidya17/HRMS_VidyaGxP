@@ -18,6 +18,8 @@ class Employee extends Model
         'department_id','designation_id','company','avatar',
         'Employee_id',
         'position',
+        'empsalary',
+        'reporting_manager',
         'area',
         'employee_type',
         'date_of_joining',
