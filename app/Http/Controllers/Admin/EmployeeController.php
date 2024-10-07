@@ -21,8 +21,9 @@ class EmployeeController extends Controller
     {
         $title="employees";
         $designations = Designation::get();
+        
         $departments = Department::get();
-        $employees = Employee::with('department','designation')->get();
+        $employees = Employee::with('department','designation',)->get();
         // dd($employees);
         return view('backend.employees',
         compact('title','designations','departments','employees'));
@@ -250,4 +251,25 @@ class EmployeeController extends Controller
 
         return back()->with('success',"Employee has been deleted");
     }
+
+    public function filterEmployees(Request $request)
+    {
+        // Start query to fetch employees
+        $query = Employee::query();
+    
+        // Apply filter by designation if selected
+        if ($request->has('designation') && $request->designation != '') {
+            $query->where('designation_id', $request->designation);
+        }
+    
+        // Fetch the filtered employees
+        $employees = $query->get();
+    
+        // Fetch all designations for the filter dropdown
+        $designations = Designation::all();
+    
+        // Return the view with employees and designations
+        return view('backend.filteremployees', compact('employees', 'designations'));
+    }
+
 }

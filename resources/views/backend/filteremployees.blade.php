@@ -43,7 +43,7 @@
                     <img alt="avatar" src="@if(!empty($employee->avatar)) {{asset('storage/employees/'.$employee->avatar)}} @else assets/img/profiles/default.jpg @endif">
                 </a>
             </div>
-            <div class="dropdown profile-action">
+            {{-- <div class="dropdown profile-action">
                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a data-id="{{$employee->id}}"  data-employee_id="{{$employee->Employee_id}}"  data-firstname="{{$employee->firstname}}"  data-empsalary="{{$employee->empsalary}}" data-reporting_manager="{{$employee->reporting_manager}}" data-area="{{$employee->area}}"     data-employee_type="{{ $employee->employee_type }}"
@@ -64,7 +64,7 @@
                         data-city="{{ $employee->city }}"  data-lastname="{{$employee->lastname}}" data-email="{{$employee->email}}" data-phone="{{$employee->phone}}" data-avatar="{{$employee->avatar}}" data-company="{{$employee->company}}" data-designation="{{$employee->designation ? $employee->designation->id : ''}}" data-department="{{$employee->department ? $employee->department->id : ''}}" class="dropdown-item editbtn" href="javascript:void(0)" data-toggle="modal"><i class="fa fa-pencil m-r-5"></i> Edit</a>
                     <a data-id="{{$employee->id}}" class="dropdown-item deletebtn" href="javascript:void(0)" data-toggle="modal" ><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                 </div>
-            </div>
+            </div> --}}
             <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="javascript:void(0)">{{$employee->firstname}} {{$employee->lastname}}</a></h4>
             <h5 class="user-name m-t-10 mb-0 text-ellipsis"><a href="javascript:void(0)">{{$employee->designation ? $employee->designation->name : 'No Designation'}}</a></h5>
         </div>
@@ -110,7 +110,33 @@
     </div>
 </div>
 
-
+{{-- <!-- Employee Display Section -->
+<div class="row staff-grid-row">
+    @if($employees->count())
+        @foreach($employees as $employee)
+        <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
+            <div class="profile-widget">
+                <div class="profile-img">
+                    <a href="javascript:void(0)" class="avatar">
+                        <img alt="avatar" src="@if(!empty($employee->avatar)) {{asset('storage/employees/'.$employee->avatar)}} @else assets/img/profiles/default.jpg @endif">
+                    </a>
+                </div>
+                <div class="dropdown profile-action">
+                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a data-id="{{$employee->id}}" class="dropdown-item editbtn" href="javascript:void(0)" data-toggle="modal"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                        <a data-id="{{$employee->id}}" class="dropdown-item deletebtn" href="javascript:void(0)" data-toggle="modal"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                    </div>
+                </div>
+                <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="javascript:void(0)">{{ $employee->firstname }} {{ $employee->lastname }}</a></h4>
+                <h5 class="user-name m-t-10 mb-0 text-ellipsis"><a href="javascript:void(0)">{{ $employee->designation ? $employee->designation->name : 'No Designation' }}</a></h5>
+            </div>
+        </div>
+        @endforeach
+    @else
+        <p>No employees found with the selected filters.</p>
+    @endif
+</div> --}}
 
 <!-- Add Employee Modal -->
 <div id="add_employee" class="modal custom-modal fade" role="dialog">
@@ -210,6 +236,9 @@
 								<label>Department </label>
 								<select name="department" class="select">
 									<option>Select Department</option>
+                                    @php
+                                        $departments=DB::table('departments')->get();
+                                    @endphp
 									@foreach ($departments as $department)
 										<option value="{{$department->id}}">{{$department->name}}</option>
 									@endforeach
@@ -253,7 +282,7 @@
 						</div>
                         <div class="col-sm-6">
 							<div class="form-group">
-								<label class="col-form-label">Id No</label>
+								<label class="col-form-label">Card No</label>
 								<input type="text" class="form-control" name="card_no">
 							</div>
 						</div>
@@ -418,15 +447,15 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">Employee Type</label>
-                                {{-- @php
+                                @php
                                     // Fetch the employee type for the current employee
                                     
                                     $employee = DB::table('employees')->where('id', $employee->id)->first();
-                                @endphp --}}
+                                @endphp
                                 <select name="employee_type" id="">
                                     <option value="">-- Select --</option>
-                                    <option value="permanent" >Permanent</option>
-                                    <option value="temporary" >Temporary</option>
+                                    <option value="permanent" {{ isset($employee->employee_type) && $employee->employee_type == 'permanent' ? 'selected' : '' }}>Permanent</option>
+                                    <option value="temporary" {{ isset($employee->employee_type) && $employee->employee_type == 'temporary' ? 'selected' : '' }}>Temporary</option>
                                 </select>
                             </div>
                         </div>
@@ -444,13 +473,12 @@
                                 <label>Department <span class="text-danger">*</span></label>
                                 <select name="department_id" class="select" id="edit_department">
                                     <option>Select Department</option>
-                                    {{-- @foreach ($departments as $department)
+                                    @foreach ($departments as $department)
                                         <option value="{{ $department->id }}" 
                                                 @if ($employee->department_id == $department->id) selected @endif>
                                             {{ $department->name }}
                                         </option>
-                                    @endforeach --}}
-                                    <option value=""></option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -460,13 +488,12 @@
                                 <label>Designation <span class="text-danger">*</span></label>
                                 <select name="designation_id" class="select" id="edit_designation">
                                     <option>Select Designation</option>
-                                    {{-- @foreach ($designations as $designation)
+                                    @foreach ($designations as $designation)
                                         <option value="{{ $designation->id }}" 
                                                 @if ($employee->designation_id == $designation->id) selected @endif>
                                             {{ $designation->name }}
                                         </option>
-                                    @endforeach --}}
-                                    <option value=""></option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -480,70 +507,70 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">Aadhaar No</label>
-                                <input type="text" class="form-control edit_aadhaar_no" name="aadhaar_no">
+                                <input type="text" class="form-control edit_aadhaar_no" name="aadhaar_no" value="{{ $employee->aadhaar_no }}">
                             </div>
                         </div>
                         
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">Passport No</label>
-                                <input type="text" class="form-control edit_passport_no" name="passport_no" >
+                                <input type="text" class="form-control edit_passport_no" name="passport_no" value="{{ $employee->passport_no }}">
                             </div>
                         </div>
                         
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">Contact No</label>
-                                <input type="text" class="form-control edit_contact_no" name="contact_no" >
+                                <input type="text" class="form-control edit_contact_no" name="contact_no" value="{{ $employee->contact_no }}">
                             </div>
                         </div>
                         
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="col-form-label">Id No</label>
-                                <input type="text" class="form-control edit_card_no" name="card_no" >
+                                <label class="col-form-label">Card No</label>
+                                <input type="text" class="form-control edit_card_no" name="card_no" value="{{ $employee->card_no }}">
                             </div>
                         </div>
                         
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">Permanent Address</label>
-                                <input type="text" class="form-control edit_permanent_address" name="permanent_address" >
+                                <input type="text" class="form-control edit_permanent_address" name="permanent_address" value="{{ $employee->permanent_address }}">
                             </div>
                         </div>
                         
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">Birthday</label>
-                                <input type="date" class="form-control edit_birthday" name="birthday" >
+                                <input type="date" class="form-control edit_birthday" name="birthday" value="{{ $employee->birthday }}">
                             </div>
                         </div>
                         
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">Nick Name</label>
-                                <input type="text" class="form-control edit_nick_name" name="nick_name" >
+                                <input type="text" class="form-control edit_nick_name" name="nick_name" value="{{ $employee->nick_name }}">
                             </div>
                         </div>
                         
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">Office Tel</label>
-                                <input type="text" class="form-control edit_office_tel" name="office_tel" >
+                                <input type="text" class="form-control edit_office_tel" name="office_tel" value="{{ $employee->office_tel }}">
                             </div>
                         </div>
                         
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">Religion</label>
-                                <input type="text" class="form-control edit_religion" name="religion" >
+                                <input type="text" class="form-control edit_religion" name="religion" value="{{ $employee->religion }}">
                             </div>
                         </div>
                         
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">Pincode</label>
-                                <input type="text" class="form-control edit_Pincode" name="Pincode" >
+                                <input type="text" class="form-control edit_Pincode" name="Pincode" value="{{ $employee->Pincode }}">
                             </div>
                         </div>
                         
@@ -552,9 +579,8 @@
                                 <label class="col-form-label">Gender</label>
                                 <select name="gender" id="" class="form-control edit_gender">
                                     <option value="">Select</option>
-                                    {{-- <option value="male" {{ $employee->gender == 'male' ? 'selected' : '' }}>Male</option>
-                                    <option value="female" {{ $employee->gender == 'female' ? 'selected' : '' }}>Female</option> --}}
-                                <option value=""></option>
+                                    <option value="male" {{ $employee->gender == 'male' ? 'selected' : '' }}>Male</option>
+                                    <option value="female" {{ $employee->gender == 'female' ? 'selected' : '' }}>Female</option>
                                 </select>
                             </div>
                         </div>
@@ -562,21 +588,21 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">Motorcycle License</label>
-                                <input type="text" class="form-control edit_motorcycle_license" name="Motorcycle_lic" >
+                                <input type="text" class="form-control edit_motorcycle_license" name="Motorcycle_lic" value="{{ $employee->Motorcycle_lic }}">
                             </div>
                         </div>
                         
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">AutoMobil License</label>
-                                <input type="text" class="form-control edit_autoMobil_license" name="autoMobil_license" >
+                                <input type="text" class="form-control edit_autoMobil_license" name="autoMobil_license" value="{{ $employee->autoMobil_license }}">
                             </div>
                         </div>
                         
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">City</label>
-                                <input type="text" class="form-control edit_city" name="city" >
+                                <input type="text" class="form-control edit_city" name="city" value="{{ $employee->city }}">
                             </div>
                         </div>
                     </div>
