@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Imports\NewEmployeesListImport;
+use App\Models\Department;
+use App\Models\Designation;
+// use App\Models\Employee;
 use App\Models\NewEmployeeList;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\NewEmployeesListImport;
 
 
 class NewEmployeeListController extends Controller
@@ -14,7 +17,9 @@ class NewEmployeeListController extends Controller
     public function index()
     {
         $employees = NewEmployeeList::all();
-        return view('backend.Newemployees-list', compact('employees'));
+        $departments = Department::all(); 
+        $designations = Designation::all(); 
+        return view('backend.Newemployees-list', compact('employees','departments','departments'));
     }
 
    public function empdashborad(){
@@ -23,11 +28,17 @@ class NewEmployeeListController extends Controller
         // // dd($employees);
         // return view('backend.employees',
         // compact('title','designations','departments','employees'));
-        return view('backend.employees',compact('employees'));
+        $departments = Department::all(); 
+        $designations = Designation::all(); 
+        return view('backend.employees',compact('employees','departments', 'designations'));
     }
     public function create()
     {
-        return view('backend.addNewEmployee');
+        $employees = NewEmployeeList::all();
+
+        $departments = Department::all(); 
+        $designations = Designation::all(); 
+        return view('backend.addNewEmployee',compact('employees','departments', 'designations'));
     }
 
     // public function store(Request $request)
@@ -53,48 +64,100 @@ class NewEmployeeListController extends Controller
     // }
     public function store(Request $request)
     {
-        // Step 1: Validate the input data
-        $validatedData = $request->validate([
-            'first_name' => 'required|max:255',
-            'last_name' => 'required|max:255',  // Ensure last name is also required
+        
+    
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-            'department' => 'required',
-            'salary' => 'required|numeric',
+            'avatar' => 'nullable|image',
         ]);
-        
-        // Step 2: Handle the image upload if present
+    
+        // Handle avatar upload if exists
+        $avatar = null;
         if ($request->hasFile('avatar')) {
-            $avatarName = time().'.'.$request->avatar->extension();  
-            $request->avatar->move(public_path('storage/employees'), $avatarName);
-            $validatedData['avatar'] = $avatarName;
+            $avatar = $request->file('avatar')->store('employees', 'public');
         }
     
-        // Step 3: Create the new employee record with the validated data and avatar
-        NewEmployeeList::create($validatedData);
+        // Create new employee
+        $employee = new NewEmployeeList();
+        $employee->first_name = $request->first_name;
+        $employee->last_name = $request->last_name;
+        $employee->email = $request->email;
+        $employee->phone = $request->phone;
+        $employee->department_id = $request->department_id; 
+        $employee->designation_id = $request->designation_id; 
+        $employee->salary = $request->salary;
+        $employee->avatar = $avatar;
+        // $employee->reporting_manager = $request->reporting_managers;
+        $employee->reporting_manager = implode(',', $request->reporting_managers);
+        $employee->area = $request->area;
+        $employee->employee_type = $request->employee_type;
+        $employee->date_of_joining = $request->date_of_joining;
+        $employee->aadhaar_no = $request->aadhaar_no;
+        $employee->passport_no = $request->passport_no;
+        $employee->card_no = $request->card_no;
+        $employee->permanent_address = $request->permanent_address;
+        $employee->birthday = $request->birthday;
+        $employee->nick_name = $request->nick_name;
+        $employee->office_tel = $request->office_tel;
+        $employee->religion = $request->religion;
+        $employee->Pincode = $request->pincode;
+        $employee->gender = $request->gender;
+        $employee->Motorcycle_lic = $request->motorcycle_lic;
+        $employee->autoMobil_license = $request->automobile_lic;
+        $employee->city = $request->city;
+        $employee->save();
+       
     
-        // Step 4: Redirect to dashboard with success message
         return redirect()->route('NewEmployeeslist.empdashborad')->with('success', 'Employee added successfully!');
     }
     
     public function edit(NewEmployeeList $employee)
     {
-        return view('backend.editNewEmployee', compact('employee'));
+        $departments = Department::all(); 
+        $designations = Designation::all(); 
+        $employees = NewEmployeeList::all(); // Assuming you're fetching all employees here
+        return view('backend.editNewEmployee', compact('employee', 'departments', 'designations', 'employees'));
     }
-
+    
     public function update(Request $request, NewEmployeeList $employee)
     {
-    $updateData = $request->except(['avatar']);  
-    
-    if ($request->hasFile('avatar')) {
-        $avatarName = time().'.'.$request->avatar->extension();  
-        
-        $request->avatar->move(public_path('storage/employees'), $avatarName);
-        
-        $updateData['avatar'] = $avatarName;
-    }
+        if ($request->hasFile('avatar')) {
+            $avatarName = time() . '.' . $request->avatar->extension();
+            $request->avatar->move(public_path('storage/employees'), $avatarName);
+            $employee->avatar = $avatarName; // Assign the avatar name
+        }
+    $employee->first_name = $request->first_name;
+    $employee->last_name = $request->last_name;
+    $employee->email = $request->email;
+    $employee->phone = $request->phone;
+    $employee->department_id = $request->department_id; 
+    $employee->designation_id = $request->designation_id; 
+    $employee->salary = $request->salary;
+    $employee->reporting_manager = implode(',', $request->reporting_managers); // Handle multiple managers
+    $employee->area = $request->area;
+    $employee->employee_type = $request->employee_type;
+    $employee->date_of_joining = $request->date_of_joining;
+    $employee->aadhaar_no = $request->aadhaar_no;
+    $employee->passport_no = $request->passport_no;
+    $employee->card_no = $request->card_no;
+    $employee->permanent_address = $request->permanent_address;
+    $employee->birthday = $request->birthday;
+    $employee->nick_name = $request->nick_name;
+    $employee->office_tel = $request->office_tel;
+    $employee->religion = $request->religion;
+    $employee->Pincode = $request->pincode;
+    $employee->gender = $request->gender;
+    $employee->Motorcycle_lic = $request->motorcycle_lic;
+    $employee->autoMobil_license = $request->automobile_lic;
+    $employee->city = $request->city;
+// dd( $employee->Pincode);
+    // Save the updated employee record
+    $employee->save();   
 
-    $employee->update($updateData);
+
     
     
     return redirect('/employees/dashboard')->with('success', 'Employee updated successfully!');

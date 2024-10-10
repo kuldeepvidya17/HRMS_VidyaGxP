@@ -62,7 +62,24 @@
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Department</th>
-                <th>Salary</th>
+                <th>Designation</th>
+                <th>Reporting Manager</th>
+                <th>Area</th>
+                <th>Employee Type</th>
+                <th>Date of Joining</th>
+                <th>Aadhaar No</th>
+                <th>Passport No</th>
+                <th>Card No</th>
+                <th>Permanent Address</th>
+                <th>Birthday</th>
+                <th>Nick Name</th>
+                <th>Office Tel</th>
+                <th>Religion</th>
+                <th>Pincode</th>
+                <th>Gender</th>
+                <th>Motorcycle License</th>
+                <th>Automobile License</th> 
+                <th>City</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -74,7 +91,23 @@
                 <td>{{ $employee->last_name }}</td>
                 <td>{{ $employee->email }}</td>
                 <td>{{ $employee->phone }}</td>
+                <td>
+                    {{ $departments->firstWhere('id', $employee->department_id)->name ?? 'No Department' }}
+                </td>
+                {{-- <td>
+                    {{ $designations->firstWhere('id', $employee->designation_id)->name ?? 'No Designation' }}
+                </td> --}}
                 <td>{{ $employee->department }}</td>
+                <td>{{ $employee->department }}</td>
+                <td>{{ $employee->department }}</td>
+                <td>{{ $employee->department }}</td>
+                <td>{{ $employee->department }}</td>
+                <td>{{ $employee->department }}</td>
+                <td>{{ $employee->department }}</td>
+                <td>{{ $employee->department }}</td>
+                <td>{{ $employee->department }}</td>
+                <td>{{ $employee->department }}</td>
+
                 <td>{{ $employee->salary }}</td>
                 <td>
                     <a href="{{ route('NewEmployeeslist.edit', $employee->id) }}" class="btn btn-primary">Edit</a>

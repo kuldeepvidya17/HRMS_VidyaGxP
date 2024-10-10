@@ -69,8 +69,8 @@
                         </div>
                         
                         <h5 class="card-title">{{ $employee->first_name }} {{ $employee->last_name }}</h5>
-                        <p class="card-text">{{ $employee->designation ?? 'No Designation' }}</p>
-                        
+                        {{-- <p class="card-text">{{ ($employee->designation_id == $designations->id)? $designations->name 'No Designation' }}</p> --}}
+                        <p class="card-text">{{ $employee->designation_id ? optional($designations->where('id', $employee->designation_id)->first())->name : 'No Designation' }}</p>
                         <!-- Replace View Details with Edit and Delete buttons -->
                         <a href="{{ route('NewEmployeeslist.edit', $employee->id) }}" class="btn btn-primary">Edit</a>
                         

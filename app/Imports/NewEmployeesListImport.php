@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\Models\NewEmployeeList;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class NewEmployeesListImport implements ToModel
+class NewEmployeesListImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -14,13 +15,16 @@ class NewEmployeesListImport implements ToModel
     */
     public function model(array $row)
     {
+        // Debug the row to ensure you get the correct data.
+        // dd($row);
+
         return new NewEmployeeList([
-        'first_name'  => $row[0],
-            'last_name'   => $row[1],
-            'email'       => $row[2],
-            'phone'       => $row[3],
-            'department'  => $row[4],
-            'salary'      => $row[5]
+            'first_name' => $row['first_name'],  // Map these to your Excel headers
+            'last_name' => $row['last_name'],
+            'email' => $row['email'],
+            'phone' => $row['phone'],
+            'department' => $row['department'],
+            'salary' => $row['salary'],
         ]);
     }
 }
