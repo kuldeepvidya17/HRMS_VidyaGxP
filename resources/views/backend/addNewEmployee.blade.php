@@ -16,16 +16,30 @@
         <h3 class="page-title">Employee</h3>
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Employee</li>
+            <li class="breadcrumb-item active">Employee List</li>
         </ul>
     </div>
-    <div class="col-auto float-right ml-auto">
-        <a href="javascript:void(0)" class="btn add-btn" data-toggle="modal" data-target="#add_employee">
+    {{-- <div class="col-auto float-right ml-auto">
+        <a href="{{ route('NewEmployeeslist.create') }}" class="btn add-btn">
             <i class="fa fa-plus"></i> Add Employee
         </a>
-    </div>
+    </div> --}}
+    <div class="col-auto float-right ml-auto">
+        <!-- Filter Button -->
+        <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" data-target="#filter_modal" style="margin-right: 30px">
+         <i class="fa fa-filter"></i> Filter
+     </a>
+     
+     <a href="{{ route('NewEmployeeslist.create') }}" class="btn add-btn">
+        <i class="fa fa-plus"></i> Add Employee
+    </a>     <div class="view-icons">
+         <a href="{{route('NewEmployeeslist.empdashborad')}}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
+         <a href="{{route('NewEmployeeslist.index')}}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
+     </div>
+ </div>
 </div>
 @endsection
+
 
 @section('content')
 <div class="container mt-5">
