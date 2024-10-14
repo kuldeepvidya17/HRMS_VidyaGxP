@@ -13,8 +13,24 @@ class NewEmployeeList extends Model
         'last_name',
         'email',
         'phone',
-        'department',
         'salary',
-        'avatar'
+        'avatar',
+        'department_id',
+        'designation_id',
     ];
+
+    // protected $casts = [
+    //     'reporting_managers' => 'array', 
+    //     'date_of_joining' => 'date',      
+    //     'birthday' => 'date',              
+    // ];
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    public function designation()
+    {
+        return $this->belongsTo(Designation::class);
+    }
 }

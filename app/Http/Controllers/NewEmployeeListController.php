@@ -19,7 +19,7 @@ class NewEmployeeListController extends Controller
         $employees = NewEmployeeList::all();
         $departments = Department::all(); 
         $designations = Designation::all(); 
-        return view('backend.Newemployees-list', compact('employees','departments','departments'));
+        return view('backend.Newemployees-list', compact('employees','departments','designations'));
     }
 
    public function empdashborad(){
@@ -77,7 +77,9 @@ class NewEmployeeListController extends Controller
         // Handle avatar upload if exists
         $avatar = null;
         if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar')->store('employees', 'public');
+            $avatarName = time() . '.' . $request->avatar->extension();
+            $request->file('avatar')->move(public_path('storage/employees'), $avatarName);
+            $avatar = $avatarName; // Store just the file name, not the full path
         }
     
         // Create new employee
@@ -91,7 +93,13 @@ class NewEmployeeListController extends Controller
         $employee->salary = $request->salary;
         $employee->avatar = $avatar;
         // $employee->reporting_manager = $request->reporting_managers;
-        $employee->reporting_manager = implode(',', $request->reporting_managers);
+        // $employee->reporting_manager = implode(',', $request->reporting_managers);
+        if ($request->has('reporting_managers') && !is_null($request->reporting_managers)) {
+            $reportingManagers = is_array($request->reporting_managers) ? $request->reporting_managers : [$request->reporting_managers];
+            $employee->reporting_manager = implode(',', $reportingManagers);
+        } else {
+            $employee->reporting_manager = null; 
+        }
         $employee->area = $request->area;
         $employee->employee_type = $request->employee_type;
         $employee->date_of_joining = $request->date_of_joining;
@@ -136,7 +144,15 @@ class NewEmployeeListController extends Controller
     $employee->department_id = $request->department_id; 
     $employee->designation_id = $request->designation_id; 
     $employee->salary = $request->salary;
-    $employee->reporting_manager = implode(',', $request->reporting_managers); // Handle multiple managers
+    // $employee->reporting_manager = implode(',', $request->reporting_managers); // Handle multiple managers
+    if ($request->has('reporting_managers') && !is_null($request->reporting_managers)) {
+        // If reporting_managers is not null and is an array, we handle it normally
+        $reportingManagers = is_array($request->reporting_managers) ? $request->reporting_managers : [$request->reporting_managers];
+        $employee->reporting_manager = implode(',', $reportingManagers);
+    } else {
+        // If reporting_managers is null, set the reporting_manager field to null or an empty string
+        $employee->reporting_manager = null; // Or you can set it to an empty string if preferred: ''
+    }
     $employee->area = $request->area;
     $employee->employee_type = $request->employee_type;
     $employee->date_of_joining = $request->date_of_joining;
@@ -155,12 +171,12 @@ class NewEmployeeListController extends Controller
     $employee->city = $request->city;
 // dd( $employee->Pincode);
     // Save the updated employee record
-    $employee->save();   
+    $employee->update();   
 
 
     
     
-    return redirect('/employees/dashboard')->with('success', 'Employee updated successfully!');
+    return redirect('/Newemployees/dashboard')->with('success', 'Employee updated successfully!');
     }
 
     public function destroy(NewEmployeeList $employee)
@@ -182,7 +198,25 @@ class NewEmployeeListController extends Controller
 {
     // return view('NewE', compact('employee'));
 }
+// public function filterEmployees(Request $request)
+// {
+//     // Start query to fetch employees
+//     $query = NewEmployeesListImport::query();
 
+//     // Apply filter by designation if selected
+//     if ($request->has('designation') && $request->designation != '') {
+//         $query->where('designation_id', $request->designation);
+//     }
+
+//     // Fetch the filtered employees
+//     $employees = $query->get();
+
+//     // Fetch all designations for the filter dropdown
+//     $designations = Designation::all();
+
+//     // Return the view with employees and designations
+//     return view('backend.filteremployees', compact('employees', 'designations'));
+// }
     // Optional: DataTables Server-Side Integration Method
     // public function getEmployeesData()
     // {

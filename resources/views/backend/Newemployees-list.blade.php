@@ -5,9 +5,15 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.bootstrap4.min.css">
 <link rel="stylesheet" href="{{ asset('assets/plugins/select2/select2.min.css') }}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 @section('page-header')
 <div class="row align-items-center">
     <div class="col">
@@ -24,9 +30,13 @@
     </div> --}}
     <div class="col-auto float-right ml-auto">
         <!-- Filter Button -->
-        <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" data-target="#filter_modal" style="margin-right: 30px">
+        {{-- <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" data-target="#filter_modal" style="margin-right: 30px">
          <i class="fa fa-filter"></i> Filter
-     </a>
+     </a> --}}
+     {{-- <a href="javascript:void(0)" class="btn btn-primary"   style="margin-right: 30px">
+        <i class="fa fa-filter"></i> Filter
+    </a> --}}
+    
      
      <a href="{{ route('NewEmployeeslist.create') }}" class="btn add-btn">
         <i class="fa fa-plus"></i> Add Employee
@@ -53,6 +63,68 @@
         </div>
         <button type="submit" class="btn btn-primary mb-2">Import</button>
     </form>
+   
+    <div style="margin-bottom: 20px;">
+        <h4>Employee Filter</h4>
+        <select id="filterEmployeeType" class="form-control" style="width: 300px; display: inline-block; margin-right: 20px;">
+            <option value="">Select All Employee Type</option>
+            <option value="permanent">Permanent</option>
+            <option value="temporary">Temporary</option>
+        </select>
+    
+        <select id="filterDesignation" class="form-control" style="width: 300px; display: inline-block;">
+            <option value="">Select All Designation</option>
+            @foreach($designations as $designation)
+                <option value="{{ $designation->name }}">{{ $designation->name }}</option>
+            @endforeach
+        </select>
+    </div>
+    
+    <script>
+        // Filter functionality - runs when the user changes either dropdown
+        document.getElementById('filterEmployeeType').addEventListener('change', filterTable);
+        document.getElementById('filterDesignation').addEventListener('change', filterTable);
+    
+        function filterTable() {
+            // Get selected filter values
+            var employeeType = document.getElementById('filterEmployeeType').value.toLowerCase();
+            var designation = document.getElementById('filterDesignation').value.toLowerCase();
+    
+            // Get all table rows
+            var table = document.getElementById('employeeTable');
+            var rows = table.getElementsByTagName('tr');
+    
+            // Loop through table rows and hide those that don't match the filters
+            for (var i = 1; i < rows.length; i++) {
+                var employeeTypeCell = rows[i].getElementsByTagName('td')[10].textContent.toLowerCase().trim(); // Employee Type
+                var designationCell = rows[i].getElementsByTagName('td')[6].textContent.toLowerCase().trim(); // Designation
+                
+                // Apply filter logic
+                if (
+                    (employeeType === '' || employeeTypeCell === employeeType) &&
+                    (designation === '' || designationCell === designation)
+                ) {
+                    rows[i].style.display = ''; // Show row
+                } else {
+                    rows[i].style.display = 'none'; // Hide row
+                }
+            }
+        }
+    
+        // Optional: Trigger initial filter on page load to show all rows by default
+        window.onload = function() {
+            filterTable();
+        };
+    </script>
+    
+        
+    <style>
+        #employeeTable {
+            overflow-x: auto;
+            display: block;
+            white-space: nowrap;
+        }
+    </style>
     <table id="employeeTable" class="table table-bordered">
         <thead>
             <tr>
@@ -63,6 +135,7 @@
                 <th>Phone</th>
                 <th>Department</th>
                 <th>Designation</th>
+                <th>Salary</th>
                 <th>Reporting Manager</th>
                 <th>Area</th>
                 <th>Employee Type</th>
@@ -83,7 +156,7 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="audit-data">
             @foreach($employees as $employee)
             <tr>
                 <td>{{ $employee->id }}</td>
@@ -94,21 +167,27 @@
                 <td>
                     {{ $departments->firstWhere('id', $employee->department_id)->name ?? 'No Department' }}
                 </td>
-                {{-- <td>
+                <td>
                     {{ $designations->firstWhere('id', $employee->designation_id)->name ?? 'No Designation' }}
-                </td> --}}
-                <td>{{ $employee->department }}</td>
-                <td>{{ $employee->department }}</td>
-                <td>{{ $employee->department }}</td>
-                <td>{{ $employee->department }}</td>
-                <td>{{ $employee->department }}</td>
-                <td>{{ $employee->department }}</td>
-                <td>{{ $employee->department }}</td>
-                <td>{{ $employee->department }}</td>
-                <td>{{ $employee->department }}</td>
-                <td>{{ $employee->department }}</td>
-
+                </td>
                 <td>{{ $employee->salary }}</td>
+                <td>{{ $employee->reporting_managers }}</td>
+                <td>{{ $employee->area }}</td>
+                <td>{{ $employee->employee_type }}</td>
+                <td>{{ $employee->date_of_joining }}</td>
+                <td>{{ $employee->aadhaar_no }}</td>
+                <td>{{ $employee->passport_no }}</td>
+                <td>{{ $employee->card_no }}</td>
+                <td>{{ $employee->permanent_address }}</td>
+                <td>{{ $employee->birthday }}</td>
+                <td>{{ $employee->nick_name }}</td>
+                <td>{{ $employee->office_tel }}</td>
+                <td>{{ $employee->religion }}</td>
+                <td>{{ $employee->pincode }}</td>
+                <td>{{ $employee->gender }}</td>
+                <td>{{ $employee->motorcycle_lic }}</td>
+                <td>{{ $employee->automobile_lic }}</td>
+                <td>{{ $employee->city }}</td>
                 <td>
                     <a href="{{ route('NewEmployeeslist.edit', $employee->id) }}" class="btn btn-primary">Edit</a>
                     <button type="button" class="btn btn-danger" onclick="showDeleteConfirmation('{{ route('NewEmployeeslist.destroy', $employee->id) }}')">Delete</button>
@@ -121,7 +200,7 @@
 </div>
 
 <!-- Confirmation Modal -->
-<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+<div class="modal fade table-responsive" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -184,5 +263,33 @@ $(document).ready(function() {
         "autoWidth": false
     });
 });
+</script>
+<script type='text/javascript'>
+    $(document).ready(function() {
+        function fetchDataAudit() {
+            var typedata = $('#typedata').val();
+            var user = $('#user').val();
+            var fromDate = $('#from_date').val();
+            var toDate = $('#to_date').val();
+
+            $.ajax({
+                url: "{{ route('employees.filter') }}",
+                method: "GET",
+                data: {
+                    typedata: typedata,
+                    user: user,
+                    from_date: fromDate,
+                    to_date: toDate
+                },
+                success: function(response) {
+                    $('#audit-data').html(response.html); // Update the table body with filtered data
+                }
+            });
+        }
+
+        $('#typedata, #user, #from_date, #to_date').on('change', function() {
+            fetchDataAudit(); // Call fetchDataAudit whenever any filter changes
+        });
+    });
 </script>
 @endsection

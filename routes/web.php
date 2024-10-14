@@ -1,47 +1,49 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\OvertimeController;
-use App\Http\Controllers\SalaryController;
-
-use App\Http\Controllers\Admin\GoalController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Admin\TaskController;
-use App\Http\Controllers\Admin\AssetController;
-use App\Http\Controllers\Admin\TaxesController;
-use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Admin\ClientController;
-use App\Http\Controllers\Admin\PolicyController;
-use App\Http\Controllers\Admin\TicketController;
-use App\Http\Controllers\Frontend\JobController;
-use App\Http\Controllers\Admin\BackupsController;
-use App\Http\Controllers\Admin\ContactController;
-use App\Http\Controllers\Admin\ExpenseController;
-use App\Http\Controllers\Admin\HolidayController;
-use App\Http\Controllers\Admin\ProjectController;
-
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\ActivityController;
-use App\Http\Controllers\Admin\EmployeeController;
-use App\Http\Controllers\Admin\GoalTypeController;
-use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\AssetController;
+use App\Http\Controllers\Admin\BackupsController;
+
+use App\Http\Controllers\Admin\ChangePasswordController;
+use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\LeaveTypeController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DesignationController;
-use App\Http\Controllers\Admin\FileManagerController;
-use App\Http\Controllers\Admin\UserProfileController;
-use App\Http\Controllers\Admin\EmployeeLeaveController;
-use App\Http\Controllers\Admin\ProvidentFundController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Admin\ChangePasswordController;
-use App\Http\Controllers\Frontend\JobApplicationController;
 use App\Http\Controllers\Admin\EmployeeAttendanceController;
+use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\EmployeeLeaveController;
+use App\Http\Controllers\Admin\ExpenseController;
+use App\Http\Controllers\Admin\FileManagerController;
+use App\Http\Controllers\Admin\GoalController;
+use App\Http\Controllers\Admin\GoalTypeController;
+use App\Http\Controllers\Admin\HolidayController;
 use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\JobController as BackendJobController;
+
+use App\Http\Controllers\Admin\LeaveTypeController;
+use App\Http\Controllers\Admin\PolicyController;
+use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\ProvidentFundController;
+use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\TaskController;
+use App\Http\Controllers\Admin\TaxesController;
+use App\Http\Controllers\Admin\TicketController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserProfileController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\EmployeeDetailController;
+use App\Http\Controllers\Frontend\JobApplicationController;
+use App\Http\Controllers\Frontend\JobController;
+use App\Http\Controllers\NewEmployeeListController;
+use App\Http\Controllers\OvertimeController;
+use App\Http\Controllers\SalaryController;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -193,7 +195,23 @@ Route::group(['middleware'=>['auth']], function (){
     Route::delete('employees',[EmployeeController::class,'destroy'])->name('employee.destroy');
     // Route::get('employeesFilter',[EmployeeController::class,'employeefilter'])->name('employee.filter');
     Route::get('/employees/filter', [EmployeeController::class, 'filterEmployees'])->name('employees.filter');
+    Route::get('/getall', [EmployeeController::class, 'getall'])->name('getall');
 
+        // NewEmployeeList Controller start
+        // Route::resource('employees', NewEmployeeListController::class);
+         Route::get('Newemployees/dashboard',[NewEmployeeListController::class,'empdashborad'])->name('NewEmployeeslist.empdashborad');
+        Route::get('/NewListemployees', [NewEmployeeListController::class, 'index'])->name('NewEmployeeslist.index');
+        Route::get('/NewListemployees/create', [NewEmployeeListController::class, 'create'])->name('NewEmployeeslist.create');
+        Route::post('/NewListemployees', [NewEmployeeListController::class, 'store'])->name('Newemployeeslist.store');
+        Route::get('/NewListemployees/{employee}/edit', [NewEmployeeListController::class, 'edit'])->name('NewEmployeeslist.edit');
+        Route::put('/NewListemployees/{employee}', [NewEmployeeListController::class, 'update'])->name('NewEmployeeslist.update');
+        Route::delete('/NewListemployees/{employee}', [NewEmployeeListController::class, 'destroy'])->name('NewEmployeeslist.destroy');
+        Route::post('/Newemployees/import', [NewEmployeeListController::class, 'import'])->name('NewEmployeeslist.import');
+        Route::get('/Newemployees/{employee}', [NewEmployeeListController::class, 'show'])->name('NewEmployeeslist.show');
+        // Route::get('/Newemployees/filter', [NewEmployeeListController::class, 'filterEmployees'])->name('employees.filter');
+
+        
+        // end NewemployeeListCintroller--------
 
     Route::get('employees/attendance',[EmployeeAttendanceController::class,'index'])->name('employees.attendance');
     Route::post('employees/attendance',[EmployeeAttendanceController::class,'store']);
