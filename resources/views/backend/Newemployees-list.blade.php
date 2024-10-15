@@ -23,20 +23,9 @@
             <li class="breadcrumb-item active">Employee List</li>
         </ul>
     </div>
-    {{-- <div class="col-auto float-right ml-auto">
-        <a href="{{ route('NewEmployeeslist.create') }}" class="btn add-btn">
-            <i class="fa fa-plus"></i> Add Employee
-        </a>
-    </div> --}}
+   
     <div class="col-auto float-right ml-auto">
-        <!-- Filter Button -->
-        {{-- <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" data-target="#filter_modal" style="margin-right: 30px">
-         <i class="fa fa-filter"></i> Filter
-     </a> --}}
-     {{-- <a href="javascript:void(0)" class="btn btn-primary"   style="margin-right: 30px">
-        <i class="fa fa-filter"></i> Filter
-    </a> --}}
-    
+       
      
      <a href="{{ route('NewEmployeeslist.create') }}" class="btn add-btn">
         <i class="fa fa-plus"></i> Add Employee
@@ -96,8 +85,8 @@
     
             // Loop through table rows and hide those that don't match the filters
             for (var i = 1; i < rows.length; i++) {
-                var employeeTypeCell = rows[i].getElementsByTagName('td')[10].textContent.toLowerCase().trim(); // Employee Type
-                var designationCell = rows[i].getElementsByTagName('td')[6].textContent.toLowerCase().trim(); // Designation
+                var employeeTypeCell = rows[i].getElementsByTagName('td')[11].textContent.toLowerCase().trim(); // Employee Type
+                var designationCell = rows[i].getElementsByTagName('td')[7].textContent.toLowerCase().trim(); // Designation
                 
                 // Apply filter logic
                 if (
@@ -129,6 +118,7 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>EMP-Id</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
@@ -152,6 +142,8 @@
                 <th>Gender</th>
                 <th>Motorcycle License</th>
                 <th>Automobile License</th> 
+                <th>Country</th>
+                <th>State</th>
                 <th>City</th>
                 <th>Actions</th>
             </tr>
@@ -160,6 +152,7 @@
             @foreach($employees as $employee)
             <tr>
                 <td>{{ $employee->id }}</td>
+                <td>EMP-Id {{ $employee->Employee_id }}</td>
                 <td>{{ $employee->first_name }}</td>
                 <td>{{ $employee->last_name }}</td>
                 <td>{{ $employee->email }}</td>
@@ -187,7 +180,6 @@
                 <td>{{ $employee->gender }}</td>
                 <td>{{ $employee->motorcycle_lic }}</td>
                 <td>{{ $employee->automobile_lic }}</td>
-                <td>{{ $employee->city }}</td>
                 <td>
                     <a href="{{ route('NewEmployeeslist.edit', $employee->id) }}" class="btn btn-primary">Edit</a>
                     <button type="button" class="btn btn-danger" onclick="showDeleteConfirmation('{{ route('NewEmployeeslist.destroy', $employee->id) }}')">Delete</button>
@@ -224,12 +216,17 @@
     </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Include jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 
 <script>
-function showDeleteConfirmation(actionUrl) {
-    document.getElementById('deleteForm').action = actionUrl;
+function showDeleteConfirmation(url) {
+    // Set the form action to the provided URL
+    document.getElementById('deleteForm').action = url;
+
+    // Show the confirmation modal
     $('#deleteConfirmationModal').modal('show');
 }
 </script>

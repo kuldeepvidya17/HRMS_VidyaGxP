@@ -25,11 +25,7 @@
         </a>
     </div> --}}
     <div class="col-auto float-right ml-auto">
-        <!-- Filter Button -->
-        <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" data-target="#filter_modal" style="margin-right: 30px">
-         <i class="fa fa-filter"></i> Filter
-     </a>
-     
+      
      <a href="{{ route('NewEmployeeslist.create') }}" class="btn add-btn">
         <i class="fa fa-plus"></i> Add Employee
     </a>     <div class="view-icons">
@@ -47,21 +43,69 @@
     <form method="post" action="{{ route('Newemployeeslist.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
+            <label>Employee Id</label>
+            <input type="text" class="form-control" name="Employee_id" required>
+        </div>
+        <div class="form-group">
             <label>First Name</label>
             <input type="text" class="form-control" name="first_name" required>
         </div>
         <div class="form-group">
             <label>Last Name</label>
-            <input type="text" class="form-control" name="last_name" required>
+            <input type="text" class="form-control" name="last_name" >
         </div>
         <div class="form-group">
             <label>Email</label>
             <input type="email" class="form-control" name="email" required>
         </div>
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label>Phone</label>
-            <input type="text" class="form-control" name="phone" required>
+            <input type="text" class="form-control" name="phone" >
+        </div> --}}
+        <div class="input-group-prepend">
+            <select id="country_code" class="form-control" name="country_code" style="width: 125px">
+                <option value="+91">India (+91)</option> <!-- Default option for India -->
+            </select>
+            <input type="text" class="form-control" name="phone">
         </div>
+        
+        <!-- JS for dynamic country codes -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const countryCodeSelect = document.getElementById('country_code');
+                
+                // Preserve the default option for India
+                const defaultOption = `<option value="+91" selected>India (+91)</option>`;
+                
+                // Fetch country codes from the restcountries API
+                fetch('https://restcountries.com/v3.1/all')
+                    .then(response => response.json())
+                    .then(data => {
+                        let options = defaultOption; // Start with the default option for India
+                        
+                        // Loop through fetched country data and add other countries
+                        data.forEach(country => {
+                            if (country.idd && country.idd.root && country.idd.suffixes) {
+                                let code = country.idd.root + country.idd.suffixes[0];
+                                options += `<option value="${code}">${country.name.common} (${code})</option>`;
+                            }
+                        });
+        
+                        // Add all options to the dropdown (including India at the top)
+                        countryCodeSelect.innerHTML = options;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching country codes:', error);
+                        // If there's an error, just show India as the default option
+                        countryCodeSelect.innerHTML = defaultOption;
+                    });
+            });
+        </script>
+        
+        <!-- Bootstrap JS and dependencies (Optional) -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <div class="form-group">
             <label>Department</label>
             {{-- <input type="text" class="form-control" name="department"> --}}
@@ -86,7 +130,7 @@
         </div>
         <div class="form-group">
             <label>Salary</label>
-            <input type="number" class="form-control" name="salary" required>
+            <input type="number" class="form-control" name="salary" >
         </div>
         <div class="form-group">
                 <label class="col-form-label">Employee Picture</label>
@@ -203,12 +247,72 @@
                 <input type="text" class="form-control" name="automobile_lic">
             </div>
         </div>
-        <div class="form-group">
+        {{-- <div class="form-group">
             <div class="form-group">
                 <label>City</label>
                 <input type="text" class="form-control" name="city">
             </div>
+        </div> --}}
+        <div class="form-group">
+            <label>Country</label>
+            <select id="country" class="form-control" name="country">
+                <option value="">Select Country</option>
+            </select>
         </div>
+        
+        <div class="form-group">
+            <label>State</label>
+            <select id="state" class="form-control" name="state">
+                <option value="">Select State</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label>City</label>
+            <select id="city" class="form-control" name="city">
+                <option value="">Select City</option>
+            </select>
+        </div>
+        
+        <script>
+            // Load countries on page load
+            fetch('/api/countries')
+                .then(response => response.json())
+                .then(data => {
+                    let countrySelect = document.getElementById('country');
+                    data.forEach(country => {
+                        countrySelect.innerHTML += `<option value="${country.id}">${country.name}</option>`;
+                    });
+                });
+        
+            // Load states when country is selected
+            document.getElementById('country').addEventListener('change', function() {
+                let countryId = this.value;
+                fetch(`/api/states/${countryId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        let stateSelect = document.getElementById('state');
+                        stateSelect.innerHTML = `<option value="">Select State</option>`;
+                        data.forEach(state => {
+                            stateSelect.innerHTML += `<option value="${state.id}">${state.name}</option>`;
+                        });
+                    });
+            });
+        
+            // Load cities when state is selected
+            document.getElementById('state').addEventListener('change', function() {
+                let stateId = this.value;
+                fetch(`/api/cities/${stateId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        let citySelect = document.getElementById('city');
+                        citySelect.innerHTML = `<option value="">Select City</option>`;
+                        data.forEach(city => {
+                            citySelect.innerHTML += `<option value="${city.id}">${city.name}</option>`;
+                        });
+                    });
+            });
+        </script>
         
 
         <button type="submit" class="btn btn-success">Add Employee</button>

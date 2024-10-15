@@ -2,8 +2,11 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.min.css')}}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 @endsection
 
 @section('page-header')
@@ -111,11 +114,11 @@
   <!-- Employee Cards -->
 <div class="row" style="display: contents">
     @foreach($employees as $employee)
-        <div class="col-md-4 mb-4 employee-card" 
+        <div class="col-md-3 mb-4 employee-card" style="max-width: 40%;"
             data-employee-type="{{ strtolower($employee->employee_type) }}" 
             data-designation="{{ strtolower(optional($designations->where('id', $employee->designation_id)->first())->name) }}">
             
-            <div class="card">
+            {{-- <div class="card">
                 <a href="#" class="action-icon dropdown-toggle float-left" style="position: absolute; margin-left: 90%" data-toggle="dropdown" aria-expanded="false">
                     <i class="material-icons">more_vert</i>
                 </a>
@@ -132,12 +135,83 @@
                     <a href="{{ route('NewEmployeeslist.edit', $employee->id) }}" class="btn btn-primary">Edit</a>
                     <button type="button" class="btn btn-danger" onclick="showDeleteConfirmation('{{ route('NewEmployeeslist.destroy', $employee->id) }}')">Delete</button>
                 </div>
+            </div> --}}
+            <style>
+                .card{
+                    width: 350px;
+                    height: 250px;
+                    align-items: center;
+                }
+            </style>
+            <div class="card">
+                <!-- Three-dot icon for dropdown menu -->
+                <a href="#" class="action-icon dropdown-toggle float-left" style="position: absolute; margin-left: 90%" data-toggle="dropdown" aria-expanded="false">
+                    <i class="material-icons">more_vert</i>
+                </a>
+            
+                <!-- Dropdown menu containing Edit and Delete options -->
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a href="{{ route('NewEmployeeslist.edit', $employee->id) }}" class="dropdown-item">Edit</a>
+                    <button type="button" class="dropdown-item text-danger" data-toggle="modal" data-target="#deleteConfirmationModal" data-employee-id="{{ $employee->id }}">
+                        Delete
+                    </button>
+                </div>
+            
+                <div class="card-body text-center">
+                    <div class="profile-img">
+                        <a href="javascript:void(0)" class="avatar" data-toggle="modal" data-target="#imageModal" onclick="openImageModal('{{ asset('storage/employees/'.$employee->avatar) }}')">
+                            <img alt="avatar" src="@if(!empty($employee->avatar)) {{ asset('storage/employees/'.$employee->avatar) }} @else {{ asset('assets/img/profiles/default.jpg') }} @endif">
+                        </a>
+                    </div>
+                    
+                    <h5 class="card-title">{{ $employee->first_name }} {{ $employee->last_name }}</h5>
+                    <p class="card-text">{{ $employee->designation_id ? optional($designations->where('id', $employee->designation_id)->first())->name : 'No Designation' }}</p>
+                </div>
             </div>
         </div>
     @endforeach
 </div>
     
 </div>
+
+<!-- Confirmation Modal -->
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this employee?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <form id="deleteEmployeeForm" method="POST" action="">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for handling delete confirmation -->
+<script>
+    $(document).ready(function () {
+        $('#deleteConfirmationModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var employeeId = button.data('employee-id'); // Extract info from data-* attributes
+            
+            // Update the action of the form with the correct URL
+            var form = $(this).find('#deleteEmployeeForm');
+            form.attr('action', '/NewListemployees/' + employeeId);
+        });
+    });
+</script>
 <!-- Modal for showing full image -->
 <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

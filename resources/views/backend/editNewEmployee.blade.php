@@ -24,9 +24,7 @@
     </div> --}}
     <div class="col-auto float-right ml-auto">
         <!-- Filter Button -->
-        <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" data-target="#filter_modal" style="margin-right: 30px">
-         <i class="fa fa-filter"></i> Filter
-     </a>
+       
      
      <a href="{{ route('NewEmployeeslist.create') }}" class="btn add-btn">
         <i class="fa fa-plus"></i> Add Employee
@@ -45,6 +43,10 @@
         @csrf
         @method('PUT')
         <div class="form-group">
+            <label>Employee Id</label>
+            <input type="text" class="form-control" name="Employee_id" value="{{ $employee->Employee_id }}" >
+        </div>
+        <div class="form-group">
             <label>First Name</label>
             <input type="text" class="form-control" name="first_name" value="{{ $employee->first_name }}" >
         </div>
@@ -56,14 +58,53 @@
             <label>Email</label>
             <input type="email" class="form-control" name="email" value="{{ $employee->email }}" >
         </div>
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label>Phone</label>
             <input type="text" class="form-control" name="phone" value="{{ $employee->phone }}" >
-        </div>
+        </div> --}}<label>Phone</label>
+            <div class="input-group-prepend">
+                
+                <select id="country_code" class="form-control" name="country_code" style="width: 125px">
+                    <option value="+91">India (+91)</option> <!-- Default option for India -->
+                </select>
+                <input type="text" class="form-control" name="phone">
+            </div>
+         <!-- JS for dynamic country codes -->
+         <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const countryCodeSelect = document.getElementById('country_code');
+                
+                // Preserve the default option for India
+                const defaultOption = `<option value="+91" selected>India (+91)</option>`;
+                
+                // Fetch country codes from the restcountries API
+                fetch('https://restcountries.com/v3.1/all')
+                    .then(response => response.json())
+                    .then(data => {
+                        let options = defaultOption; // Start with the default option for India
+                        
+                        // Loop through fetched country data and add other countries
+                        data.forEach(country => {
+                            if (country.idd && country.idd.root && country.idd.suffixes) {
+                                let code = country.idd.root + country.idd.suffixes[0];
+                                options += `<option value="${code}">${country.name.common} (${code})</option>`;
+                            }
+                        });
+        
+                        // Add all options to the dropdown (including India at the top)
+                        countryCodeSelect.innerHTML = options;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching country codes:', error);
+                        // If there's an error, just show India as the default option
+                        countryCodeSelect.innerHTML = defaultOption;
+                    });
+            });
+        </script>
         <!-- Department Dropdown -->
         <div class="form-group">
             <label>Department</label>
-            <select name="department_id" class="form-control" required>
+            <select name="department_id" class="form-control" >
                 <option disabled selected>Select Department</option>
                 @foreach ($departments as $department)
                     <option value="{{ $department->id }}" 
@@ -77,7 +118,7 @@
         <!-- Designation Dropdown -->
         <div class="form-group">
             <label>Designation</label>
-            <select name="designation_id" class="form-control" required>
+            <select name="designation_id" class="form-control" >
                 <option disabled selected>Select Designation</option>
                 @foreach ($designations as $designation)
                     <option value="{{ $designation->id }}" 
@@ -194,10 +235,87 @@
                 <input type="text" class="form-control" name="automobile_lic" value="{{ old('automobile_lic', $employee->automobile_lic) }}">
             </div>
     
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label>City</label>
                 <input type="text" class="form-control" name="city" value="{{ old('city', $employee->city) }}">
+            </div> --}}
+            <div class="form-group">
+                <label>Country</label>
+                <select id="country" class="form-control" name="country" required>
+                    <option value="">Select Country</option>
+                    @foreach ($countries as $country)
+                        <option value="{{ $country->id }}" {{ $country->id == $employee->country ? 'selected' : '' }}>
+                            {{ $country->name }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
+    
+            <div class="form-group">
+                <label>State</label>
+                <select id="state" class="form-control" name="state" required>
+                    <option value="">Select State</option>
+                    @foreach ($states as $state)
+                        <option value="{{ $state->id }}" {{ $state->id == $employee->state ? 'selected' : '' }}>
+                            {{ $state->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+    
+            <div class="form-group">
+                <label>City</label>
+                <select id="city" class="form-control" name="city" required>
+                    <option value="">Select City</option>
+                    @foreach ($cities as $city)
+                        <option value="{{ $city->id }}" {{ $city->id == $employee->city ? 'selected' : '' }}>
+                            {{ $city->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <script>
+                // Load states when country is selected
+                document.getElementById('country').addEventListener('change', function() {
+                    let countryId = this.value;
+            
+                    fetch(`/api/states/${countryId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            let stateSelect = document.getElementById('state');
+                            stateSelect.innerHTML = `<option value="">Select State</option>`;
+                            
+                            data.forEach(state => {
+                                stateSelect.innerHTML += `<option value="${state.id}">${state.name}</option>`;
+                            });
+            
+                            // Trigger change event to load cities for selected state if already selected
+                            if ({{ $employee->state_id }}) {
+                                stateSelect.value = "{{ $employee->state_id }}";
+                                stateSelect.dispatchEvent(new Event('change'));
+                            }
+                        });
+                });
+            
+                // Load cities when state is selected
+                document.getElementById('state').addEventListener('change', function() {
+                    let stateId = this.value;
+            
+                    fetch(`/api/cities/${stateId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            let citySelect = document.getElementById('city');
+                            citySelect.innerHTML = `<option value="">Select City</option>`;
+                            
+                            data.forEach(city => {
+                                citySelect.innerHTML += `<option value="${city.id}">${city.name}</option>`;
+                            });
+            
+                            // Trigger to select the city if already selected
+                            citySelect.value = "{{ $employee->city_id }}"; // Pre-select city if exists
+                        });
+                });
+            </script>
     
         
 

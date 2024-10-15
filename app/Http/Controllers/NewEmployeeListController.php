@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Imports\NewEmployeesListImport;
+use App\Models\Country;
+use App\Models\State;
+use App\Models\City;
 use App\Models\Department;
-use App\Models\Designation;
 // use App\Models\Employee;
+use App\Models\Designation;
+use App\Models\Employee;
 use App\Models\NewEmployeeList;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -35,10 +39,12 @@ class NewEmployeeListController extends Controller
     public function create()
     {
         $employees = NewEmployeeList::all();
-
+        $countries = Country::all();
+        $states = State::all();
+        $cities = City::all();
         $departments = Department::all(); 
         $designations = Designation::all(); 
-        return view('backend.addNewEmployee',compact('employees','departments', 'designations'));
+        return view('backend.addNewEmployee',compact('countries','states','cities','employees','departments', 'designations'));
     }
 
     // public function store(Request $request)
@@ -116,6 +122,12 @@ class NewEmployeeListController extends Controller
         $employee->Motorcycle_lic = $request->motorcycle_lic;
         $employee->autoMobil_license = $request->automobile_lic;
         $employee->city = $request->city;
+        $employee->Employee_id = $request->Employee_id;
+        $employee->country = $request->country;
+        $employee->state = $request->state;
+        $employee->city = $request->city;
+        $employee->country_code = $request->country_code;
+
         $employee->save();
        
     
@@ -125,9 +137,12 @@ class NewEmployeeListController extends Controller
     public function edit(NewEmployeeList $employee)
     {
         $departments = Department::all(); 
+        $countries = Country::all();
+        $states = State::all();
+        $cities = City::all();
         $designations = Designation::all(); 
         $employees = NewEmployeeList::all(); // Assuming you're fetching all employees here
-        return view('backend.editNewEmployee', compact('employee', 'departments', 'designations', 'employees'));
+        return view('backend.editNewEmployee', compact('states','cities','countries','employee', 'departments', 'designations', 'employees'));
     }
     
     public function update(Request $request, NewEmployeeList $employee)
@@ -169,6 +184,11 @@ class NewEmployeeListController extends Controller
     $employee->Motorcycle_lic = $request->motorcycle_lic;
     $employee->autoMobil_license = $request->automobile_lic;
     $employee->city = $request->city;
+    $employee->Employee_id = $request->Employee_id;
+    $employee->country = $request->country;
+    $employee->state = $request->state;
+    $employee->city = $request->city;
+    $employee->country_code = $request->country_code;
 // dd( $employee->Pincode);
     // Save the updated employee record
     $employee->update();   
@@ -182,7 +202,7 @@ class NewEmployeeListController extends Controller
     public function destroy(NewEmployeeList $employee)
     {
         $employee->delete();
-        return redirect('/NewListemployees')->with('success', 'Employee deleted successfully!');
+        return redirect('/NewListemployees');
     }
     public function import(Request $request)
     {
