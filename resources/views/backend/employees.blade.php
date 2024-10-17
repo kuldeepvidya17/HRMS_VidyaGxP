@@ -110,9 +110,9 @@
         <input type="text" id="searchBox" class="form-control" placeholder="Search Employee by Name" onkeyup="searchEmployees()">
     </div>
 </div>
-<div class="row">
+
   <!-- Employee Cards -->
-<div class="row" style="display: contents">
+<div class="new-class">
     @foreach($employees as $employee)
         <div class="col-md-3 mb-4 employee-card" style="max-width: 40%;"
             data-employee-type="{{ strtolower($employee->employee_type) }}" 
@@ -133,20 +133,27 @@
                     <h5 class="card-title">{{ $employee->first_name }} {{ $employee->last_name }}</h5>
                     <p class="card-text">{{ $employee->designation_id ? optional($designations->where('id', $employee->designation_id)->first())->name : 'No Designation' }}</p>
                     <a href="{{ route('NewEmployeeslist.edit', $employee->id) }}" class="btn btn-primary">Edit</a>
-                    <button type="button" class="btn btn-danger" onclick="showDeleteConfirmation('{{ route('NewEmployeeslist.destroy', $employee->id) }}')">Delete</button>
+                    <!--<button type="button" class="btn btn-danger" onclick="showDeleteConfirmation('{{ route('NewEmployeeslist.destroy', $employee->id) }}')">Delete</button>-->
+                     <button type="button" class="dropdown-item text-danger" data-toggle="modal" data-target="#deleteConfirmationModal" data-employee-id="{{ $employee->id }}">
+                        Delete
+                    </button>
                 </div>
             </div> --}}
             <style>
                 .card{
-                    width: 350px;
+                    width: 280%;
                     height: 250px;
                     align-items: center;
                 }
+                .new-class{
+        display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
             </style>
             <div class="card">
                 <!-- Three-dot icon for dropdown menu -->
-                <a href="#" class="action-icon dropdown-toggle float-left" style="position: absolute; margin-left: 90%" data-toggle="dropdown" aria-expanded="false">
-                    <i class="material-icons">more_vert</i>
+                <a href="#" class="action-icon dropdown-toggle float-left" style="margin-top: 10px; margin-left: 70%" data-toggle="dropdown" aria-expanded="false">
+                   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg>
                 </a>
             
                 <!-- Dropdown menu containing Edit and Delete options -->
@@ -158,7 +165,7 @@
                 </div>
             
                 <div class="card-body text-center">
-                    <div class="profile-img">
+                    <div class="profile-img" style="margin-bottom: 19px;">
                         <a href="javascript:void(0)" class="avatar" data-toggle="modal" data-target="#imageModal" onclick="openImageModal('{{ asset('storage/employees/'.$employee->avatar) }}')">
                             <img alt="avatar" src="@if(!empty($employee->avatar)) {{ asset('storage/employees/'.$employee->avatar) }} @else {{ asset('assets/img/profiles/default.jpg') }} @endif">
                         </a>
@@ -172,7 +179,7 @@
     @endforeach
 </div>
     
-</div>
+
 
 <!-- Confirmation Modal -->
 <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">

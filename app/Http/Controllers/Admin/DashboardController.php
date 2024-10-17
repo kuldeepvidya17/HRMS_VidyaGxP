@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Models\Employee;
+use App\Models\NewEmployeeList;
 use App\Models\EmployeeAttendance;
 use App\Models\Expense;
 use App\Models\Invoice;
@@ -20,7 +21,8 @@ class DashboardController extends Controller
         $title = 'Dashboard';
         $clients_count = Client::count();
         $task_count = Task::count();
-        $employee_count = Employee::count();
+        // $employee_count = Employee::count();
+        $employee_count = NewEmployeeList::count();
         $absent_employee = EmployeeAttendance::where('status', 0)->count();
         $invoice_count = Invoice::count();
         $invoice = Invoice::where('status','pending')->count();

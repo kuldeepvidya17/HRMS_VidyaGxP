@@ -138,6 +138,10 @@
                 <label class="col-form-label">Employee Picture</label>
                 <input class="form-control" name="avatar" type="file">
             </div>
+             <div class="form-group">
+                <label class="col-form-label">Employee CV</label>
+                <input class="form-control" name="cv" type="file" accept=".pdf,.doc,.docx">
+            </div>
 
             <div class="form-group">
                 <label>Reporting Manager <span class="text-danger">*</span></label>
@@ -161,8 +165,8 @@
                 <label>Employee Type</label>
                 <select name="employee_type" class="form-control">
                     <option value="">-- Select --</option>
-                    <option value="permanent" @if($employee->employee_type == 'permanent') selected @endif>Permanent</option>
-                    <option value="temporary" @if($employee->employee_type == 'temporary') selected @endif>Temporary</option>
+                    <option value="Permanent" @if($employee->employee_type == 'permanent') selected @endif>Permanent</option>
+                    <option value="Temporary" @if($employee->employee_type == 'temporary') selected @endif>Temporary</option>
                 </select>
             </div>
     
@@ -206,9 +210,16 @@
                 <input type="text" class="form-control" name="office_tel" value="{{ old('office_tel', $employee->office_tel) }}">
             </div>
     
-            <div class="form-group">
+            <div class="form-group"> 
                 <label>Religion</label>
-                <input type="text" class="form-control" name="religion" value="{{ old('religion', $employee->religion) }}">
+                {{-- <input type="text" class="form-control" name="religion" value="{{ old('religion', $employee->religion) }}"> --}}
+                <select class="form-control" name="religion">
+                    <option value="">-- Select Religion --</option>
+                    <option value="Hindu" {{ $employee->religion == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+                    <option value="Muslim" {{ $employee->religion == 'Muslim' ? 'selected' : '' }}>Muslim</option>
+                    <option value="Sikh" {{ $employee->religion == 'Sikh' ? 'selected' : '' }}>Sikh</option>
+                    <option value="Christian" {{ $employee->religion == 'Christian' ? 'selected' : '' }}>Christian</option>
+                </select>
             </div>
     
             <div class="form-group">
@@ -220,8 +231,8 @@
                 <label>Gender</label>
                 <select name="gender" class="form-control">
                     <option value="">Select</option>
-                    <option value="male" @if($employee->gender == 'male') selected @endif>Male</option>
-                    <option value="female" @if($employee->gender == 'female') selected @endif>Female</option>
+                    <option value="Male" @if($employee->gender == 'male') selected @endif>Male</option>
+                    <option value="Female" @if($employee->gender == 'female') selected @endif>Female</option>
                 </select>
             </div>
     
@@ -241,7 +252,7 @@
             </div> --}}
             <div class="form-group">
                 <label>Country</label>
-                <select id="country" class="form-control" name="country" required>
+                <select id="country" class="form-control" name="country" >
                     <option value="">Select Country</option>
                     @foreach ($countries as $country)
                         <option value="{{ $country->id }}" {{ $country->id == $employee->country ? 'selected' : '' }}>
@@ -253,7 +264,7 @@
     
             <div class="form-group">
                 <label>State</label>
-                <select id="state" class="form-control" name="state" required>
+                <select id="state" class="form-control" name="state" >
                     <option value="">Select State</option>
                     @foreach ($states as $state)
                         <option value="{{ $state->id }}" {{ $state->id == $employee->state ? 'selected' : '' }}>
@@ -265,7 +276,7 @@
     
             <div class="form-group">
                 <label>City</label>
-                <select id="city" class="form-control" name="city" required>
+                <select id="city" class="form-control" name="city" >
                     <option value="">Select City</option>
                     @foreach ($cities as $city)
                         <option value="{{ $city->id }}" {{ $city->id == $employee->city ? 'selected' : '' }}>

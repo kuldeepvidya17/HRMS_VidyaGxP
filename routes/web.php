@@ -206,9 +206,11 @@ Route::group(['middleware'=>['auth']], function (){
         Route::get('/NewListemployees/{employee}/edit', [NewEmployeeListController::class, 'edit'])->name('NewEmployeeslist.edit');
         Route::put('/NewListemployees/{employee}', [NewEmployeeListController::class, 'update'])->name('NewEmployeeslist.update');
         Route::delete('/NewListemployees/{employee}', [NewEmployeeListController::class, 'destroy'])->name('NewEmployeeslist.destroy');
+
         Route::post('/Newemployees/import', [NewEmployeeListController::class, 'import'])->name('NewEmployeeslist.import');
         Route::get('/Newemployees/{employee}', [NewEmployeeListController::class, 'show'])->name('NewEmployeeslist.show');
         // Route::get('/Newemployees/filter', [NewEmployeeListController::class, 'filterEmployees'])->name('employees.filter');
+        Route::get('/employee/cv/{id}', [NewEmployeeListController::class, 'viewCV'])->name('employee.viewCV');
 
         
         // end NewemployeeListCintroller--------

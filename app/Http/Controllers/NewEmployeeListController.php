@@ -21,9 +21,12 @@ class NewEmployeeListController extends Controller
     public function index()
     {
         $employees = NewEmployeeList::all();
+        $countries = Country::all();
+        $states = State::all();
+        $cities = City::all();
         $departments = Department::all(); 
         $designations = Designation::all(); 
-        return view('backend.Newemployees-list', compact('employees','departments','designations'));
+        return view('backend.Newemployees-list', compact('countries','states','cities','employees','departments','designations'));
     }
 
    public function empdashborad(){
@@ -90,6 +93,19 @@ class NewEmployeeListController extends Controller
     
         // Create new employee
         $employee = new NewEmployeeList();
+         if ($request->hasFile('cv')) {
+        // Generate a unique file name with the current timestamp
+        $cvName = time() . '.' . $request->cv->extension();
+        
+        // Store the file in 'storage/app/public/employees' directory
+        $request->file('cv')->storeAs('employees', $cvName, 'public'); // Store on the public disk
+        
+        // Save the file name in the employee record
+        $employee->cv = $cvName; // Store just the file name
+    } else {
+        // If no CV is uploaded, set it to null or keep previous value
+        $employee->cv = null; // or leave it unset to keep previous
+    }
         $employee->first_name = $request->first_name;
         $employee->last_name = $request->last_name;
         $employee->email = $request->email;
@@ -133,6 +149,27 @@ class NewEmployeeListController extends Controller
     
         return redirect()->route('NewEmployeeslist.empdashborad')->with('success', 'Employee added successfully!');
     }
+     public function viewCV($id)
+    {
+       
+    $employee = NewEmployeeList::findOrFail($id);
+
+    // Check if the CV exists
+    if ($employee->cv) {
+        
+        $filePath = storage_path('app/public/employees/' . $employee->cv);
+
+      
+        if (file_exists($filePath)) {
+           
+            return response()->file($filePath);
+        } else {
+            return redirect()->back()->with('error', 'CV file does not exist.');
+        }
+    } else {
+        return redirect()->back()->with('error', 'CV not found.');
+    }
+    }
     
     public function edit(NewEmployeeList $employee)
     {
@@ -152,6 +189,39 @@ class NewEmployeeListController extends Controller
             $request->avatar->move(public_path('storage/employees'), $avatarName);
             $employee->avatar = $avatarName; // Assign the avatar name
         }
+        //  if ($request->hasFile('cv')) {
+        //     // If there's an existing CV, delete it
+        //     if ($employee->cv) {
+        //         Storage::disk('public')->delete('employees/' . $employee->cv);
+        //     }
+    
+        //     // Generate a unique file name for the CV
+        //     $cvName = time() . '.' . $request->cv->extension();
+            
+        //     // Store the file in 'storage/app/public/employees' directory
+        //     $request->file('cv')->storeAs('employees', $cvName, 'public'); // Store on the public disk
+            
+        //     // Save the new file name in the employee record
+        //     $employee->cv = $cvName; // Store just the file name
+        // }
+         if ($request->hasFile('cv')) {
+            // If there's an existing CV, delete it
+            if ($employee->cv) {
+                // Delete the old CV file
+                $oldCvPath = public_path('storage/employees/' . $employee->cv);
+                if (file_exists($oldCvPath)) {
+                    unlink($oldCvPath); // Delete the old file
+                }
+            }
+    
+            // Generate a unique file name for the CV
+            $cvName = time() . '.' . $request->cv->extension();
+            $request->cv->move(public_path('storage/employees'), $cvName); // Directly move to public storage
+    
+            // Save the new file name in the employee record
+            $employee->cv = $cvName; // Store just the file name
+        }
+    
     $employee->first_name = $request->first_name;
     $employee->last_name = $request->last_name;
     $employee->email = $request->email;
@@ -204,6 +274,7 @@ class NewEmployeeListController extends Controller
         $employee->delete();
         return redirect('/NewListemployees');
     }
+
     public function import(Request $request)
     {
         $request->validate([

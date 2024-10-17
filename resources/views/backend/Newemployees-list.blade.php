@@ -1,19 +1,17 @@
 @extends('layouts.backend')
 
+
 @section('styles')
 <!-- DataTable CSS -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.bootstrap4.min.css">
 <link rel="stylesheet" href="{{ asset('assets/plugins/select2/select2.min.css') }}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 @section('page-header')
 <div class="row align-items-center">
     <div class="col">
@@ -145,6 +143,8 @@
                 <th>Country</th>
                 <th>State</th>
                 <th>City</th>
+                <th>CV</th>
+
                 <th>Actions</th>
             </tr>
         </thead>
@@ -181,8 +181,36 @@
                 <td>{{ $employee->motorcycle_lic }}</td>
                 <td>{{ $employee->automobile_lic }}</td>
                 <td>
+                    {{ $countries->firstWhere('id', $employee->country)->name ?? '' }}
+                </td>
+                <td>
+                    {{ $states->firstWhere('id', $employee->state)->name ?? '' }}
+                </td>
+                <td>
+                    {{ $cities->firstWhere('id', $employee->city)->name ?? '' }}
+                </td>
+                <td>
+                <!--     @if ($employee->cv)-->
+                <!--<a href="{{ route('employee.viewCV', $employee->id) }}" target="_blank">View CV</a>-->
+                <!--    @else-->
+                <!--        No CV Uploaded-->
+                <!--    @endif-->
+                
+                 @if ($employee->cv)
+            <a href="{{ asset('storage/employees/' . $employee->cv) }}" target="_blank">View CV</a>
+        @else
+            No CV Uploaded
+        @endif
+                </td>
+                <td>
                     <a href="{{ route('NewEmployeeslist.edit', $employee->id) }}" class="btn btn-primary">Edit</a>
-                    <button type="button" class="btn btn-danger" onclick="showDeleteConfirmation('{{ route('NewEmployeeslist.destroy', $employee->id) }}')">Delete</button>
+                    <!--<button type="button" class="btn btn-danger" onclick="showDeleteConfirmation('{{ route('NewEmployeeslist.destroy', $employee->id) }}')">Delete</button>-->
+                    <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">-->
+                    <!--    Delete-->
+                    <!--</button>-->
+                   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $employee->id }}">
+        Delete
+    </button>
 
                 </td>
             </tr>
@@ -191,22 +219,24 @@
     </table>
 </div>
 
-<!-- Confirmation Modal -->
-<div class="modal fade table-responsive" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Delete</h5>
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                Are you sure you want to delete this employee?
+                Are you sure you want to delete this item?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <form id="deleteForm" action="" method="POST" style="display:inline-block;">
+                <form id="deleteForm" action="" method="POST" style="display: inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -215,21 +245,22 @@
         </div>
     </div>
 </div>
-
-
-<!-- Include jQuery and Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-
 <script>
-function showDeleteConfirmation(url) {
-    // Set the form action to the provided URL
-    document.getElementById('deleteForm').action = url;
+   $(document).ready(function() {
+    $('#deleteModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var employeeId = button.data('id'); // Extract info from data-* attributes
 
-    // Show the confirmation modal
-    $('#deleteConfirmationModal').modal('show');
-}
+        // Update the modal's form action using the named route
+        var formAction = "{{ route('NewEmployeeslist.destroy', ':id') }}".replace(':id', employeeId);
+        $('#deleteForm').attr('action', formAction);
+    });
+});
+
 </script>
+
+
+
 @endsection
 
 @section('scripts')
@@ -245,7 +276,11 @@ function showDeleteConfirmation(url) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-
+// <script>
+// $(document).ready(function() {
+//     $('#employeeTable').DataTable();
+// });
+// </script>
 <script>
 $(document).ready(function() {
     $('#employeeTable').DataTable({
@@ -253,11 +288,11 @@ $(document).ready(function() {
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print', 'colvis'
         ],
-        "paging": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false
+        paging: true,
+        searching: true,
+        ordering: true,
+        info: true,
+        autoWidth: false
     });
 });
 </script>
@@ -289,4 +324,5 @@ $(document).ready(function() {
         });
     });
 </script>
+
 @endsection

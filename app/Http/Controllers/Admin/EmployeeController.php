@@ -19,14 +19,15 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $title="employees";
-        $designations = Designation::get();
+        // $title="employees";
+        // $designations = Designation::get();
         
-        $departments = Department::get();
-        $employees = Employee::with('department','designation',)->get();
-        // dd($employees);
-        return view('backend.employees',
-        compact('title','designations','departments','employees'));
+        // $departments = Department::get();
+        // $employees = Employee::with('department','designation',)->get();
+        // // dd($employees);
+        // return view('backend.employees',
+        // compact('title','designations','departments','employees'));
+        return "test";
     }
 
     /**
@@ -53,14 +54,14 @@ class EmployeeController extends Controller
     public function store(Request $request)
 {
     $this->validate($request,[
-        'firstname' => 'required',
-        'lastname' => 'required',
-        'email' => 'required|email',
-        'phone' => 'nullable|max:15',
-        'company' => 'required|max:200',
-        'avatar' => 'file|image|mimes:jpg,jpeg,png,gif',
-        'department' => 'required|integer', 
-        'designation' => 'required|integer', 
+        // 'firstname' => 'required',
+        // 'lastname' => 'required',
+        // 'email' => 'required|email',
+        // 'phone' => 'nullable|max:15',
+        // 'company' => 'required|max:200',
+        // 'avatar' => 'file|image|mimes:jpg,jpeg,png,gif',
+        // 'department' => 'required|integer', 
+        // 'designation' => 'required|integer', 
     ]);
 
     $imageName = null;
@@ -73,43 +74,46 @@ class EmployeeController extends Controller
 
     $employee = Employee::create([
         'uuid' => $uuid,
-        'firstname' => $request->firstname,
-        'lastname' => $request->lastname,
+        // 'firstname' => $request->firstname,
+        // 'lastname' => $request->lastname,
         'email' => $request->email,
         'phone' => $request->phone,
-        'company' => $request->company,
-        'department_id' => $request->department,
-        'designation_id' => $request->designation,
-        'avatar' => $imageName,
-        'Employee_id' => $request->Employee_id,
-            'position' => $request->position,
-            'empsalary' => $request->empsalary,
-            'reporting_manager' => $request->reporting_manager,
-            'area' => $request->area,
-            'employee_type' => $request->employee_type,
-            'date_of_joining' => $request->date_of_joining,
-            'aadhaar_no' => $request->aadhaar_no,
-            'passport_no' => $request->passport_no,
-            'contact_no' => $request->contact_no,
-            'card_no' => $request->card_no,
-            'permanent_address' => $request->permanent_address,
-            'birthday' => $request->birthday,
-            'nick_name' => $request->nick_name,
-            'office_tel' => $request->office_tel,
-            'religion' => $request->religion,
-            'Pincode' => $request->Pincode,
-            'gender' => $request->gender,
-            'Motorcycle_lic' => $request->Motorcycle_lic,
-            'autoMobil_license' => $request->autoMobil_license,
-            'city' => $request->city,
-    ]);
+        // 'company' => $request->company,
+        // 'department_id' => $request->department,
+        // 'designation_id' => $request->designation,
+        // 'avatar' => $imageName,
+        // 'Employee_id' => $request->Employee_id,
+        //     'position' => $request->position,
+        //     'empsalary' => $request->empsalary,
+        //     'reporting_manager' => $request->reporting_manager,
+        //     'area' => $request->area,
+        //     'employee_type' => $request->employee_type,
+        //     'date_of_joining' => $request->date_of_joining,
+        //     'aadhaar_no' => $request->aadhaar_no,
+        //     'passport_no' => $request->passport_no,
+        //     'contact_no' => $request->contact_no,
+        //     'card_no' => $request->card_no,
+        //     'permanent_address' => $request->permanent_address,
+        //     'birthday' => $request->birthday,
+        //     'nick_name' => $request->nick_name,
+        //     'office_tel' => $request->office_tel,
+        //     'religion' => $request->religion,
+        //     'Pincode' => $request->Pincode,
+        //     'gender' => $request->gender,
+        //     'Motorcycle_lic' => $request->Motorcycle_lic,
+        //     'autoMobil_license' => $request->autoMobil_license,
+        //     'city' => $request->city,
+        'firstname' => $request->name,
+        'address' => $request->address,
 
-    if ($employee) {
-        storeActivityLog($userId=1, $action='store', $description=$request->firstname.' '.$request->lastname, $moduleName='Employee', $moduleId=$employee->id ,$status='Employee has been added');
-        return back()->with('success', "Employee has been added");
-    } else {
-        return back()->with('error', "Failed to add employee");
-    }
+    ]);
+$employee->save();
+    // if ($employee) {
+    //     storeActivityLog($userId=1, $action='store', $description=$request->firstname.' '.$request->lastname, $moduleName='Employee', $moduleId=$employee->id ,$status='Employee has been added');
+    //     return back()->with('success', "Employee has been added");
+    // } else {
+    //     return back()->with('error', "Failed to add employee");
+    // }
 }
 
 
@@ -175,14 +179,14 @@ class EmployeeController extends Controller
     public function update(Request $request)
 {
     $this->validate($request, [
-        'firstname' => 'required',
-        'lastname' => 'required',
-        'email' => 'required|email',
-        'phone' => 'nullable|max:15',
-        'company' => 'required|max:200',
-        'avatar' => 'file|image|mimes:jpg,jpeg,png,gif',
-        'department_id' => 'required|integer', 
-        'designation_id' => 'required|integer', 
+        // 'firstname' => 'required',
+        // 'lastname' => 'required',
+        // 'email' => 'required|email',
+        // 'phone' => 'nullable|max:15',
+        // 'company' => 'required|max:200',
+        // 'avatar' => 'file|image|mimes:jpg,jpeg,png,gif',
+        // 'department_id' => 'required|integer', 
+        // 'designation_id' => 'required|integer', 
     ]);
 
     $employee = Employee::find($request->id);
@@ -270,6 +274,14 @@ class EmployeeController extends Controller
     
         // Return the view with employees and designations
         return view('backend.filteremployees', compact('employees', 'designations'));
+    }
+    public function getall()
+    {
+        $employees = Employee::all();
+        return response()->json([
+            'status' => 200,
+            'employees' => $employees
+        ]);
     }
 
 }

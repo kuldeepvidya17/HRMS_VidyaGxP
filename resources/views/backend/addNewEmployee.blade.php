@@ -136,6 +136,10 @@
                 <label class="col-form-label">Employee Picture</label>
                 <input class="form-control" name="avatar" type="file">
         </div>
+         <div class="form-group">
+            <label class="col-form-label">Employee CV</label>
+            <input class="form-control" name="cv" type="file" accept=".pdf,.doc,.docx">
+        </div>
         <div class="form-group">
             <label>Reporting Manager <span class="text-danger">*</span></label>
             <select name="reporting_managers[]" class="form-control select2" multiple>
@@ -160,8 +164,8 @@
                 <label>Employee Type</label>
                 <select name="employee_type" class="form-control">
                     <option value="">-- Select --</option>
-                    <option value="permanent">Permanent</option>
-                    <option value="temporary">Temporary</option>
+                    <option value="Permanent">Permanent</option>
+                    <option value="Temporary">Temporary</option>
                 </select>
             </div>
         </div>
@@ -216,7 +220,14 @@
         <div class="form-group">
             <div class="form-group">
                 <label>Religion</label>
-                <input type="text" class="form-control" name="religion">
+                {{-- <input type="text" class="form-control" name="religion"> --}}
+                <select class="form-control" name="religion">
+                    <option value="">-- Select Religion --</option>
+                    <option value="Hindu">Hindu</option>
+                    <option value="Muslim">Muslim</option>
+                    <option value="Sikh">Sikh</option>
+                    <option value="Christian">Christian</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
@@ -230,8 +241,8 @@
                 <label>Gender</label>
                 <select name="gender" class="form-control">
                     <option value="">Select</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
                 </select>
             </div>
         </div>
