@@ -41,7 +41,9 @@
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-     <!-- Import Excel Form -->
+
+    <a href="{{ route('NewEmployeeslist.downloadDummyExcel') }}" class="btn btn-success mb-2">Download Sample Excel</a>
+    <!-- Import Excel Form -->
      <form action="{{ route('NewEmployeeslist.import') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
@@ -149,9 +151,9 @@
             </tr>
         </thead>
         <tbody id="audit-data">
-            @foreach($employees as $employee)
+            @foreach($employees as $index =>  $employee)
             <tr>
-                <td>{{ $employee->id }}</td>
+                <td>{{ $index + 1 }}</td>
                 <td>EMP-Id {{ $employee->Employee_id }}</td>
                 <td>{{ $employee->first_name }}</td>
                 <td>{{ $employee->last_name }}</td>
@@ -195,6 +197,7 @@
                 <!--    @else-->
                 <!--        No CV Uploaded-->
                 <!--    @endif-->
+                
                  @if ($employee->cv)
             <a href="{{ asset('storage/employees/' . $employee->cv) }}" target="_blank">View CV</a>
         @else
@@ -207,9 +210,9 @@
                     <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">-->
                     <!--    Delete-->
                     <!--</button>-->
-                   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-id="{{ $employee->id }}">
-        Delete
-    </button>
+                    {{-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteEmployeeModal" data-id="{{ $employee->id }}">
+                        Delete
+                    </button> --}}
 
                 </td>
             </tr>
@@ -221,21 +224,23 @@
 
 
 <!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteEmployeeModal" tabindex="-1" aria-labelledby="deleteEmployeeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                <h5 class="modal-title" id="deleteEmployeeModalLabel">Confirm Deletion</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                Are you sure you want to delete this item?
+                Are you sure you want to delete this employee?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <form id="deleteForm" action="" method="POST" style="display: inline;">
+                
+                <!-- Form for Deleting Employee -->
+                <form id="deleteEmployeeForm" method="POST" action="">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
@@ -244,20 +249,20 @@
         </div>
     </div>
 </div>
+
+<!-- JavaScript for Handling Delete Confirmation in Second Employee Modal -->
 <script>
-   $(document).ready(function() {
-    $('#deleteModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget); // Button that triggered the modal
-        var employeeId = button.data('id'); // Extract info from data-* attributes
+    $(document).ready(function() {
+        $('#deleteEmployeeModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var employeeId = button.data('id'); // Extract info from data-* attributes
 
-        // Update the modal's form action using the named route
-        var formAction = "{{ route('NewEmployeeslist.destroy', ':id') }}".replace(':id', employeeId);
-        $('#deleteForm').attr('action', formAction);
+            // Update the form action with the employee's ID
+            var formAction = "{{ route('NewEmployeeslist.destroy', ':id') }}".replace(':id', employeeId);
+            $('#deleteEmployeeForm').attr('action', formAction);
+        });
     });
-});
-
 </script>
-
 
 
 @endsection

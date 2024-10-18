@@ -47,15 +47,15 @@
             <input type="text" class="form-control" name="Employee_id" required>
         </div>
         <div class="form-group">
-            <label>First Name</label>
+            <label>First Name <span class="text-danger">*</span></label>
             <input type="text" class="form-control" name="first_name" required>
         </div>
         <div class="form-group">
-            <label>Last Name</label>
+            <label>Last Name <span class="text-danger">*</span></label>
             <input type="text" class="form-control" name="last_name" >
         </div>
         <div class="form-group">
-            <label>Email</label>
+            <label>Email <span class="text-danger">*</span></label>
             <input type="email" class="form-control" name="email" required>
         </div>
         {{-- <div class="form-group">
@@ -141,7 +141,7 @@
             <input class="form-control" name="cv" type="file" accept=".pdf,.doc,.docx">
         </div>
         <div class="form-group">
-            <label>Reporting Manager <span class="text-danger">*</span></label>
+            <label>Reporting Manager </label>
             <select name="reporting_managers[]" class="form-control select2" multiple>
                 <option disabled>Select Reporting Manager</option>
                 @foreach ($employees as $manager)
@@ -155,7 +155,7 @@
         
         <div class="form-group">
             <div class="form-group">
-                <label>Area<span class="text-danger">*</span></label>
+                <label>Area</label>
                 <input type="text" class="form-control" name="area">
             </div>
         </div>

@@ -142,7 +142,7 @@
             </div>
 
             <div class="form-group">
-                <label>Reporting Manager <span class="text-danger">*</span></label>
+                <label>Reporting Manager </label>
                 <select name="reporting_managers[]" class="form-control select2" multiple>
                     <option disabled>Select Reporting Manager</option>
                     @foreach ($employees as $manager)
@@ -155,7 +155,7 @@
             </div>
             
             <div class="form-group">
-                <label>Area<span class="text-danger">*</span></label>
+                <label>Area</label>
                 <input type="text" class="form-control" name="area" value="{{ old('area', $employee->area) }}">
             </div>
     

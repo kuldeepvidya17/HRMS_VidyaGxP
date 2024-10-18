@@ -211,6 +211,7 @@ Route::group(['middleware'=>['auth']], function (){
         Route::get('/Newemployees/{employee}', [NewEmployeeListController::class, 'show'])->name('NewEmployeeslist.show');
         // Route::get('/Newemployees/filter', [NewEmployeeListController::class, 'filterEmployees'])->name('employees.filter');
         Route::get('/employee/cv/{id}', [NewEmployeeListController::class, 'viewCV'])->name('employee.viewCV');
+        Route::get('employees/download-dummy-excel', [NewEmployeeListController::class, 'downloadDummyExcel'])->name('NewEmployeeslist.downloadDummyExcel');
 
         
         // end NewemployeeListCintroller--------
