@@ -192,11 +192,11 @@
                     {{ $cities->firstWhere('id', $employee->city)->name ?? '' }}
                 </td>
                 <td>
-                <!--     @if ($employee->cv)-->
-                <!--<a href="{{ route('employee.viewCV', $employee->id) }}" target="_blank">View CV</a>-->
-                <!--    @else-->
-                <!--        No CV Uploaded-->
-                <!--    @endif-->
+                    {{-- @if ($employee->cv)
+                <a href="{{ route('employee.viewCV', $employee->id) }}" target="_blank">View CV</a>
+                    @else
+                        No CV Uploaded
+                    @endif --}}
                 
                  @if ($employee->cv)
             <a href="{{ asset('storage/employees/' . $employee->cv) }}" target="_blank">View CV</a>
