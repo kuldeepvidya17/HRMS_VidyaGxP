@@ -58,16 +58,14 @@
             <label>Email</label>
             <input type="email" class="form-control" name="email" value="{{ $employee->email }}" >
         </div>
-        {{-- <div class="form-group">
-            <label>Phone</label>
-            <input type="text" class="form-control" name="phone" value="{{ $employee->phone }}" >
-        </div> --}}<label>Phone</label>
+       
+        <label>Phone</label>
             <div class="input-group-prepend">
                 
                 <select id="country_code" class="form-control" name="country_code" style="width: 125px">
                     <option value="+91">India (+91)</option> <!-- Default option for India -->
                 </select>
-                <input type="text" class="form-control" name="phone">
+                <input type="text" class="form-control" name="phone" value="{{$employee->phone}}">
             </div>
          <!-- JS for dynamic country codes -->
          <script>
@@ -165,8 +163,8 @@
                 <label>Employee Type</label>
                 <select name="employee_type" class="form-control">
                     <option value="">-- Select --</option>
-                    <option value="Permanent" @if($employee->employee_type == 'permanent') selected @endif>Permanent</option>
-                    <option value="Temporary" @if($employee->employee_type == 'temporary') selected @endif>Temporary</option>
+                    <option value="Permanent" @if($employee->employee_type == 'Permanent') selected @endif>Permanent</option>
+                    <option value="Temporary" @if($employee->employee_type == 'Temporary') selected @endif>Temporary</option>
                 </select>
             </div>
     
@@ -231,8 +229,8 @@
                 <label>Gender</label>
                 <select name="gender" class="form-control">
                     <option value="">Select</option>
-                    <option value="Male" @if($employee->gender == 'male') selected @endif>Male</option>
-                    <option value="Female" @if($employee->gender == 'female') selected @endif>Female</option>
+                    <option value="Male" @if($employee->gender == 'Male') selected @endif>Male</option>
+                    <option value="Female" @if($employee->gender == 'Female') selected @endif>Female</option>
                 </select>
             </div>
     

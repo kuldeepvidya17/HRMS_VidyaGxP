@@ -195,7 +195,6 @@
                 <!--    @else-->
                 <!--        No CV Uploaded-->
                 <!--    @endif-->
-                
                  @if ($employee->cv)
             <a href="{{ asset('storage/employees/' . $employee->cv) }}" target="_blank">View CV</a>
         @else
