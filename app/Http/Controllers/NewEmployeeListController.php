@@ -8,12 +8,14 @@ use App\Models\Country;
 use App\Models\State;
 use App\Models\City;
 use App\Models\Department;
+use Illuminate\Support\Facades\File;
 // use App\Models\Employee;
 use App\Models\Designation;
 use App\Models\Employee;
 use App\Models\NewEmployeeList;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DummyEmployeesTemplateExport;
 
 
 class NewEmployeeListController extends Controller
@@ -244,6 +246,7 @@ class NewEmployeeListController extends Controller
 
     public function destroy(NewEmployeeList $employee)
     {
+        // dd('Destroy method hit');
         $employee->delete();
         return redirect('/NewListemployees');
     }
@@ -258,6 +261,11 @@ class NewEmployeeListController extends Controller
     
         return redirect()->route('NewEmployeeslist.index')->with('success', 'Employees imported successfully!');
     }
+    public function downloadDummyExcel()
+    {
+        return Excel::download(new DummyEmployeesTemplateExport, 'dummy_employees_template.xlsx');
+    }
+
     public function show(NewEmployeeList $employee)
 {
     // return view('NewE', compact('employee'));
